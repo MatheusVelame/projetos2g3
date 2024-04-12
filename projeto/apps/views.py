@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
-# from django.contrib import messages
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -10,6 +10,37 @@ from django.urls import reverse
 # Create your views here.
 def home(request):
     return HttpResponse("Hello, world. You're at the project index.")
+
+@login_required
+def favoritar(request, cafe_id):
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    
+    if request.method == 'POST' or request.method == 'GET':
+        usuario = request.user
+        
+        favorito_existente = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
+        
+        if not favorito_existente:
+            Favorito.objects.create(usuario=usuario, cafe=cafe)
+            messages.success(request, 'Cafeteria favoritada com sucesso!')
+            return HttpResponseRedirect(reverse('detalhes', args=[cafe_id]))
+        else:
+            favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).first()
+            favorito.delete()  # Remove o favorito se existir
+            messages.success(request, 'Cafeteria removida dos favoritos.')
+            # return redirect('reverse('detalhes', args=[cafe_id])')
+            return redirect('home')
+        
+    # return HttpResponseRedirect(reverse('detalhes', args=[cafe_id]))
+    return redirect('home')
+
+@login_required
+def lista_favoritos(request):
+    if request.user.is_authenticated:
+        favoritos = Favorito.objects.filter(usuario=request.user)
+        return render(request, 'apps/favoritos.html', {'favoritos': favoritos})
+    else:
+        return redirect('login')
 
 def login_view(request):
     title = "Login"
