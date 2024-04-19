@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 class Cafe(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
+    email = models.EmailField(default="default@example.com")
+
 
     def __str__(self):
         return self.nome
