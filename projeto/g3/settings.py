@@ -128,3 +128,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#No arquivo settings.py do seu projeto, adicione a configuração para o envio de emails. 
+#Aqui está um exemplo usando o backend de email do console para fins de desenvolvimento (isso apenas imprimirá o email no console, 
+#ao invés de enviá-lo):
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#Para produção, você substituiria isso por configurações adequadas para um servidor SMTP real. #########################################
