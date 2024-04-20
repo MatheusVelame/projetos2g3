@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail
+from .models import Cafe
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
+
 
 # Create your views here.
 def home(request):
@@ -57,8 +60,29 @@ def login_view(request):
             return render(request, 'apps/login.html', {"erro": "Usuário não encontrado"})
     return render(request, 'apps/login.html', {'next': next_url})
 
+def enviar_email(request, cafe_id):
+    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
+    if request.method == 'POST':
+        mensagem = request.POST.get('mensagem', '')
+        send_mail(
+            'Mensagem do MyCafeApp',
+            mensagem,
+            'from@example.com',
+            [cafeteria.email],
+            fail_silently=False,
+        )
+        messages.success(request, "Email enviado com sucesso!")
+        return render(request, 'email_enviado.html', {'cafeteria': cafeteria})
+    return render(request, 'enviar_email.html', {'cafeteria': cafeteria})
+
+def perfil_cafeteria(request, cafe_id):
+    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
+    return render(request, 'perfil_cafeteria.html', {'cafeteria': cafeteria})
+
 def logout(request):
     logout(request)
     if "usuario" in request.session:
         del request.session["usuario"]
     return redirect(home)
+
+
