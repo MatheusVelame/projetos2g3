@@ -1,0 +1,18 @@
+<!-- templates/enviar_email.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enviar Email</title>
+</head>
+<body>
+    <h1>Enviar Email para {{ cafeteria.nome }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="mensagem" rows="4" cols="50" placeholder="Escreva sua mensagem aqui..."></textarea>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="{% url 'perfil-cafeteria' cafe_id=cafeteria.id %}">Voltar ao Perfil</a>
+</body>
+</html>

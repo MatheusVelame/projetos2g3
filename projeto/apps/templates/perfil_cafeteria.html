@@ -1,0 +1,13 @@
+<!-- templates/perfil_cafeteria.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil da Cafeteria</title>
+</head>
+<body>
+    <h1>{{ cafeteria.nome }}</h1>
+    <p>Email: {{ cafeteria.email }}</p>
+    <a href="{% url 'enviar-email' cafe_id=cafeteria.id %}">Enviar Mensagem</a>
+</body>
+</html>
