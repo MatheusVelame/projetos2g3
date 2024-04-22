@@ -60,6 +60,16 @@ def login_view(request):
             return render(request, 'apps/login.html', {"erro": "Usuário não encontrado"})
     return render(request, 'apps/login.html', {'next': next_url})
 
+@login_required
+def enviar_whatsapp(request, cafe_id):
+    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
+    if cafeteria.whatsapp:
+        whatsapp_url = f"https://wa.me/{cafeteria.whatsapp}"
+        return redirect(whatsapp_url)
+    else:
+        messages.error(request, "Número de WhatsApp não disponível.")
+        return HttpResponseRedirect(reverse('perfil_cafeteria', args=[cafe_id]))
+
 def enviar_email(request, cafe_id):
     cafeteria = get_object_or_404(Cafe, pk=cafe_id)
     if request.method == 'POST':
