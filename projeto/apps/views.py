@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError 
 
 
 # Create your views here.
@@ -134,3 +134,26 @@ def cadastro_cafeteria(request):
 
     return render(request, 'cadastro_cafeteria.html')
 
+def user_cadastro(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        nome = request.POST.get('nome')
+        cpf = request.POST.get('cpf')
+
+        try:
+            # Tenta criar um novo usuário novo
+            user = User.objects.create_user(username=username, email=email)
+            user.save()
+
+            novo_usuario = Cadastrar_Usuario(user=user, nome=nome, cpf=cpf, email=email)
+            novo_usuario.full_clean()  # Validação do models
+            novo_usuario.save()
+
+            messages.success(request, "Cadastro realizado com sucesso!")
+            return redirect('nome_da_url_para_redirecionar')
+        except Exception as e:
+            messages.error(request, f"Erro no cadastro: {e}")
+
+    # Renderiza o mesmo formulário novamente com uma mensagem de erro, se houver
+    return render(request, 'cadastrar.html')
