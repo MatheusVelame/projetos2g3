@@ -9,5 +9,6 @@
     <h1>{{ cafeteria.nome }}</h1>
     <p>Email: {{ cafeteria.email }}</p>
     <a href="{% url 'enviar-email' cafe_id=cafeteria.id %}">Enviar Mensagem</a>
+    <a href="{% url 'enviar_whatsapp' cafeteria.id %}" class="btn btn-success">Enviar Mensagem via WhatsApp</a>
 </body>
 </html>
