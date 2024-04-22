@@ -38,4 +38,5 @@ class Cadastrar_Usuario(models.Model):
         app_label = 'apontacafe'
         verbose_name = "Cadastro"
         verbose_name_plural = "Cadastros" 
+    #testezinho
     
