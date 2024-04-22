@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
-from .views import perfil_cafeteria, enviar_email, enviar_whatsapp, cadastro_cafeteria
+from .views import perfil_cafeteria, enviar_email, enviar_whatsapp, cadastro_cafeteria, user_cadastro
 
 urlpatterns = [
     path('', views.home, name = 'home'),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('cafeteria/<int:cafe_id>/enviar-email/', enviar_email, name='enviar-email'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('cadastro_cafeteria/', views.cadastro_cafeteria, name='cadastro_cafeteria'),
+    path('cadastro/',views.user_cadastro, name='user_cadastro'),
 ]

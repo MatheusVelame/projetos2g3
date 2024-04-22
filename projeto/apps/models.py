@@ -40,8 +40,6 @@ class Cadastrar_Usuario(models.Model):
         return f"{self.nome} ({self.user.username if self.user else 'Sem usuário'})"
 
     class Meta:
-        app_label = 'apontacafe'
         verbose_name = "Cadastro"
         verbose_name_plural = "Cadastros" 
-    #testezinho
     
