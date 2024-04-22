@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -16,7 +17,7 @@ class Cafe(models.Model):
     ticket_medio = models.DecimalField(max_digits=6, decimal_places=2, blank=False, default=0.0)
 
     def __str__(self):
-        return self.nome
+        return self.nome 
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
@@ -28,3 +29,19 @@ class Favorito(models.Model):
 
     def __str__(self):
         return f'{self.usuario.username} - {self.cafe.nome}'
+    
+class Cadastrar_Usuario(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)  # Garante que cada cadastro tenha um User associado
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos, somente números')])
+    email = models.EmailField(unique=True)
+
+    def __str__(self):
+        return f"{self.nome} ({self.user.username if self.user else 'Sem usuário'})"
+
+    class Meta:
+        app_label = 'apontacafe'
+        verbose_name = "Cadastro"
+        verbose_name_plural = "Cadastros" 
+    #testezinho
+    
