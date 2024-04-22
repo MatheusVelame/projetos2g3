@@ -164,3 +164,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #ao invés de enviá-lo):
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #Para produção, você substituiria isso por configurações adequadas para um servidor SMTP real. #########################################
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

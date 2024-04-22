@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 
 
 # Create your views here.
@@ -95,4 +96,41 @@ def logout(request):
         del request.session["usuario"]
     return redirect(home)
 
+def cadastro_cafeteria(request):
+    if request.method == 'POST':
+      
+        nome = request.POST.get('nome')
+        endereco = request.POST.get('endereco')
+        descricao = request.POST.get('descricao')
+        email = request.POST.get('email')
+        whatsapp = request.POST.get('whatsapp')
+        horas_funcionamento = request.POST.get('horas_funcionamento')
+        link_redesocial = request.POST.get('link_redesocial', '')  
+        ticket_medio = request.POST.get('ticket_medio')
+
+        
+        cafe = Cafe(
+            nome=nome,
+            endereco=endereco,
+            descricao=descricao,
+            email=email,
+            whatsapp=whatsapp,
+            horas_funcionamento=horas_funcionamento,
+            link_redesocial=link_redesocial,
+            ticket_medio=ticket_medio
+        )
+
+        
+        if 'foto_ambiente' in request.FILES:
+            cafe.foto_ambiente = request.FILES['foto_ambiente']
+
+       
+        try:
+            cafe.full_clean()
+            cafe.save()
+            return redirect('nome_da_url_para_redirecionar_apos_sucesso')
+        except ValidationError as e:
+            return render(request, 'cadastro_cafeteria.html', {'errors': e.message_dict, 'form': request.POST})
+
+    return render(request, 'cadastro_cafeteria.html')
 
