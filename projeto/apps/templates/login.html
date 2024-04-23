@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="pt-br">
+{% extends "global/base.html" %}
+{% block content %}
+<div class="container">
+    <form class="login" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        <h2>{{ title }}</h2>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'global/css/style_login_cliente.css' %}">
-    <title>Login Aluno</title>
-</head>
+        <div>
+            <input type="radio" id="cliente" name="tipo_usuario" value="cliente" checked>
+            <label for="cliente">Cliente</label>
+            <input type="radio" id="cafeteria" name="tipo_usuario" value="cafeteria">
+            <label for="cafeteria">Cafeteria</label>
+        </div>
 
-<body>
+        <div class="box-user">
+            <label>Nome de usuário:</label><br>
+            <input type="text" name="username" required><br>
+        </div>
 
-    <div>
-        <input type="radio" id="cliente" name="tipo_usuario" value="cliente" checked>
-        <label for="cliente">Cliente</label>
-        <input type="radio" id="cafeteria" name="tipo_usuario" value="cafeteria">
-        <label for="cafeteria">Cafeteria</label>
-    </div>
+        <div class="box-user">
+            <label>Senha:</label><br>
+            <input type="password" name="password" required><br>
+        </div>
 
-    <div class="box-user">
-        <label>Nome de usuário:</label><br>
-        <input type="text" name="username" required><br>
-    </div>
+        <button type="submit" class="btn btn-light">Entrar</button>
 
-    <div class="box-user">
-        <label>Senha:</label><br>
-        <input type="password" name="password" required><br>
-    </div>
-
-    <button type="submit" class="btn btn-light">Entrar</button>
-
-    <div>
-        <p>Não tem cadastro? <a href="{% url 'user_cadastro' %}" class="forget">Crie sua conta</a>.</p>
-    </div>
+        <div>
+            <p>Não tem cadastro? Crie sua conta:</p>
+            <a href="{% url 'cadastro_cliente' %}?tipo_usuario=cliente" class="btn btn-light">Cliente</a>
+            <a href="{% url 'cadastro_cafeteria' %}?tipo_usuario=cafeteria" class="btn btn-light">Cafeteria</a>
+        </div>
+        
     </form>
-    </div>
-</body>
-</html>
+</div>
+{% endblock content %}
