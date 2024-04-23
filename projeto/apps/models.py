@@ -17,11 +17,37 @@ class Cafe(models.Model):
     ticket_medio = models.DecimalField(max_digits=6, decimal_places=2, blank=False, default=0.0)
 
     def __str__(self):
-        return self.nome 
+        return self.nome
+
+    def detalhes(self):
+        return {
+            'nome': self.nome,
+            'endereco': self.endereco,
+            'descricao': self.descricao,
+            'email': self.email,
+            'whatsapp': self.whatsapp,
+            'horas_funcionamento': self.horas_funcionamento,
+            'link_redesocial': self.link_redesocial,
+            'foto_ambiente': self.foto_ambiente.url if self.foto_ambiente else None,
+            'ticket_medio': str(self.ticket_medio)  # Converte para string para ser compatível com o JSON
+        }
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+
+    def detalhes(self):
+        return {
+            'nome': self.nome,
+            'endereco': self.endereco,
+            'descricao': self.descricao,
+            'email': self.email,
+            'whatsapp': self.whatsapp,
+            'horas_funcionamento': self.horas_funcionamento,
+            'link_redesocial': self.link_redesocial,
+            'foto_ambiente': self.foto_ambiente.url if self.foto_ambiente else None,
+            'ticket_medio': str(self.ticket_medio)
+        }
 
     def __str__(self):
         return f'{self.usuario.username} - {self.cafe.nome}'
