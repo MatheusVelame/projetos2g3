@@ -98,7 +98,7 @@ def logout(request):
 
 def cadastro_cafeteria(request):
     if request.method == 'POST':
-      
+    
         nome = request.POST.get('nome')
         endereco = request.POST.get('endereco')
         descricao = request.POST.get('descricao')
@@ -124,7 +124,6 @@ def cadastro_cafeteria(request):
         if 'foto_ambiente' in request.FILES:
             cafe.foto_ambiente = request.FILES['foto_ambiente']
 
-       
         try:
             cafe.full_clean()
             cafe.save()
