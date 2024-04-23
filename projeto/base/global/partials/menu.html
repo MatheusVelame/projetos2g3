@@ -1,26 +1,23 @@
-<!-- MENU -->
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Aponte Cafés</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+<nav>
+    <div>
+        <a href="{% url 'home' %}">Aponte Cafés</a>
+        <button>
+            <span></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link " aria-current="page" href="{% url 'cadastro_cafeteria' %}">Cadastrar Café</a>
-                <a class="nav-link" href="{% url 'favoritos' %}">Favoritos</a>
+        <div>
+            <div>
+                <a href="{% url 'cadastro_cafeteria' %}">Cadastrar Café</a>
+                <a href="{% url 'favoritos' %}">Favoritos</a>
             </div>
         </div>
 
         {% if user.is_authenticated %}
         <form method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit" class="nav-link login">Logout</button>
+            <button type="submit">Logout</button>
         </form>
         {% else %}
-        <a class="nav-link login" href="{% url 'login' %}">Login</a>
+        <a href="{% url 'login' %}">Login</a>
         {% endif %}
     </div>
 </nav>
