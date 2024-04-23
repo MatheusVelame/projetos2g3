@@ -6,6 +6,13 @@
         <input type="hidden" name="next" value="{{ next }}">
         <h2>{{ title }}</h2>
 
+        <div>
+            <input type="radio" id="cliente" name="tipo_usuario" value="cliente" checked>
+            <label for="cliente">Cliente</label>
+            <input type="radio" id="cafeteria" name="tipo_usuario" value="cafeteria">
+            <label for="cafeteria">Cafeteria</label>
+        </div>
+
         <div class="box-user">
             <input type="text" name="username" required>
             <label>Nome de usuário</label>
@@ -16,9 +23,11 @@
             <label>Senha</label>
         </div>
 
-        
-
         <button type="submit" class="btn btn-light">Entrar</button>
+
+        <div>
+            <p>Não tem cadastro? <a href="{% url 'user_cadastro' %}" class="forget">Crie sua conta</a>.</p>
+        </div>
     </form>
 </div>
 {% endblock content %}
