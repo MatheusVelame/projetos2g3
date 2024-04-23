@@ -35,3 +35,8 @@ class UserCliente(models.Model):
 
     def __str__(self):
         return f"{self.nome} ({self.user.username if self.user else 'Sem usuário'})"
+
+    class Meta:
+        verbose_name = "Cadastro"
+        verbose_name_plural = "Cadastros" 
+    
