@@ -1,4 +1,6 @@
-<nav>
+{% load static %}
+<link rel="stylesheet" href="{% static '../static/css/style_menu.css' %}">
+<nav class="navbar">
     <div>
         <a href="{% url 'home' %}">Aponte Cafés</a>
         <button>
