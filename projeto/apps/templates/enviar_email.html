@@ -1,11 +1,10 @@
-<!-- templates/enviar_email.html -->
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'global/base.html' %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Enviar Email</title>
 </head>
-<body>
+<div>
     <h1>Enviar Email para {{ cafeteria.nome }}</h1>
     <form method="post">
         {% csrf_token %}
@@ -14,5 +13,5 @@
         <button type="submit">Enviar</button>
     </form>
     <a href="{% url 'perfil-cafeteria' cafe_id=cafeteria.id %}">Voltar ao Perfil</a>
-</body>
-</html>
+</div>
+{% endblock %}
