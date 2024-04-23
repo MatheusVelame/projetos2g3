@@ -1,0 +1,67 @@
+.navbar {
+    background-color: #f8f9fa; /* Cor de fundo */
+    padding: 10px 20px; /* Espaçamento interno */
+    display: flex; /* Usando flexbox */
+    justify-content: flex-start; /* Alinhar itens à esquerda */
+    align-items: center; /* Centralizar itens verticalmente */
+    flex-direction: column; /* Empilhar itens verticalmente */
+    position: absolute; /* Posicionamento absoluto */
+    top: 20px; /* Espaçamento do topo */
+    right: 20px; /* Espaçamento da direita */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra para dar um efeito elevado */
+    z-index: 1000; /* Garantir que o menu ficará acima de outros elementos */
+}
+
+.navbar a {
+    text-decoration: none; /* Remover sublinhado de links */
+    color: #333; /* Cor do texto */
+    padding: 8px 16px; /* Espaçamento interno */
+    margin-bottom: 8px; /* Espaçamento entre itens */
+    display: block; /* Fazer cada link ocupar sua própria linha */
+    background-color: white; /* Cor de fundo para cada item */
+    border-radius: 4px; /* Bordas arredondadas para cada item */
+    width: 100%; /* Fazer cada link estender a largura total do contêiner */
+    box-sizing: border-box; /* Incluir padding na largura total */
+    text-align: center; /* Alinhar texto ao centro */
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* Cor de fundo ao passar o mouse */
+    text-decoration: none; /* Garantir que o sublinhado é removido */
+}
+
+
+/* Estilização para o botão que pode ser um toggle para menu responsivo */
+.navbar button {
+    background: none;
+    border: none;
+    display: none; /* Esconder por padrão, exibir somente em tamanhos de tela menores */
+    cursor: pointer;
+}
+
+/* Estilização para a div que contém os links quando o menu é responsivo */
+.navbar div {
+    display: flex;
+    flex-direction: column; /* Faz os links se empilharem verticalmente em telas menores */
+    align-items: center; /* Centraliza os links verticalmente */
+    width: 100%; /* Ocupa toda a largura em telas menores */
+}
+
+/* Aplica estilo aos itens do formulário no menu */
+.navbar form {
+    margin: 0;
+}
+
+/* Ajusta o layout do menu para telas pequenas */
+@media (max-width: 768px) {
+    .navbar div {
+        display: none; /* Esconde os links até que o botão seja clicado */
+    }
+
+    .navbar button {
+        display: block; /* Mostra o botão em telas pequenas */
+    }
+
+    /* Se você adicionar funcionalidade de toggle, faça a div com links aparecer aqui */
+}
