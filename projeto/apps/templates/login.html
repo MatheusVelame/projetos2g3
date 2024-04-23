@@ -1,25 +1,20 @@
 {% extends "global/base.html" %}
 {% block content %}
-<div class="center">
+<div class="container">
     <form class="login" method="post">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
         <h2>{{ title }}</h2>
 
         <div class="box-user">
-            <input type="text" name="username" required>
-            <label>Nome de usuário</label>
+            <label>Nome de usuário:</label><br>
+            <input type="text" name="username" required><br>
         </div>
 
         <div class="box-user">
-            <input type="password" name="password" required>
-            <label>Senha</label>
+            <label>Senha:</label><br>
+            <input type="password" name="password" required><br>
         </div>
-
-        <div>
-            <p>Não tem cadastro? <a href="{% url 'cadastro' %}" class="forget">Crie sua conta</a>.</p>
-        </div>
-
         <button type="submit" class="btn btn-light">Entrar</button>
     </form>
 </div>
