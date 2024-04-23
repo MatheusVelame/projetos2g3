@@ -26,8 +26,11 @@
         <button type="submit" class="btn btn-light">Entrar</button>
 
         <div>
-            <p>Não tem cadastro? <a href="{% url 'user_cadastro' %}" class="forget">Crie sua conta</a>.</p>
+            <p>Não tem cadastro? Crie sua conta:</p>
+            <a href="{% url 'cadastro_cliente' %}?tipo_usuario=cliente" class="btn btn-light">Cliente</a>
+            <a href="{% url 'cadastro_cafeteria' %}?tipo_usuario=cafeteria" class="btn btn-light">Cafeteria</a>
         </div>
+        
     </form>
 </div>
 {% endblock content %}
