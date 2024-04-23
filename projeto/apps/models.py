@@ -29,7 +29,7 @@ class Favorito(models.Model):
 class UserCliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)  # Garante que cada cadastro tenha um User associado
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=11, unique=True, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos, somente números')])
+    senha = models.CharField(max_length=11, unique=True, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos, somente números')])
     email = models.EmailField(unique=True)
     whatsapp = models.CharField(max_length=15, default='5500000000000')
 
