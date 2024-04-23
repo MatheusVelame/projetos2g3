@@ -141,6 +141,7 @@ def cadastro_cafeteria(request):
 
 def user_cadastro(request):
     if request.method == 'POST':
+        user = request.POST.get('user')
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
