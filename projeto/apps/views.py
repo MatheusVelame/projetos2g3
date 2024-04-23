@@ -141,24 +141,24 @@ def cadastro_cafeteria(request):
 
 def user_cadastro(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
         nome = request.POST.get('nome')
-        cpf = request.POST.get('cpf')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        c_senha = request.POST.get('c_senha')
 
         try:
             # Tenta criar um novo usuário novo
-            user = User.objects.create_user(username=username, email=email)
+            user = User.objects.create_user(nome=nome, email=email)
             user.save()
 
-            novo_usuario = UserCliente(user=user, nome=nome, cpf=cpf, email=email)
+            novo_usuario = UserCliente(user=user, nome=nome, senha=senha, email=email)
             novo_usuario.full_clean()  # Validação do models
             novo_usuario.save()
 
             messages.success(request, "Cadastro realizado com sucesso!")
-            return redirect('nome_da_url_para_redirecionar')
+            return redirect('login.html')
         except Exception as e:
             messages.error(request, f"Erro no cadastro: {e}")
 
     # Renderiza o mesmo formulário novamente com uma mensagem de erro, se houver
-    return render(request, 'cadastrar.html')
+    return render(request, 'cadastro_usuario.html')
