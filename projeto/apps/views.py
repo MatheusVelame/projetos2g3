@@ -13,7 +13,8 @@ from django.core.exceptions import ValidationError
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Hello, world. You're at the project index.")
+    cafes = Cafe.objects.all()
+    return render(request, 'home.html', {'cafes': cafes})
 
 @login_required
 def favoritar(request, cafe_id):
