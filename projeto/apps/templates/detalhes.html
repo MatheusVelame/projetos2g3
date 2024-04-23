@@ -1,0 +1,92 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+<style>
+    #carouselExampleIndicators .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .collums {
+        padding: 0 20px;
+    }
+
+    #carouselExampleIndicators,
+    .collums {
+        font-family: Helvetica, sans-serif;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    {% if cafe.foto_ambiente %}
+                    <div class="carousel-item active">
+                        <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}">
+                    </div>
+                    {% else %}
+                    <div class="carousel-item active">
+                        <svg class="bd-placeholder-img d-block w-100" width="100%" height="500"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c"></rect>
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
+                    </div>
+                    {% endif %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Conteúdo à direita -->
+        <div class="col-md-6">
+            <div class="collums">
+                <h2 style="font-weight: bold; font-size: 50px;">{{ detalhes_cafe.nome }}</h2>
+
+                <h5>Descrição:</h5>
+                <p>{{ detalhes_cafe.descricao }}</p>
+
+                <h5>Endereço:</h5>
+                <p>{{ detalhes_cafe.endereco }}</p>
+
+                <h5>Horário de Funcionamento:</h5>
+                <p>{{ detalhes_cafe.horas_funcionamento }}</p>
+
+                <h5>WhatsApp:</h5>
+                <p>{{ detalhes_cafe.whatsapp }}</p>
+
+                <div class="btn-group">
+                    {% if user.is_authenticated %}
+                        {% if cafe %}
+                            <a href="{% url 'favoritar' cafe.id %}" class="btn btn-lg btn-outline-secondary">Favoritar</a>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary">Favoritar</a>
+                    {% endif %}
+                </div>      
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
