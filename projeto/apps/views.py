@@ -136,14 +136,15 @@ def cadastro_cafeteria(request):
 
 def user_cadastro(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
+        user = request.POST.get('user')
         nome = request.POST.get('nome')
         cpf = request.POST.get('cpf')
+        email = request.POST.get('email')
+        whatsapp = request.POST.get('whatsapp')
 
         try:
             # Tenta criar um novo usuário novo
-            user = User.objects.create_user(username=username, email=email)
+            user = User.objects.create_user(user=user, email=email)
             user.save()
 
             novo_usuario = UserCliente(user=user, nome=nome, cpf=cpf, email=email)
@@ -151,7 +152,7 @@ def user_cadastro(request):
             novo_usuario.save()
 
             messages.success(request, "Cadastro realizado com sucesso!")
-            return redirect('nome_da_url_para_redirecionar')
+            return redirect('home.html')
         except Exception as e:
             messages.error(request, f"Erro no cadastro: {e}")
 
