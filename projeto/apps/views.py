@@ -146,7 +146,7 @@ def user_cadastro(request):
             user = User.objects.create_user(username=username, email=email)
             user.save()
 
-            novo_usuario = Cadastrar_Usuario(user=user, nome=nome, cpf=cpf, email=email)
+            novo_usuario = UserCliente(user=user, nome=nome, cpf=cpf, email=email)
             novo_usuario.full_clean()  # Validação do models
             novo_usuario.save()
 
