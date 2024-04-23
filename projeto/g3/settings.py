@@ -62,10 +62,6 @@ else:
     }
     
 # Application definition
-
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
