@@ -1,7 +1,7 @@
 {% extends "global/base.html" %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'global/css/style_login.css' %}">
+<link rel="stylesheet" href="{% static '../static/css/style_login.css' %}">
 <div class="container">
     <form class="login" method="post">
         {% csrf_token %}
