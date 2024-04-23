@@ -13,5 +13,5 @@ urlpatterns = [
     path('cafeteria/<int:cafe_id>/enviar-email/', enviar_email, name='enviar-email'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('cadastro_cafeteria/', views.cadastro_cafeteria, name='cadastro_cafeteria'),
-    path('cadastro/',views.user_cadastro, name='user_cadastro'),
+    path('cadastro_cliente/',views.user_cadastro, name='user_cadastro'),
 ]
