@@ -1,16 +1,16 @@
-
 {% load static %}
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="../static/css/cadastro_user.css">
+    <link rel="stylesheet" href="{% static 'css/cadastro_user.css' %}">
 </head>
 <body>
     <div class="container">
-        <h2>Cadastro</h2>
+        <h2>Criar conta</h2>
         {% if messages %}
         <ul>
             {% for message in messages %}
@@ -20,10 +20,6 @@
         {% endif %}
         <form method="post" class="form-outter">
             {% csrf_token %}
-            <div class="form-box1">
-                <label for="username">Usuário:</label>
-                <input type="text" id="username" name="username" required><br>
-            </div>
             <div class="form-box2">
                 <label for="nome_completo">Seu nome:</label>
                 <input type="text" id="nome_completo" name="nome_completo" required><br>
@@ -33,9 +29,13 @@
                 
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" required><br>
+
+                <label for="confirm_password">Confirme sua senha:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required><br>
             </div>
-            <button type="submit" class="cadastrar">Cadastrar</button>
+            <button type="submit" class="cadastrar">Criar conta</button>
         </form>
     </div>
 </body>
 </html>
+{% endblock %}

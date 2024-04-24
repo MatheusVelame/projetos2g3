@@ -174,17 +174,21 @@ def cadastro_cafeteria(request):
 
 def UserCadastro(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        
         nome_completo = request.POST.get('nome_completo')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
 
-        if UserCliente.objects.filter(username=username).exists():
-            messages.error(request, 'Usuário já existe.')
+        if password != confirm_password:
+                messages.error(request, 'As senhas não coincidem.')
+                return render(request, 'cadastro_usuario.html')
+
+        if UserCliente.objects.filter(email=email).exists():
+            messages.error(request, 'Email já existe.')
             return render(request, 'cadastro_usuario.html')
 
         user = UserCliente(
-            username=username,
             nome_completo=nome_completo,
             email=email,
             password=password
