@@ -34,7 +34,6 @@ class Cafe(models.Model):
             'link_redesocial': self.link_redesocial,
             'foto_ambiente': self.foto_ambiente.url if self.foto_ambiente else None,
             'senha': self.senha,
-            'confirmar_senha': self.confirmar_senha,
             'cnpj': self.cnpj,
         }
 
