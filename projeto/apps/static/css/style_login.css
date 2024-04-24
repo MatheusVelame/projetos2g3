@@ -73,7 +73,7 @@ body{
 }
 
 .container form .btn-submit:hover {
-    background-color: #ffffff;
+    background-color: var(--hoover);
     /* Adicione uma cor diferente para o estado de hover, se desejar */
 }
 
@@ -99,8 +99,4 @@ body{
 /* Estilização adicional para o input e o label, se necessário */
 .radio-option input[type="radio"] {
     margin-right: 5px; /* Espaço entre o botão de rádio e o rótulo */
-}
-
-:hover.btn-submit {
-    background-color: var(--hoover);
 }
