@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
 from django.db.utils import IntegrityError
+from django.contrib.auth.hashers import make_password
 
 
 
@@ -112,23 +113,47 @@ def logout(request):
 
 def cadastro_cafeteria(request):
     if request.method == 'POST':
-    
-        nome = request.POST.get('nome')
+        senha = request.POST.get('senha')
+        confirmar_senha = request.POST.get('confirmar_senha')
+
+        if senha != confirmar_senha:
+            messages.error(request, 'As senhas não correspondem.')
+            form_data = request.POST.copy()
+            form_data['senha'] = ''
+            form_data['confirmar_senha'] = ''
+            return render(request, 'cadastro_cafeteria.html', {'form': form_data})
+
+        senha_criptografada = make_password(senha)
+
+        responsavel = request.POST.get('responsavel')
+        nome_cafeteria = request.POST.get('nome_cafeteria')
         endereco = request.POST.get('endereco')
         descricao = request.POST.get('descricao')
         email = request.POST.get('email')
         whatsapp = request.POST.get('whatsapp')
         horas_funcionamento = request.POST.get('horas_funcionamento')
-        link_redesocial = request.POST.get('link_redesocial', '')  
-        
+        link_redesocial = request.POST.get('link_redesocial', '')
+        cnpj = request.POST.get('cnpj')
+        site_cafeteria = request.POST.get('site_cafeteria')
+
+        if Cafe.objects.filter(email=email).exists():
+            messages.error(request, 'Este email já está cadastrado.')
+            form_data = request.POST.copy()
+            form_data['senha'] = ''  # Limpa a senha por questões de segurança
+            return render(request, 'cadastro_cafeteria.html', {'form': form_data})
+
         cafe = Cafe(
-            nome=nome,
+            responsavel=responsavel,
+            nome_cafeteria=nome_cafeteria,
             endereco=endereco,
             descricao=descricao,
             email=email,
             whatsapp=whatsapp,
             horas_funcionamento=horas_funcionamento,
             link_redesocial=link_redesocial,
+            senha=senha_criptografada,  # Usa a senha criptografada
+            cnpj=cnpj,
+            site_cafeteria=site_cafeteria,
         )
 
         if 'foto_ambiente' in request.FILES:
@@ -137,11 +162,16 @@ def cadastro_cafeteria(request):
         try:
             cafe.full_clean()
             cafe.save()
+            messages.success(request, 'Cafeteria cadastrada com sucesso!')
             return redirect('cadastro_cafeteria_sucesso.html')
         except ValidationError as e:
-            return render(request, 'cadastro_cafeteria.html', {'errors': e.message_dict, 'form': request.POST})
+            form_data = request.POST.copy()
+            form_data['senha'] = ''
+            form_data['confirmar_senha'] = ''
+            return render(request, 'cadastro_cafeteria.html', {'errors': e.message_dict, 'form': form_data})
 
     return render(request, 'cadastro_cafeteria.html')
+
 
 def UserCadastro(request):
     if request.method == 'POST':
@@ -164,7 +194,7 @@ def UserCadastro(request):
         )
         user.save()
         messages.success(request, 'Cadastro realizado com sucesso!')
-        return redirect('home')  # Substitua 'home' pela URL de destino após o cadastro
+        return redirect('home') 
 
     return render(request, 'cadastro_usuario.html')
 
