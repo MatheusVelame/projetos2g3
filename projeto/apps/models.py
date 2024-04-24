@@ -28,7 +28,6 @@ class Cafe(models.Model):
             'horas_funcionamento': self.horas_funcionamento,
             'link_redesocial': self.link_redesocial,
             'foto_ambiente': self.foto_ambiente.url if self.foto_ambiente else None,
-            'ticket_medio': str(self.ticket_medio)  # Converte para string para ser compatível com o JSON
         }
 
 class Favorito(models.Model):

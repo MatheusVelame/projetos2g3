@@ -16,10 +16,6 @@
 body{
     height: 100vh;
     background: linear-gradient(127deg, var(--primary), var(--secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
 .container{
@@ -99,4 +95,12 @@ body{
 /* Estilização adicional para o input e o label, se necessário */
 .radio-option input[type="radio"] {
     margin-right: 5px; /* Espaço entre o botão de rádio e o rótulo */
+}
+
+.section {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
 }

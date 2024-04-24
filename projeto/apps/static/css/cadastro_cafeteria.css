@@ -7,10 +7,6 @@
 body{
     height: 100vh;
     background: linear-gradient(127deg, var(--cor-principal), var(--secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
 
@@ -29,6 +25,7 @@ body{
     align-items: center; 
     gap: 20px;
     border-radius: 10px;
+    margin: 25px;
 }
 
 .form-box1, .form-box2 {
@@ -57,4 +54,11 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     .container {
         flex-direction: column;
     }
+}
+
+.section {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;    
 }
