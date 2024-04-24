@@ -1,4 +1,4 @@
-/* style_menu.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 body {
@@ -7,11 +7,11 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-header .cabecalho {
+.cabecalho {
     background-color: #333; /* Cor de fundo do cabeçalho */
     color: #ffffff; /* Cor do texto */
     display: flex;
-    justify-content: space-between; /* Espaçar o logotipo e o menu */
+    justify-content: center; /* Espaçar o logotipo e o menu */
     align-items: center;
     padding: 0 20px; /* Preenchimento horizontal */
 }
@@ -59,4 +59,4 @@ header form button {
 
 header form button:hover {
     background-color: #c62828; /* Cor do botão de logout ao passar o mouse */
-}
+} 
