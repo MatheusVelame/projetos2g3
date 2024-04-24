@@ -2,57 +2,81 @@
 {% block content %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static '../static/css/cadastro_cafeteria.css' %}">
+<link rel="stylesheet" href="{% static 'css/cadastro_cafeteria.css' %}">
 
 <section class="section">
   <div class="container">
-    <div class="form-outter">
-      <div class = "form-box1" id = "form1">
-        <form action="#">
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="{{ message.tags }}">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <form action="{% url 'cadastro_cafeteria' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-outter">
+        <div class="form-box1" id="form1">
           <div class="campo">
-            <label for="nome">Nome da Cafeteria:</label><br>
-            <input type="text" id="nomecafe" name="nomecafe" required><br>
+            <label for="nome_cafeteria">Nome da Cafeteria:</label>
+            <input type="text" id="nome_cafeteria" name="nome_cafeteria" required>
           </div>
-
+          <div class="campo">
+            <label for="responsavel">Responsável:</label>
+            <input type="text" name="responsavel" id="responsavel" required>
+          </div>
           <div class="campo">
             <label for="endereco">Endereço:</label>
             <input type="text" id="endereco" name="endereco" required>
           </div>
-
           <div class="campo">
             <label for="descricao">Descrição do estabelecimento:</label>
-            <input type="text" id="descricao" name="descricao" required>
+            <textarea id="descricao" name="descricao" required></textarea>
           </div>
-          
           <div class="campo">
-            <label for="email">E-mail:</label><br>
-            <input type="email" id="email" name="email" required><br>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
           </div>
-        </form>
+          <div class="campo">
+            <label for="whatsapp">Whatsapp da empresa:</label>
+            <input type="tel" id="whatsapp" name="whatsapp">
+          </div>
         </div>
-        <div class = "form-box2" id = "form2">
-          <form action="#" enctype="multipart/form-data">
-            <div class="campo">
-              <label for="whatsapp">Whatsapp da empresa:</label>
-              <input type="tel" id="whatsapp" name="whatsapp" pattern="9[0-9]{4}-[0-9]{4}">
-            </div>
-            <div class="campo">
-              <label for="horas_funcionamento">Horário de funcionamento:</label><br>
-              <input type="time" id="horas_funcionamento" name="horas_funcionamento" required><br>
-              <input type="time" id="horas_funcionamento" name="horas_funcionamento" required><br>
-            </div>
-            <div class="campo">
-              <label for="linkredesocial">Link de perfil do instagram:</label><br>
-              <input type="url" id="link" name="link" required><br>
-            </div>
-            <div class="campo">
-              <label for = "foto_ambiente">Insira uma foto do seu estabelecimento:</label>
-              <input type="file" id="foto_ambiente" name="foto_ambiente" accept="image/*">
-            </div>
-          </form>
+        <div class="form-box2" id="form2">
+          <div class="campo">
+            <label for="horas_funcionamento">Horário de funcionamento:</label>
+            <input type="time" id="horas_funcionamento" name="horas_funcionamento" required>
+          </div>
+          <div class="campo">
+            <label for="link_redesocial">Link de perfil do instagram:</label>
+            <input type="url" id="link_redesocial" name="link_redesocial" required>
+          </div>
+          <div class="campo">
+            <label for="site_cafeteria">Site da Cafeteria:</label>
+            <input type="url" name="site_cafeteria" id="site_cafeteria">
+          </div>
+          <div class="campo">
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" name="cnpj" id="cnpj" required>
+          </div>
+          <div class="campo">
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha" id="senha" required>
+          </div>
+          <div class="campo">
+            <label for="confirmar_senha">Confirmar Senha:</label>
+            <input type="password" name="confirmar_senha" id="confirmar_senha" required>
+          </div>
+          <div class="campo">
+            <label for="foto_ambiente">Insira uma foto do seu estabelecimento:</label>
+            <input type="file" id="foto_ambiente" name="foto_ambiente" accept="image/*">
+          </div>
+          <button type="submit" class="cadastrar">Cadastrar</button>
         </div>
       </div>
-      <button type="submit" class = "cadastrar">Cadastrar</button>
-    </div>
+    </form>
+  </div>
 </section>
 {% endblock %}
