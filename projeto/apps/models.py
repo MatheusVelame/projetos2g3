@@ -52,16 +52,11 @@ class Favorito(models.Model):
         return f'{self.usuario.username} - {self.cafe.nome}'
     
 class UserCliente(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)  # Garante que cada cadastro tenha um User associado
-    nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=11, unique=True, null=True, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos, somente números')])
+    username = models.CharField(max_length=150, unique=True, null=True)
+    nome_completo = models.CharField(max_length=150, default="Desconhecido")
+    cpf = models.CharField(max_length=11, unique=True, default=00000000000, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos.')])
     email = models.EmailField(unique=True)
-    whatsapp = models.CharField(max_length=15, validators=[RegexValidator(r'^\+?1?\d{9,15}$', 'Número de WhatsApp inválido')])
+    password = models.CharField(max_length=255, null=True)
 
     def __str__(self):
-        return f"{self.nome} ({self.user.username if self.user else 'Sem usuário'})"
-
-    class Meta:
-        verbose_name = "Cadastro"
-        verbose_name_plural = "Cadastros" 
-    
+        return self.username
