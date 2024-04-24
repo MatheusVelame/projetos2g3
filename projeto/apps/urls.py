@@ -15,4 +15,5 @@ urlpatterns = [
     path('favoritar/<int:cafe_id>', views.favoritar, name='favoritar'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('cadastro_cafeteria_sucesso/', views.cadastro_cafeteria_sucesso, name='cadastro_cafeteria_sucesso'),
 ]

@@ -14,7 +14,6 @@ class Cafe(models.Model):
     horas_funcionamento = models.CharField(max_length=100, blank=False, default='Horário não informado')
     link_redesocial = models.URLField(max_length=200, blank=True)
     foto_ambiente = models.ImageField(upload_to='fotos_cafeterias/', blank=True, null=True)
-    ticket_medio = models.DecimalField(max_digits=6, decimal_places=2, blank=False, default=0.0)
 
     def __str__(self):
         return self.nome

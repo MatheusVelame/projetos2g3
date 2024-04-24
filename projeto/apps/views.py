@@ -118,8 +118,6 @@ def cadastro_cafeteria(request):
         whatsapp = request.POST.get('whatsapp')
         horas_funcionamento = request.POST.get('horas_funcionamento')
         link_redesocial = request.POST.get('link_redesocial', '')  
-        ticket_medio = request.POST.get('ticket_medio')
-
         
         cafe = Cafe(
             nome=nome,
@@ -129,17 +127,15 @@ def cadastro_cafeteria(request):
             whatsapp=whatsapp,
             horas_funcionamento=horas_funcionamento,
             link_redesocial=link_redesocial,
-            ticket_medio=ticket_medio
         )
 
-        
         if 'foto_ambiente' in request.FILES:
             cafe.foto_ambiente = request.FILES['foto_ambiente']
 
         try:
             cafe.full_clean()
             cafe.save()
-            return redirect('nome_da_url_para_redirecionar_apos_sucesso')
+            return redirect('cadastro_cafeteria_sucesso.html')
         except ValidationError as e:
             return render(request, 'cadastro_cafeteria.html', {'errors': e.message_dict, 'form': request.POST})
 
@@ -169,3 +165,6 @@ def cadastro_cliente(request):
 
     # Renderiza o mesmo formulário novamente com uma mensagem de erro, se houver
     return render(request, 'cadastro_cliente.html')
+
+def cadastro_cafeteria_sucesso(request):
+    return render(request, 'cadastro_cafeteria_sucesso.html')
