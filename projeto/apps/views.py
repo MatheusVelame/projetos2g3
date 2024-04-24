@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
 from django.db.utils import IntegrityError
-from django.contrib.auth.hashers import make_password
+
 
 
 # Create your views here.
@@ -160,7 +160,7 @@ def UserCadastro(request):
             nome_completo=nome_completo,
             cpf=cpf,
             email=email,
-            password=make_password(password)
+            password=password
         )
         user.save()
         messages.success(request, 'Cadastro realizado com sucesso!')
