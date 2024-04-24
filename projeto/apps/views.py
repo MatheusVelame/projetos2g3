@@ -181,7 +181,7 @@ def UserCadastro(request):
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-                messages.error(request, 'As senhas não coincidem.')
+                messages.error(request, 'As senhas não correspondem.')
                 return render(request, 'cadastro_usuario.html')
 
         if UserCliente.objects.filter(email=email).exists():
