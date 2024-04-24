@@ -167,3 +167,6 @@ def UserCadastro(request):
         return redirect('home')  # Substitua 'home' pela URL de destino após o cadastro
 
     return render(request, 'cadastro_usuario.html')
+
+def cadastro_cafeteria_sucesso(request):
+    return render(request, 'cadastro_cafeteria_sucesso.html')
