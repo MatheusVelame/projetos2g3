@@ -2,9 +2,10 @@
 {% block content %}
 {% load static %}
 
-<div>
+<link rel="stylesheet" href="{% static '../static/css/cadastro_cafeteria_sucesso.css' %}">
+<div class="div">
     <img src="{% static '../static/images/check-mark.png' %}">
     <h1>Cadastro concluído com sucesso!</h1>
-    <a href="{% url 'home' %}">Voltar para a página inicial</a>
+    <a class="botao-pag-inicial" href="{% url 'home' %}">Voltar para home</a>
 </div>
 {% endblock content %}
