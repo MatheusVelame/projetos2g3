@@ -162,8 +162,7 @@ def cadastro_cafeteria(request):
         try:
             cafe.full_clean()
             cafe.save()
-            messages.success(request, 'Cafeteria cadastrada com sucesso!')
-            return redirect('cadastro_cafeteria_sucesso.html')
+            return redirect('cadastro_cafeteria_sucesso')
         except ValidationError as e:
             form_data = request.POST.copy()
             form_data['senha'] = ''
