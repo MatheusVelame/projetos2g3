@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
+from django.db.utils import IntegrityError
 
 
 # Create your views here.
@@ -118,8 +119,6 @@ def cadastro_cafeteria(request):
         whatsapp = request.POST.get('whatsapp')
         horas_funcionamento = request.POST.get('horas_funcionamento')
         link_redesocial = request.POST.get('link_redesocial', '')  
-        ticket_medio = request.POST.get('ticket_medio')
-
         
         cafe = Cafe(
             nome=nome,
@@ -129,43 +128,45 @@ def cadastro_cafeteria(request):
             whatsapp=whatsapp,
             horas_funcionamento=horas_funcionamento,
             link_redesocial=link_redesocial,
-            ticket_medio=ticket_medio
         )
 
-        
         if 'foto_ambiente' in request.FILES:
             cafe.foto_ambiente = request.FILES['foto_ambiente']
 
         try:
             cafe.full_clean()
             cafe.save()
-            return redirect('nome_da_url_para_redirecionar_apos_sucesso')
+            return redirect('cadastro_cafeteria_sucesso.html')
         except ValidationError as e:
             return render(request, 'cadastro_cafeteria.html', {'errors': e.message_dict, 'form': request.POST})
 
     return render(request, 'cadastro_cafeteria.html')
 
-def cadastro_cliente(request):
+def user_cadastro(request):
     if request.method == 'POST':
-        user = request.POST.get('user')
-        nome = request.POST.get('nome')
+        username = request.POST.get('username')
         email = request.POST.get('email')
-        senha = request.POST.get('senha')
-        c_senha = request.POST.get('c_senha')
+        nome = request.POST.get('nome')
+        cpf = request.POST.get('cpf')
+        whatsapp = request.POST.get('whatsapp')
 
         try:
-            # Tenta criar um novo usuário novo
-            user = User.objects.create_user(nome=nome, email=email)
-            user.save()
-
-            novo_usuario = UserCliente(user=user, nome=nome, senha=senha, email=email)
-            novo_usuario.full_clean()  # Validação do models
+            user = User.objects.create_user(username=username, email=email)
+            novo_usuario = UserCliente(user=user, nome=nome, cpf=cpf, email=email, whatsapp=whatsapp)
+            novo_usuario.full_clean()
             novo_usuario.save()
-
             messages.success(request, "Cadastro realizado com sucesso!")
-            return redirect('login.html')
-        except Exception as e:
+            return redirect('nome_da_url_para_redirecionar')
+        
+        except ValidationError as e:
+            messages.error(request, f"Erro no cadastro: {', '.join(e.messages)}")
+        except IntegrityError as e:
             messages.error(request, f"Erro no cadastro: {e}")
+        except Exception as e:
+            messages.error(request, f"Erro no cadastro: {str(e)}")
 
     # Renderiza o mesmo formulário novamente com uma mensagem de erro, se houver
-    return render(request, 'cadastro_cliente.html')
+    return render(request, 'cadastro_usuario.html')
+
+def cadastro_cafeteria_sucesso(request):
+    return render(request, 'cadastro_cafeteria_sucesso.html')

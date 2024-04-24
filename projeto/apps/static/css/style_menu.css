@@ -1,0 +1,62 @@
+/* style_menu.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+header .cabecalho {
+    background-color: #333; /* Cor de fundo do cabeçalho */
+    color: #ffffff; /* Cor do texto */
+    display: flex;
+    justify-content: space-between; /* Espaçar o logotipo e o menu */
+    align-items: center;
+    padding: 0 20px; /* Preenchimento horizontal */
+}
+
+header .div-logo a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700; /* Torna o texto do logotipo mais espesso */
+    font-size: 1.5rem; /* Tamanho do texto do logotipo */
+}
+
+header .div-menu ul {
+    list-style: none; /* Remove marcadores da lista */
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header .div-menu ul li.nav-item {
+    padding: 10px; /* Preenchimento em torno dos itens da lista */
+}
+
+header .div-menu ul li.nav-item a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease; /* Suaviza a mudança de cor */
+}
+
+header .div-menu ul li.nav-item a:hover {
+    color: #dddddd; /* Cor ao passar o mouse */
+}
+
+header form {
+    margin: 0;
+}
+
+header form button {
+    background-color: #f44336; /* Cor de fundo do botão de logout */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Suaviza a mudança de cor */
+}
+
+header form button:hover {
+    background-color: #c62828; /* Cor do botão de logout ao passar o mouse */
+}
