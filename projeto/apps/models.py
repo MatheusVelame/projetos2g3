@@ -53,7 +53,6 @@ class Favorito(models.Model):
 class UserCliente(models.Model):
     username = models.CharField(max_length=150, unique=True, null=True)
     nome_completo = models.CharField(max_length=150, default="Desconhecido")
-    cpf = models.CharField(max_length=11, unique=True, default=00000000000, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos.')])
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255, null=True)
 

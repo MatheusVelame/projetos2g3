@@ -147,7 +147,6 @@ def UserCadastro(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         nome_completo = request.POST.get('nome_completo')
-        cpf = request.POST.get('cpf')
         email = request.POST.get('email')
         password = request.POST.get('password')
 
@@ -158,7 +157,6 @@ def UserCadastro(request):
         user = UserCliente(
             username=username,
             nome_completo=nome_completo,
-            cpf=cpf,
             email=email,
             password=password
         )
