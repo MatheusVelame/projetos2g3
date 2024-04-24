@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
 from django.db.utils import IntegrityError
+from django.contrib.auth.hashers import make_password
 
 
 # Create your views here.
@@ -142,31 +143,27 @@ def cadastro_cafeteria(request):
 
     return render(request, 'cadastro_cafeteria.html')
 
-def user_cadastro(request):
+def UserCadastro(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        email = request.POST.get('email')
-        nome = request.POST.get('nome')
+        nome_completo = request.POST.get('nome_completo')
         cpf = request.POST.get('cpf')
-        whatsapp = request.POST.get('whatsapp')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
-        try:
-            user = User.objects.create_user(username=username, email=email)
-            novo_usuario = UserCliente(user=user, nome=nome, cpf=cpf, email=email, whatsapp=whatsapp)
-            novo_usuario.full_clean()
-            novo_usuario.save()
-            messages.success(request, "Cadastro realizado com sucesso!")
-            return redirect('nome_da_url_para_redirecionar')
-        
-        except ValidationError as e:
-            messages.error(request, f"Erro no cadastro: {', '.join(e.messages)}")
-        except IntegrityError as e:
-            messages.error(request, f"Erro no cadastro: {e}")
-        except Exception as e:
-            messages.error(request, f"Erro no cadastro: {str(e)}")
+        if UserCliente.objects.filter(username=username).exists():
+            messages.error(request, 'Usuário já existe.')
+            return render(request, 'cadastro_usuario.html')
 
-    # Renderiza o mesmo formulário novamente com uma mensagem de erro, se houver
+        user = UserCliente(
+            username=username,
+            nome_completo=nome_completo,
+            cpf=cpf,
+            email=email,
+            password=make_password(password)
+        )
+        user.save()
+        messages.success(request, 'Cadastro realizado com sucesso!')
+        return redirect('home')  # Substitua 'home' pela URL de destino após o cadastro
+
     return render(request, 'cadastro_usuario.html')
-
-def cadastro_cafeteria_sucesso(request):
-    return render(request, 'cadastro_cafeteria_sucesso.html')
