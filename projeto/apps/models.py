@@ -14,7 +14,6 @@ class Cafe(models.Model):
     horas_funcionamento = models.CharField(max_length=100, blank=False, default='Horário não informado')
     link_redesocial = models.URLField(max_length=200, blank=True)
     foto_ambiente = models.ImageField(upload_to='fotos_cafeterias/', blank=True, null=True)
-    ticket_medio = models.DecimalField(max_digits=6, decimal_places=2, blank=False, default=0.0)
 
     def __str__(self):
         return self.nome
@@ -55,9 +54,9 @@ class Favorito(models.Model):
 class UserCliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False)  # Garante que cada cadastro tenha um User associado
     nome = models.CharField(max_length=100)
-    senha = models.CharField(max_length=200, default='00000000000000')
+    cpf = models.CharField(max_length=11, unique=True, null=True, validators=[RegexValidator(r'^\d{11}$', 'CPF deve ter 11 dígitos, somente números')])
     email = models.EmailField(unique=True)
-    whatsapp = models.CharField(max_length=15, default='5500000000000')
+    whatsapp = models.CharField(max_length=15, validators=[RegexValidator(r'^\+?1?\d{9,15}$', 'Número de WhatsApp inválido')])
 
     def __str__(self):
         return f"{self.nome} ({self.user.username if self.user else 'Sem usuário'})"

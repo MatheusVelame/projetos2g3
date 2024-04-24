@@ -1,18 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
-    --primary: rgb(104, 113, 183);
-    --secondary: rgb(161, 167, 208);
-    --container-bg: rgba(32, 34, 48, 0.426);
-    
-    --font-color: whitesmoke;
-    
-    --btn-color: rgb(49, 53, 90);
-    --btn-pressed: rgb(31, 34, 57);
-    --cor-principal:#171a4a;
-    --cor-preta: #000000;
-    --cor-branca: #eae2e6;
-    --cor-azul-clara: #99a6f2;
+    --primary: #FF8915; /* Uma tonalidade de marrom */
+    --secondary: #7F4000;
+    --hoover: #1c2e44; 
 }
 
 *{
@@ -24,7 +15,7 @@
 
 body{
     height: 100vh;
-    background: linear-gradient(127deg, var(--cor-principal), var(--secondary));
+    background: linear-gradient(127deg, var(--primary), var(--secondary));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,12 +44,12 @@ body{
 }
 
 .container h1{
-    color: var(--font-color);
+    color: var #ffffff;
     padding: 1rem;
 }
 
 .container form label{
-    color: var(--font-color);
+    color: var #ffffff;
 }
 .container form input{
     width: 100%;
@@ -68,15 +59,48 @@ body{
     border: 2px white;
 }
 
-.container form .btn-submit{
+.container form .btn-submit {
     cursor: pointer;
-    padding: 0.5rem;
-    background-color: var(--btn-color);
+    padding: 1rem; /* Aumentar o preenchimento para tornar o botão maior */
+    background-color: #215A8F;
     border-radius: 10px;
     outline: none;
     color: var(--font-color);
+    font-size: 1.2rem; /* Aumentar o tamanho da fonte, se desejado */
+    margin-top: 20px; /* Adicionar margem no topo para separar do restante do formulário */
+    border: none; /* Opção para remover a borda, se desejado */
+    transition: background-color 0.3s; /* Suavizar a transição de cores */
 }
 
-.container form .btn-submit:hover{
-    background-color: var(--btn-pressed);
+.container form .btn-submit:hover {
+    background-color: #ffffff;
+    /* Adicione uma cor diferente para o estado de hover, se desejar */
+}
+
+/* Ajustes para o espaçamento entre o botão e a mensagem de cadastro */
+.container form .signup-message {
+    text-align: center; /* Centralizar a mensagem de cadastro */
+    margin-top: 30px; /* Aumentar o espaço acima da mensagem de cadastro */
+    font-size: 1rem; /* Ajustar o tamanho da fonte da mensagem, se necessário */
+    color: #000000; /* Ajustar a cor da fonte */
+}
+
+.radio-options {
+    display: flex; /* Usa flexbox para alinhar os elementos filhos */
+    justify-content: center; /* Centraliza os elementos filhos horizontalmente */
+    gap: 10px; /* Adiciona um espaço entre os elementos filhos */
+}
+
+.radio-option {
+    display: flex; /* Permite alinhar o input e o label horizontalmente */
+    align-items: center; /* Centraliza verticalmente o input e o label */
+}
+
+/* Estilização adicional para o input e o label, se necessário */
+.radio-option input[type="radio"] {
+    margin-right: 5px; /* Espaço entre o botão de rádio e o rótulo */
+}
+
+:hover.btn-submit {
+    background-color: var(--hoover);
 }
