@@ -2,8 +2,8 @@
 
 :root{
     --primary: #FF8915; /* Uma tonalidade de marrom */
-    --secondary: #7F4000; /* Uma tonalidade de laranja */
-    /* Restante do seu código CSS */
+    --secondary: #7F4000;
+    --hoover: #1c2e44; 
 }
 
 *{
@@ -99,4 +99,8 @@ body{
 /* Estilização adicional para o input e o label, se necessário */
 .radio-option input[type="radio"] {
     margin-right: 5px; /* Espaço entre o botão de rádio e o rótulo */
+}
+
+:hover.btn-submit {
+    background-color: var(--hoover);
 }
