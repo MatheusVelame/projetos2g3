@@ -4,6 +4,7 @@
     --primary: #FF8915; /* Uma tonalidade de marrom */
     --secondary: #7F4000;
     --hoover: #1c2e44; 
+    --botao: #215A8F;
 }
 
 *{
@@ -15,15 +16,11 @@
 
 body{
     height: 100vh;
-    background: linear-gradient(127deg, var(--primary), var(--secondary));
+    background: #ffffff;
 }
 
 .container{
-    background: linear-gradient(
-        to right bottom,
-        rgba(255, 255, 255, 0.4),
-        rgba(255, 255, 255, 0.2)
-    );
+    background: #ccc;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 5rem;
@@ -40,12 +37,12 @@ body{
 }
 
 .container h1{
-    color: var #ffffff;
+    color: #000000;
     padding: 1rem;
 }
 
 .container form label{
-    color: var #ffffff;
+    color: #000000;
 }
 .container form input{
     width: 100%;
@@ -58,10 +55,10 @@ body{
 .container form .btn-submit {
     cursor: pointer;
     padding: 1rem; /* Aumentar o preenchimento para tornar o botão maior */
-    background-color: #215A8F;
+    background-color: #ccc;
     border-radius: 10px;
     outline: none;
-    color: var(--font-color);
+    color: #000000;
     font-size: 1.2rem; /* Aumentar o tamanho da fonte, se desejado */
     margin-top: 20px; /* Adicionar margem no topo para separar do restante do formulário */
     border: none; /* Opção para remover a borda, se desejado */
@@ -69,7 +66,7 @@ body{
 }
 
 .container form .btn-submit:hover {
-    background-color: var(--hoover);
+    background-color: #ccc;
     /* Adicione uma cor diferente para o estado de hover, se desejar */
 }
 
@@ -98,7 +95,6 @@ body{
 }
 
 .section {
-
     display: flex;
     align-items: center;
     justify-content: center;
