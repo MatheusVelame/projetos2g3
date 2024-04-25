@@ -51,7 +51,7 @@ def favoritar(request, cafe_id):
 def lista_favoritos(request):
     # if request.user.is_authenticated:
     favoritos = Favorito.objects.all() # .filter(usuario=request.user)
-    return render(request, 'apps/favoritos.html', {'favoritos': favoritos})
+    return render(request, 'favoritos.html', {'favoritos': favoritos})
     # else:
     #     return redirect('login')
 
