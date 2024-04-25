@@ -16,6 +16,13 @@
     .collums {
         font-family: Helvetica, sans-serif;
     }
+
+    .btn {
+        color:black;
+        border: 2px solid #000000;
+        background-color: #ccc;
+    }
+
 </style>
 <div class="container mt-5">
     <div class="row align-items-center">
@@ -85,7 +92,7 @@
                         <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary">Favoritar</a>
                     {% endif %}
                 </div>
-                    <a href="{% url 'enviar_whatsapp' cafe.id %}">Enviar Mensagem via WhatsApp</a>      
+                    <a href="{% url 'enviar_whatsapp' cafe.id %}" class="btn btn-lg btn-outline-secondary">Enviar Mensagem via WhatsApp</a>      
             </div>
         </div>
     </div>
