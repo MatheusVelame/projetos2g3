@@ -106,35 +106,35 @@ def logout(request):
 
 def cadastro_cafeteria(request):
     if request.method == 'POST':
+        email = request.POST.get('email')
         senha = request.POST.get('senha')
         confirmar_senha = request.POST.get('confirmar_senha')
 
         if senha != confirmar_senha:
             messages.error(request, 'As senhas não correspondem.')
-            form_data = request.POST.copy()
-            form_data['senha'] = ''
-            form_data['confirmar_senha'] = ''
-            return render(request, 'cadastro_cafeteria.html', {'form': form_data})
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        if User.objects.filter(username=email).exists():
+            messages.error(request, 'Este email já está cadastrado.')
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
         senha_criptografada = make_password(senha)
-
         responsavel = request.POST.get('responsavel')
         nome_cafeteria = request.POST.get('nome_cafeteria')
         endereco = request.POST.get('endereco')
         descricao = request.POST.get('descricao')
-        email = request.POST.get('email')
         whatsapp = request.POST.get('whatsapp')
         horas_funcionamento = request.POST.get('horas_funcionamento')
         link_redesocial = request.POST.get('link_redesocial', '')
         cnpj = request.POST.get('cnpj')
         site_cafeteria = request.POST.get('site_cafeteria')
 
-        if Cafe.objects.filter(email=email).exists():
-            messages.error(request, 'Este email já está cadastrado.')
-            form_data = request.POST.copy()
-            form_data['senha'] = ''  # Limpa a senha por questões de segurança
-            return render(request, 'cadastro_cafeteria.html', {'form': form_data})
+        # Criação do usuário
+        user = User.objects.create_user(username=email, password=senha, email=email, first_name=responsavel)
+        login(request, user)
+        request.session["usuario"] = email  # Usando email como identificador na sessão
 
+        # Criação da cafeteria
         cafe = Cafe(
             responsavel=responsavel,
             nome_cafeteria=nome_cafeteria,
@@ -144,7 +144,7 @@ def cadastro_cafeteria(request):
             whatsapp=whatsapp,
             horas_funcionamento=horas_funcionamento,
             link_redesocial=link_redesocial,
-            senha=senha_criptografada,  # Usa a senha criptografada
+            senha=senha_criptografada,
             cnpj=cnpj,
             site_cafeteria=site_cafeteria,
         )
@@ -155,14 +155,14 @@ def cadastro_cafeteria(request):
         try:
             cafe.full_clean()
             cafe.save()
-            return redirect('cadastro_cafeteria_sucesso')
         except ValidationError as e:
-            form_data = request.POST.copy()
-            form_data['senha'] = ''
-            form_data['confirmar_senha'] = ''
-            return render(request, 'cadastro_cafeteria.html', {'errors': e.message_dict, 'form': form_data})
+            messages.error(request, e.message_dict)
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        return redirect('cadastro_cafeteria_sucesso')  # Supondo que 'home' é a URL de sucesso
 
     return render(request, 'cadastro_cafeteria.html')
+
 
 
 def UserCadastro(request):
@@ -179,13 +179,13 @@ def UserCadastro(request):
         
         if User.objects.filter(username=username).exists():
             return render(request, 'cadastro_usuario.html', {"erro": "Usuário já existe"})
-        elif User.objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             return render(request, 'cadastro_usuario.html', {"erro": "Email já cadastrado"})
 
         user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
         login(request, user)
         request.session["usuario"] = username
-        return redirect(home)
+        return redirect('cadastro_user_sucesso')
         
     return render(request, 'cadastro_usuario.html')
 
