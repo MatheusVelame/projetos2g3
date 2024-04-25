@@ -68,7 +68,8 @@ def login_view(request):
             login(request, user)
             return redirect(home) 
         else:
-            return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
+            messages.error(request, 'As senhas não correspondem.')
+            return render(request, 'login.html')
     return render(request, 'login.html')
 
 
@@ -187,7 +188,7 @@ def UserCadastro(request):
 
         user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
         login(request, user)
-        request.session["usuario"] = username
+        request.session["usuario"] = email
         return redirect('cadastro_user_sucesso')
         
     return render(request, 'cadastro_usuario.html')
