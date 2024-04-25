@@ -125,14 +125,16 @@ Confirmação/Validação:
 
  ***Print do backlog do projeto:***
   
-  ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/6a018ca3-b054-4214-8cdb-c50446d5227c)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/c45a55a1-1998-4690-906a-7f2461a59ac6)
+
 
 
 <br/>  
  
 ***Print do quadro da Sprint:***
 
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/dc627ba3-cae1-4131-b84b-a78f4fe77967)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/e5fdc30b-4c8a-4aed-83fc-7c24910faf3c)
+
 
 
 
