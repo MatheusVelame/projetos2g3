@@ -1,0 +1,135 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+<style>
+    #carouselExampleIndicators .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .collums {
+        padding: 0 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .card {
+        margin: 0 15px 20px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 10px;
+        grid-auto-rows: minmax(auto-fill, 300px);
+        overflow: hidden;
+    }
+
+    #carouselExampleIndicators,
+    .collums {
+        font-family: Helvetica, sans-serif;
+    }
+
+    .btn {
+        color:black;
+        background-color: #fff;
+        padding: 5px;
+        border: 2px solid #ddd;
+    }
+    .btn :hover{
+
+        background-color: #ccc;
+        padding: 8px;
+        border: 0px solid #ccc;
+    }
+
+</style>
+<div class="container mt-5">
+        <div class="col-md-6">
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <div class="carousel-inner">
+                            {% if cafe.foto_ambiente %}
+                            <div class="carousel-item active">
+                                <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}">
+                            </div>
+                            {% else %}
+                            <div class="carousel-item active">
+                                <svg class="bd-placeholder-img d-block w-100" width="100%" height="500"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                                    <text x="45%" y="50%" fill="#eceeef" dy=".3em">{{ cafe.nome_cafeteria }}</text>
+                                </svg>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                    <div class="card">
+                        <div class="col-md-6">
+                        <div class="collums">
+                            <h2 style="font-weight: bold; font-size: 50px;">{{ detalhes_cafe.nome }}</h2>
+            
+                            <h5>Descrição:</h5>
+                            <p>{{ detalhes_cafe.descricao }}</p>
+            
+                            <h5>Endereço:</h5>
+                            <p>{{ detalhes_cafe.endereco }}</p>
+            
+                            <h5>Horário de Funcionamento:</h5>
+                            <p>{{ detalhes_cafe.horas_funcionamento }}</p>
+            
+                            <h5>WhatsApp:</h5>
+                            <p>{{ detalhes_cafe.whatsapp }}</p>
+            
+                            <div class="btn-group">
+                                <div class="btn-group">
+                                    {% if user.is_authenticated %}
+                                        {% if cafe %}
+                                            {% if favorito %}
+                                                <button class="btn"><a href="{% url 'favoritar' cafe.id %}" style="color: black;">Desfavoritar</a></button>
+                                            {% else %}
+                                                <button class="btn"><a href="{% url 'favoritar' cafe.id %}" style="color: black;">Favoritar</a></button>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        <button class="btn"><a href="{% url 'login' %}" style="color: black;">Favoritar</a></button>
+                                    {% endif %}
+                                </div>
+                            <button class="btn"><a href="{% url 'enviar_whatsapp' cafe.id %}" style="color: black;">Enviar Mensagem via WhatsApp</a></button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conteúdo à direita -->
+
+</div>
+{% endblock %}

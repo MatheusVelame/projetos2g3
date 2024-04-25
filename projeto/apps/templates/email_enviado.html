@@ -1,13 +1,13 @@
+{% extends 'global/base.html' %}
+{% block content %}
 <!-- templates/email_enviado.html -->
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Email Enviado</title>
 </head>
-<body>
+<div>
     <h1>Email enviado com sucesso!</h1>
     <p>Obrigado por entrar em contato com {{ cafeteria.nome }}.</p>
     <a href="{% url 'home' %}">Voltar para a página inicial</a>
-</body>
-</html>
+</div>
+{% endblock %}

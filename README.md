@@ -30,7 +30,7 @@ Este projeto é licenciado sob a [MIT License](https://opensource.org/licenses/M
 - [Beatriz Pereira](https://github.com/biapereira2)
 - [Lisa Matubara](https://github.com/lilymtbr)
 - [Luziane Santos](https://github.com/luzianes)
-- [Maunela Cavalcanti](https://github.com/Manuelaamorim)
+- [Manuela Cavalcanti](https://github.com/Manuelaamorim)
 - [Matheus Velame](https://github.com/MatheusVelame)
 - [Matheus Cazé](https://github.com/ogcaze)
 - [Thaís Aguiar](https://github.com/aguiarth)

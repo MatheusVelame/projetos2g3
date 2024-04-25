@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+}
+
+body{
+    height: 100vh;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-outter{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container {
+    width: 70vw;
+    height: 35vw;
+    padding: 5rem 2.5rem;
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px;
+    border-radius: 10px;
+    margin: 25px;
+}
+
+.form-box1, .form-box2 {
+    max-width: 30vw;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
+
+input::file-selector-button {
+    padding: 3px;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cadastrar{
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px;
+    width: 160px;
+    height: 30px;
+    cursor: pointer;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="time"], input[type="password"]{
+    width: 400px;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+textarea{
+    width: 400px;
+    height: 40px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.section {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="file"] {
+
+    cursor: pointer;
+}
