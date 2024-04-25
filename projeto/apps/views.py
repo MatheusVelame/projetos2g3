@@ -20,11 +20,17 @@ def home(request):
     return render(request, 'home.html', {'cafes': cafes})
 
 def detalhes(request, cafe_id):
-    cafe = get_object_or_404(Cafe, id=cafe_id)
-    usuario = request.user
-    favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
-    detalhes_cafe = cafe.detalhes()
-    return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito':favorito})
+    if request.user.is_authenticated:
+        cafe = get_object_or_404(Cafe, id=cafe_id)
+        usuario = request.user
+        favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
+        detalhes_cafe = cafe.detalhes()
+        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito':favorito})
+    else:
+        cafe = get_object_or_404(Cafe, id=cafe_id)
+        detalhes_cafe = cafe.detalhes()
+        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
+
 
 @login_required
 def favoritar(request, cafe_id):
