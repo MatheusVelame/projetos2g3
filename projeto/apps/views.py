@@ -68,7 +68,7 @@ def login_view(request):
             login(request, user)
             return redirect(home) 
         else:
-            messages.error(request, 'As senhas não correspondem.')
+            messages.error(request, 'Usuário ou senha inválidos')
             return render(request, 'login.html')
     return render(request, 'login.html')
 
