@@ -1,36 +1,29 @@
 {% extends 'global/base.html' %}
 {% block content %}
-{% load static %}
-
-<link rel="stylesheet" href="{% static 'css/cadastro_user.css' %}">
-
-<section class="section">
-    <div class="container">
-        <h2>Criar conta</h2>
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+<div class="container">
+    <h2>Cadastre-se</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if erro %}
+        <p style="color: red;">{{ erro }}</p>
         {% endif %}
-        <form method="post" class="form-outter">
-            {% csrf_token %}
-            <div class="form-box2">
-                <label for="nome_completo">Seu nome:</label>
-                <input type="text" id="nome_completo" name="nome_completo" required><br>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
-                
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="password" required><br>
-
-                <label for="confirm_password">Confirme sua senha:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required><br>
-            </div>
-            <button type="submit" class="criar-conta">Criar conta</button>
-        </form>
-    </div>
-</section>
+        <div class="form-group">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="emai" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Nome Completo:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
 {% endblock %}
