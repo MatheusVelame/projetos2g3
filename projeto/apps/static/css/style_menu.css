@@ -1,17 +1,27 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-body {
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-.cabecalho {
+header{
+    padding: 10px 0;
+    display: flex;
     background-color: #333; /* Cor de fundo do cabeçalho */
+}
+
+.sessao{
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho {
+    width: 100vw;
     color: #ffffff; /* Cor do texto */
     display: flex;
-    justify-content: center; /* Espaçar o logotipo e o menu */
+    justify-content: space-between; /* Espaçar o logotipo e o menu */
     align-items: center;
     padding: 0 20px; /* Preenchimento horizontal */
 }
@@ -31,10 +41,12 @@ header .div-menu ul {
 }
 
 header .div-menu ul li.nav-item {
+    display: flex;
+    align-items: center;
     padding: 10px; /* Preenchimento em torno dos itens da lista */
 }
 
-header .div-menu ul li.nav-item a {
+a {
     text-decoration: none;
     color: #ffffff;
     transition: color 0.3s ease; /* Suaviza a mudança de cor */
@@ -59,4 +71,4 @@ header form button {
 
 header form button:hover {
     background-color: #c62828; /* Cor do botão de logout ao passar o mouse */
-} 
+}

@@ -16,7 +16,7 @@
     </div>
     {% endif %}
     <form action="{% url 'cadastro_cafeteria' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
+    {% csrf_token %}
       <div class="form-outter">
         <div class="form-box1" id="form1">
           <div class="campo">
@@ -47,7 +47,7 @@
         <div class="form-box2" id="form2">
           <div class="campo">
             <label for="horas_funcionamento">Horário de funcionamento:</label>
-            <input type="time" id="horas_funcionamento" name="horas_funcionamento" required>
+            <input type="text" id="horas_funcionamento" name="horas_funcionamento" required>
           </div>
           <div class="campo">
             <label for="link_redesocial">Link de perfil do instagram:</label>
@@ -73,9 +73,9 @@
             <label for="foto_ambiente">Insira uma foto do seu estabelecimento (opcional):</label>
             <input type="file" id="foto_ambiente" name="foto_ambiente" accept="image/*">
           </div>
-          <button type="submit" class="cadastrar">Cadastrar</button>
         </div>
-      </div>
+    </div>
+    <button type="submit" class="cadastrar">Cadastrar</button>
     </form>
   </div>
 </section>
