@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
-from django.db.utils import IntegrityError
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -24,11 +23,6 @@ def detalhes(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
     detalhes_cafe = cafe.detalhes()
     return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.urls import reverse
 
 @login_required
 def favoritar(request, cafe_id):
@@ -173,7 +167,7 @@ def cadastro_cafeteria(request):
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        return redirect('cadastro_cafeteria_sucesso')  # Supondo que 'home' é a URL de sucesso
+            return redirect('cadastro_cafeteria_sucesso')  # Supondo que 'home' é a URL de sucesso
 
     return render(request, 'cadastro_cafeteria.html')
 
