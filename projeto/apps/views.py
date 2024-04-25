@@ -166,8 +166,6 @@ def cadastro_cafeteria(request):
 
     return render(request, 'cadastro_cafeteria.html')
 
-
-
 def UserCadastro(request):
     if request.method == 'POST':
         username = request.POST['username']
