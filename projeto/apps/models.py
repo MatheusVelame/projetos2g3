@@ -19,7 +19,7 @@ class Cafe(models.Model):
     cnpj = models.CharField(max_length=14, unique=True, default='00000000000000')
     site_cafeteria = models.URLField(max_length=200, blank=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.nome_cafeteria
 
     def detalhes(self):
@@ -54,7 +54,7 @@ class Favorito(models.Model):
             'ticket_medio': str(self.ticket_medio)
         }
 
-    def __str__(self):
+    def _str_(self):
         return f'{self.usuario.username} - {self.cafe.nome}'
     
 class UserCliente(models.Model):
@@ -64,5 +64,5 @@ class UserCliente(models.Model):
     password = models.CharField(max_length=255, null=True)
     confirm_password = models.CharField(max_length=255, null=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.email

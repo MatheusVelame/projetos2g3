@@ -84,7 +84,8 @@
                     {% else %}
                         <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary">Favoritar</a>
                     {% endif %}
-                </div>      
+                </div>
+                    <a href="{% url 'enviar_whatsapp' cafe.id %}">Enviar Mensagem via WhatsApp</a>      
             </div>
         </div>
     </div>
