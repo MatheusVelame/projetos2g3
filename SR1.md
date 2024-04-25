@@ -66,8 +66,7 @@ Conversa: O usuário deverá estar cadastrado para acessar os perfis das cafeter
 Confirmação/Validação:
 - Vou tentar entrar no perfil da cafeteria São Café sem informar meu login e senha (e-mail “jsm@gmail.com” e senha “jms123456”), e aparecerá uma mensagem para logar ou cadastrar no sistema;
 - Vou tentar entrar no perfil da cafeteria Bom Lugar sem informar meu login e senha (e-mail “jsm@gmail.com” e senha “jms123456”), e aparecerá uma mensagem para logar ou cadastrar no site, porém vou fechar  o popup e não vou conseguir ver o perfil da cafeteria desejada;
-Vou tentar entrar no perfil da cafeteria Grão Dourado logado (e-mail “jmari@hotmail.com” e senha “joaninhasales93”), e conseguirei ver o perfil da cafeteria desejada.
-
+- Vou tentar entrar no perfil da cafeteria Grão Dourado logado (e-mail “jmari@hotmail.com” e senha “joaninhasales93”), e conseguirei ver o perfil da cafeteria desejada.
 
 
 ****4. Favoritar cafeteria****
@@ -77,8 +76,8 @@ Cartão: Como cliente, eu gostaria de favoritar minhas cafeterias preferidas par
 Conversa: O usuário deverá estar logado para favoritar cafeterias. Ao acessar o perfil de uma cafeteria, ele terá a opção de favoritar.
 
 Confirmação / Validação:
-- Vou tentar favoritar uma cafeteria sem estar logado no sistema e uma mensagem aparece solicitando que o login ou cadastro seja feito para poder favoritar.
-- Vou logar como Joana Maria Sales (e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e tentar favoritar a cafeteria "Café Aconchego", e esta cafeteria será adicionada aos meus favoritos.
+- Vou tentar favoritar uma cafeteria sem estar logado no sistema e uma mensagem aparece solicitando que o login ou cadastro seja feito para poder favoritar;
+- Vou logar como Joana Maria Sales (e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e tentar favoritar a cafeteria "Café Aconchego", e esta cafeteria será adicionada aos meus favoritos;
 - Vou logar como João Mendes (e-mail “jsm@gmail.com”, senha “jms123456”) e tentar favoritar a cafeteria "Café Aconchego" novamente, e receberei uma mensagem informando que ela já está nos meus favoritos.
 
 ****5. Avaliar cafeterias cadastradas****
@@ -93,16 +92,18 @@ Confirmação/Validação:
 - Vou tentar deixar uma avaliação para a cafeteria cadastrada “Amélie Poulain” sem estar logada no sistema (apesar de cadastrada como Joana Maria Sales - e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e não funcionará;
 - Vou tentar deixar um comentário para uma cafeteria não cadastrada no sistema após devidamente cadastrado e logado no sistema como João Maurício Santos (e-mail “jsm@gmail.com”, senha “mauricio123”) e não conseguirei.
 
+<br/>
 ***Histórias Implementadas:***
 
 - Cadastro de Usuários
 - Cadastro de Cafeterias
 - Favoritar cafeteria
 
+<br/>
 ***Instruções de acesso ao projeto:***
 
 
-
+<br/>
 ***Diagrama de atividades do sistema:***
 
 
