@@ -1,14 +1,10 @@
-{% load static %}
+{% extends 'global/base.html' %}
 {% block content %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="{% static 'css/cadastro_user.css' %}">
-</head>
-<body>
+<link rel="stylesheet" href="{% static 'css/cadastro_user.css' %}">
+
+<section class="section">
     <div class="container">
         <h2>Criar conta</h2>
         {% if messages %}
@@ -33,9 +29,8 @@
                 <label for="confirm_password">Confirme sua senha:</label>
                 <input type="password" id="confirm_password" name="confirm_password" required><br>
             </div>
-            <button type="submit" class="cadastrar">Criar conta</button>
+            <button type="submit" class="criar-conta">Criar conta</button>
         </form>
     </div>
-</body>
-</html>
+</section>
 {% endblock %}
