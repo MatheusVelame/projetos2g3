@@ -1,5 +1,8 @@
 {% extends 'global/base.html' %}
+{% load static %}
 {% block content %}
+
+<link rel="stylesheet" href="{% static 'css/cadastro_user.css' %}">
 <div class="container">
     <h2>Cadastre-se</h2>
     <form method="post">
@@ -23,6 +26,10 @@
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" class="form-control" required>
         </div>
+        <div>
+            <label for="confirm_password">Confirme sua senha:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required><br>
+          </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
