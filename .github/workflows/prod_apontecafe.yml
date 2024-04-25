@@ -33,7 +33,11 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: |
+          cd projetos2g3/projeto/
+          zip release.zip ./* -r
+          cd ..
+          mv projetos2g3/projeto//release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
