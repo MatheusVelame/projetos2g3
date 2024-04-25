@@ -1,34 +1,140 @@
 {% extends "global/base.html" %}
+
 {% block content %}
-<div class="container">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        margin: 0;
+        color: #333333;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        color: #666666;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .btn-outline-secondary {
+        color: #333333;
+        border-color: #333333;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #ccc;
+        border: 1px solid #ccc;
+        color: #000;
+    }
+
+    .text-body-secondary {
+        color: #888888;
+        font-size: 14px;
+    }
+    .row {
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 20px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .card {
+        margin: 0 15px 20px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 10px;
+        grid-auto-rows: minmax(auto-fill, 300px);
+        overflow: hidden;
+    }
+    .foto-cafe {
+        display: flex;
+        width: 100%;
+        height: 225px;
+        overflow: hidden;
+
+    }
+.box img {
+  width: 100%;
+  height: 100%;
+}
+
+.box1 img {
+  object-fit: cover;
+}
+.right{
+    margin-left: 225px;
+}
+
+</style>
     {% if user.is_authenticated %}
         <h1>Meus Favoritos</h1>
-        <table class="table" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-family: Helvetica, sans-serif;">
-            <thead>
-                <tr>
-                    <th style="padding: 8px; text-align: left;">#</th>
-                    <th style="padding: 8px; text-align: left;">Cafeteria</th>
-                    <th style="padding: 8px; text-align: left;">Página</th>
-                    <th style="padding: 8px; text-align: left;">Descrição</th>
-                    <th style="padding: 8px; text-align: left;">Remover</th> <!-- Nova coluna para o botão de remover -->
-                </tr>
-            </thead>
-            <tbody>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="cards">                
                 {% for favorito in favoritos %}
-                <tr>
-                    <td style="padding: 8px;">{{ forloop.counter }}</td>
-                    <td style="padding: 8px; text-align: left;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.nome_cafeteria }}</span></td>
-                    <td style="padding: 8px;"><span><button style="width: 80px; border: #ddd;"><a href="{% url 'detalhes' favorito.cafe.id %}" style="color: #000;">Ir</a></button></span></td>
-                    <td style="padding: 8px;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.descricao }}</span></td>
-                    <td style="padding: 8px;"><span><button style="width: 80px; border: #ddd;"><a href="{% url 'favoritar' favorito.cafe.id %}" style="color: #000;">Remover</a></button></span></td>
-                </tr>
+                <div class="card shadow-sm">
+                    {% if favorito.cafe.foto_ambiente %}
+                    <img src="{{ favorito.cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{favorito.cafe.nome }}" preserveAspectRatio="xMidYMid slice">
+                    {% else %}
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef"
+                            dy=".3em">{{favorito.cafe.nome_cafeteria }}</text>
+                    </svg>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{favorito.cafe.nome_cafeteria }}</h5>
+                        <p class="card-text">{{favorito.cafe.descricao }}</p>
+                        <div> 
+                            <small class="text-body-secondary">{{favorito.cafe.horas_funcionamento }}</small>
+                        </div>
+                        <div class="right btn-group">
+                            <a href="{% url 'favoritar' favorito.cafe.id %}" class="btn-outline-secondary">Remover</a>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
-            </tbody>
-        </table>
+                    </div>
+                </div>
+
     {% else %}
         <h1 style="font-family: Helvetica, sans-serif; font-weight: bold;">Meus Favoritos</h1>
         <p>Por favor, faça login para ver seus favoritos.</p>
         <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
     {% endif %}
-</div>
 {% endblock %}
