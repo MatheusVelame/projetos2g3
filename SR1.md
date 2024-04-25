@@ -8,7 +8,7 @@
   </li>
     <li>
     <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0%3A1&mode=design&t=1748pNTyjfC6RMOg-1"
-      >Protótipo de Lo-Fi no Figma</a>
+      >Protótipo de Lo-Fi no Figma - Sketches e Storyboards</a>
   </li>
    <li>
     <a  href=""
@@ -30,10 +30,80 @@
 </ul>
 <br/>
 
+***5 Histórias do usuário bem definidas:***
+<br/>
+****1. Cadastro de Usuários****
+	
+Cartão: Como usuário, eu gostaria de me cadastrar na plataforma.
+
+Conversa: O usuário deverá acessar a plataforma e inserir o nome completo, e-mail, senha e usuário para realizar o cadastro.
+
+Confirmação/Validação: 
+- Vou me cadastrar na plataforma como “João Mendes Souza”, e-mail “jsm@gmail.com”, senha “jms123456” e nome de usuário “jms123” e funcionará;
+- Vou me cadastrar na plataforma como “João Maurício Santos”, e-mail “jsm@gmail.com”, senha “mauricio123” e nome de usuário “jmaurício” e não funcionará devido ao e-mail já cadastrado;
+- Vou me cadastrar na plataforma como “Joana Mariana Sales”, e-mail “jmari@hotmail.com”, senha “joaninhasales93” e nome de usuário “jms123” e não funcionará devido ao nome de usuário já cadastrado.
+
+
+****2. Cadastro de Cafeterias****
+
+Cartão: Como empresário, eu gostaria de cadastrar a minha cafeteria na plataforma.
+
+Conversa: O empresário deverá fornecer os seguintes dados para cadastrar a sua cafeteira: nome da cafeteria, nome do responsável pelo cadastro, descrição do estabelecimento, endereço, e-mail, número de whatsapp da empresa, horário de funcionamento, link para o perfil do instagram, link do site da cafeteria (não obrigatório), CNPJ (apenas números), senha e foto do ambiente (não obrigatório).
+ 
+Confirmação/Validação:
+
+- Vou cadastrar minha cafeteria “Cantinho do Amor”,  nome da responsável com “Jamile Coutinho”, vou preencher a descrição com “Este é um ambiente muito legal no Recife Antigo.” , o endereço com “Rua da Felicidade, número 808, Boa Viagem”, o email com “teste@teste.com”, o número de whatsapp com “5581998613003”, o horário de funcionamento de “12:00 - 23:00”, o link para redes sociais com “https://www.instagram.com/cantinhodoamor”, CNPJ com “77224.361000146”, a senha com “123456” e adicionarei um arquivo png da foto do ambiente e o sistema deve autorizar o cadastro da cafeteria Cantinho do Amor;
+- Vou cadastrar minha cafeteria “Versado”,  com meu nome como responsável “Paolla Oliveira”, deixarei a descrição em branco, o endereço com “Rua Padre Landim, número 302, Madalena”, o email com “teste2@teste.com”, o número de whatsapp com “81940028922”, o horário de funcionamento de “9:00 - 18:00”, o link para redes sociais com “https://www.instagram.com/versadocafe”, CNPJ com “5576634441000107”, a senha com “123456” e adicionarei um arquivo png da foto do ambiente, e o sistema deve identificar que o campo de descrição do estabelecimento não foi preenchido (elemento obrigatório);
+- Vou cadastrar minha cafeteria “Comida de Vó”,  com meu nome como responsável “Rosália Brito”, vou preencher a descrição como “Ambiente acolhedor e descontraído.”, o endereço com “Rua das Ladeiras, número 500, Boa Vista”, o email com “teste@teste.com”, o número de whatsapp com “5581981710026”, o horário de funcionamento de “8:00 - 22:00”, o link para redes sociais com “https://www.instagram.com/comidadevo”, CNPJ com “61785284000163”, a senha com “lala123” e adicionarei um arquivo png da foto do ambiente, e não funcionará, pois o sistema deve identificar que o e-mail já está cadastrado.
+
+
+****3. Visualizar perfil com as informações das cafeterias cadastradas****
+
+Cartão: Como cliente, eu gostaria de visualizar o perfil das cafeterias cadastradas, com as suas respectivas informações.
+
+Conversa: O usuário deverá estar cadastrado para acessar os perfis das cafeterias.
+
+Confirmação/Validação:
+- Vou tentar entrar no perfil da cafeteria São Café sem informar meu login e senha (e-mail “jsm@gmail.com” e senha “jms123456”), e aparecerá uma mensagem para logar ou cadastrar no sistema;
+- Vou tentar entrar no perfil da cafeteria Bom Lugar sem informar meu login e senha (e-mail “jsm@gmail.com” e senha “jms123456”), e aparecerá uma mensagem para logar ou cadastrar no site, porém vou fechar  o popup e não vou conseguir ver o perfil da cafeteria desejada;
+- Vou tentar entrar no perfil da cafeteria Grão Dourado logado (e-mail “jmari@hotmail.com” e senha “joaninhasales93”), e conseguirei ver o perfil da cafeteria desejada.
+
+
+****4. Favoritar cafeteria****
+
+Cartão: Como cliente, eu gostaria de favoritar minhas cafeterias preferidas para acessá-las facilmente.
+
+Conversa: O usuário deverá estar logado para favoritar cafeterias. Ao acessar o perfil de uma cafeteria, ele terá a opção de favoritar.
+
+Confirmação / Validação:
+- Vou tentar favoritar uma cafeteria sem estar logado no sistema e uma mensagem aparece solicitando que o login ou cadastro seja feito para poder favoritar;
+- Vou logar como Joana Maria Sales (e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e tentar favoritar a cafeteria "Café Aconchego", e esta cafeteria será adicionada aos meus favoritos;
+- Vou logar como João Mendes (e-mail “jsm@gmail.com”, senha “jms123456”) e tentar favoritar a cafeteria "Café Aconchego" novamente, e receberei uma mensagem informando que ela já está nos meus favoritos.
+
+****5. Avaliar cafeterias cadastradas****
+
+Cartão: Como cliente, eu gostaria de avaliar minha experiência com uma cafeteria cadastrada na aplicação.
+
+Conversa: O usuário conseguirá cadastrar uma avaliação (comentário) para uma das cafeterias cadastradas na aplicação.
+
+Confirmação/Validação:
+- Vou tentar tentar deixar uma avaliação para a Cafeteria Testando estando cadastrado e logado no sistema como João Mendes (e-mail “jsm@gmail.com”, senha “jms123456”) e funcionará;
+- Vou tentar deixar uma avaliação para a cafeteria “Amor de Vó” sem estar cadastrado no sistema e não conseguirei;
+- Vou tentar deixar uma avaliação para a cafeteria cadastrada “Amélie Poulain” sem estar logada no sistema (apesar de cadastrada como Joana Maria Sales - e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e não funcionará;
+- Vou tentar deixar um comentário para uma cafeteria não cadastrada no sistema após devidamente cadastrado e logado no sistema como João Maurício Santos (e-mail “jsm@gmail.com”, senha “mauricio123”) e não conseguirei.
+
+<br/>
+***Histórias Implementadas:***
+
+- Cadastro de Usuários
+- Cadastro de Cafeterias
+- Favoritar cafeteria
+
+<br/>
 ***Instruções de acesso ao projeto:***
 
 
-
+<br/>
 ***Diagrama de atividades do sistema:***
 
 
@@ -56,14 +126,16 @@
 
  ***Print do backlog do projeto:***
   
-  ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/6a018ca3-b054-4214-8cdb-c50446d5227c)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/c45a55a1-1998-4690-906a-7f2461a59ac6)
+
 
 
 <br/>  
  
 ***Print do quadro da Sprint:***
 
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/dc627ba3-cae1-4131-b84b-a78f4fe77967)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/e5fdc30b-4c8a-4aed-83fc-7c24910faf3c)
+
 
 
 

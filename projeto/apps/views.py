@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
-from django.db.utils import IntegrityError
 from django.contrib.auth.hashers import make_password
+from django.core.exceptions import ObjectDoesNotExist
 
 
 
@@ -57,14 +57,24 @@ def login_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')  # Pega o email do formulário
         password = request.POST.get('password')
-        # Autenticar usando o email
-        user = authenticate(request, username=User.objects.get(email=email).username, password=password)
+        
+        try:
+            # Encontrar o username correspondente ao email fornecido
+            username = User.objects.get(email=email).username
+        except ObjectDoesNotExist:
+            # Se não encontrar o usuário pelo email, retornar erro
+            return render(request, 'login.html', {'error': 'Usuário não encontrado'})
+        
+        # Autenticar usando o username encontrado e a senha fornecida
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(home) 
+            return redirect('home')  # Certifique-se de que 'home' é o nome correto da URL de destino
         else:
+            # Se a autenticação falhar, retornar para a página de login com erro
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
-    return render(request, 'login.html')
+    
+    return render(request, 'login.html')  # Renderizar a página de login se não for POST
 
 
 @login_required
@@ -157,11 +167,9 @@ def cadastro_cafeteria(request):
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        return redirect('cadastro_cafeteria_sucesso')  # Supondo que 'home' é a URL de sucesso
+            return redirect('cadastro_cafeteria_sucesso')  # Supondo que 'home' é a URL de sucesso
 
     return render(request, 'cadastro_cafeteria.html')
-
-
 
 def UserCadastro(request):
     if request.method == 'POST':
@@ -182,7 +190,7 @@ def UserCadastro(request):
 
         user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
         login(request, user)
-        request.session["usuario"] = username
+        request.session["usuario"] = email
         return redirect('cadastro_user_sucesso')
         
     return render(request, 'cadastro_usuario.html')
