@@ -57,26 +57,21 @@ def lista_favoritos(request):
 
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email')  # Pega o email do formulário
+        email = request.POST.get('email')
         password = request.POST.get('password')
         
         try:
-            # Encontrar o username correspondente ao email fornecido
             username = User.objects.get(email=email).username
         except ObjectDoesNotExist:
-            # Se não encontrar o usuário pelo email, retornar erro
             return render(request, 'login.html', {'error': 'Usuário não encontrado'})
-        
-        # Autenticar usando o username encontrado e a senha fornecida
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # Certifique-se de que 'home' é o nome correto da URL de destino
+            return redirect('home')
         else:
-            # Se a autenticação falhar, retornar para a página de login com erro
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
-    
-    return render(request, 'login.html')  # Renderizar a página de login se não for POST
+    return render(request, 'login.html')
 
 
 @login_required
