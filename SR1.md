@@ -7,7 +7,7 @@
       >Projeto no Jira</a>
   </li>
     <li>
-    <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0-1&mode=design&t=FNWAa192nvqusgkN-0"
+    <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0%3A1&mode=design&t=1748pNTyjfC6RMOg-1"
       >Protótipo de Lo-Fi no Figma</a>
   </li>
    <li>
