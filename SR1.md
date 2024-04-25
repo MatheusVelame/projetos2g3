@@ -8,7 +8,7 @@
   </li>
     <li>
     <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0%3A1&mode=design&t=1748pNTyjfC6RMOg-1"
-      >Protótipo de Lo-Fi no Figma</a>
+      >Protótipo de Lo-Fi no Figma - Sketches e Storyboards</a>
   </li>
    <li>
     <a  href=""
@@ -30,7 +30,8 @@
 </ul>
 <br/>
 
-***5 Histórias:***
+***5 Histórias do usuário bem definidas:***
+<br/>
 ****1. Cadastro de Usuários****
 	
 Cartão: Como usuário, eu gostaria de me cadastrar na plataforma.
@@ -41,7 +42,6 @@ Confirmação/Validação:
 - Vou me cadastrar na plataforma como “João Mendes Souza”, e-mail “jsm@gmail.com”, senha “jms123456” e nome de usuário “jms123” e funcionará;
 - Vou me cadastrar na plataforma como “João Maurício Santos”, e-mail “jsm@gmail.com”, senha “mauricio123” e nome de usuário “jmaurício” e não funcionará devido ao e-mail já cadastrado;
 - Vou me cadastrar na plataforma como “Joana Mariana Sales”, e-mail “jmari@hotmail.com”, senha “joaninhasales93” e nome de usuário “jms123” e não funcionará devido ao nome de usuário já cadastrado.
-
 
 
 ****2. Cadastro de Cafeterias****
@@ -93,7 +93,11 @@ Confirmação/Validação:
 - Vou tentar deixar uma avaliação para a cafeteria cadastrada “Amélie Poulain” sem estar logada no sistema (apesar de cadastrada como Joana Maria Sales - e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e não funcionará;
 - Vou tentar deixar um comentário para uma cafeteria não cadastrada no sistema após devidamente cadastrado e logado no sistema como João Maurício Santos (e-mail “jsm@gmail.com”, senha “mauricio123”) e não conseguirei.
 
+***Histórias Implementadas:***
 
+- Cadastro de Usuários
+- Cadastro de Cafeterias
+- Favoritar cafeteria
 
 ***Instruções de acesso ao projeto:***
 
