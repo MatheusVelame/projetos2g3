@@ -31,7 +31,7 @@
 <br/>
 
 ***5 Histórias:***
-1. Cadastro de Usuários; (Ygor e Cazé)
+****1. Cadastro de Usuários****
 	
 Cartão: Como usuário, eu gostaria de me cadastrar na plataforma.
 
@@ -44,7 +44,7 @@ Confirmação/Validação:
 
 
 
-2. Cadastro de Cafeterias (Manu e Bia) 
+****2. Cadastro de Cafeterias****
 
 Cartão: Como empresário, eu gostaria de cadastrar a minha cafeteria na plataforma.
 
@@ -57,7 +57,7 @@ Confirmação/Validação:
 - Vou cadastrar minha cafeteria “Comida de Vó”,  com meu nome como responsável “Rosália Brito”, vou preencher a descrição como “Ambiente acolhedor e descontraído.”, o endereço com “Rua das Ladeiras, número 500, Boa Vista”, o email com “teste@teste.com”, o número de whatsapp com “5581981710026”, o horário de funcionamento de “8:00 - 22:00”, o link para redes sociais com “https://www.instagram.com/comidadevo”, CNPJ com “61785284000163”, a senha com “lala123” e adicionarei um arquivo png da foto do ambiente, e não funcionará, pois o sistema deve identificar que o e-mail já está cadastrado.
 
 
-3. Visualizar perfil com as informações das cafeterias cadastradas (Thaís, Matheus, Arthur)
+****3. Visualizar perfil com as informações das cafeterias cadastradas****
 
 Cartão: Como cliente, eu gostaria de visualizar o perfil das cafeterias cadastradas, com as suas respectivas informações.
 
@@ -70,7 +70,7 @@ Vou tentar entrar no perfil da cafeteria Grão Dourado logado (e-mail “jmari@h
 
 
 
-4. Favoritar cafeteria (Thaís, Matheus, Arthur)
+****4. Favoritar cafeteria****
 
 Cartão: Como cliente, eu gostaria de favoritar minhas cafeterias preferidas para acessá-las facilmente.
 
@@ -81,7 +81,7 @@ Confirmação / Validação:
 - Vou logar como Joana Maria Sales (e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e tentar favoritar a cafeteria "Café Aconchego", e esta cafeteria será adicionada aos meus favoritos.
 - Vou logar como João Mendes (e-mail “jsm@gmail.com”, senha “jms123456”) e tentar favoritar a cafeteria "Café Aconchego" novamente, e receberei uma mensagem informando que ela já está nos meus favoritos.
 
-5. Avaliar cafeterias cadastradas (Lisa e Lu)
+****5. Avaliar cafeterias cadastradas****
 
 Cartão: Como cliente, eu gostaria de avaliar minha experiência com uma cafeteria cadastrada na aplicação.
 
