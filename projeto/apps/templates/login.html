@@ -10,19 +10,9 @@
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.GET.next }}">
             <h2>{{ title }}</h2>
-            <div class="radio-options">
-                <div class="radio-option">
-                    <input type="radio" id="cliente" name="tipo_usuario" value="cliente" checked>
-                    <label for="cliente">Cliente</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" id="cafeteria" name="tipo_usuario" value="cafeteria">
-                    <label for="cafeteria">Cafeteria</label>
-                </div>
-            </div>
             <div class="box-user">
-                <label>Nome de usuário:</label><br>
-                <input type="text" name="username" required><br>
+                <label>Email:</label><br>
+                <input type="email" name="email" required><br>
             </div>
         
             <div class="box-user">
@@ -35,7 +25,7 @@
                 <a href="{% url 'UserCadastro' %}?tipo_usuario=cliente" class="btn btn-light">Cliente</a>
                 <a href="{% url 'cadastro_cafeteria' %}?tipo_usuario=cafeteria" class="btn btn-light">Cafeteria</a>
             </div>
-        </form>        
+        </form>                
     </div>
 </section>
 {% endblock content %}
