@@ -65,13 +65,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # return redirect(next_url or 'home')
-            if request.POST.get('criar_conta'):
-                tipo_usuario = request.POST.get('tipo_usuario')
-                if tipo_usuario == 'cliente':
-                    return redirect('cadastro_cliente')
-                elif tipo_usuario == 'cafeteria':
-                    return redirect('cadastro_cafeteria')
+            return redirect(next_url or 'home')
         else:
             return render(request, 'apps/login.html', {"erro": "Usuário não encontrado"})
     return render(request, 'apps/login.html', {'next': next_url})
