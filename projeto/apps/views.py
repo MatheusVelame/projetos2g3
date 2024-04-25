@@ -191,3 +191,6 @@ def UserCadastro(request):
 
 def cadastro_cafeteria_sucesso(request):
     return render(request, 'cadastro_cafeteria_sucesso.html')
+
+def cadastro_user_sucesso(request):
+    return render(request, 'cadastro_user_sucesso.html')
