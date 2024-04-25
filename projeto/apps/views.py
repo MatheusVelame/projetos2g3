@@ -20,11 +20,17 @@ def home(request):
     return render(request, 'home.html', {'cafes': cafes})
 
 def detalhes(request, cafe_id):
-    cafe = get_object_or_404(Cafe, id=cafe_id)
-    usuario = request.user
-    favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
-    detalhes_cafe = cafe.detalhes()
-    return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito':favorito})
+    if request.user.is_authenticated:
+        cafe = get_object_or_404(Cafe, id=cafe_id)
+        usuario = request.user
+        favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
+        detalhes_cafe = cafe.detalhes()
+        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito':favorito})
+    else:
+        cafe = get_object_or_404(Cafe, id=cafe_id)
+        detalhes_cafe = cafe.detalhes()
+        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
+
 
 @login_required
 def favoritar(request, cafe_id):
@@ -57,26 +63,21 @@ def lista_favoritos(request):
 
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email')  # Pega o email do formulário
+        email = request.POST.get('email')
         password = request.POST.get('password')
         
         try:
-            # Encontrar o username correspondente ao email fornecido
             username = User.objects.get(email=email).username
         except ObjectDoesNotExist:
-            # Se não encontrar o usuário pelo email, retornar erro
             return render(request, 'login.html', {'error': 'Usuário não encontrado'})
-        
-        # Autenticar usando o username encontrado e a senha fornecida
+
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # Certifique-se de que 'home' é o nome correto da URL de destino
+            return redirect('home')
         else:
-            # Se a autenticação falhar, retornar para a página de login com erro
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
-    
-    return render(request, 'login.html')  # Renderizar a página de login se não for POST
+    return render(request, 'login.html')
 
 
 @login_required
