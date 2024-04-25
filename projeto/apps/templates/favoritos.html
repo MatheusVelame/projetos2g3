@@ -1,7 +1,7 @@
 {% extends "global/base.html" %}
 {% block content %}
 <div class="container">
-    {% comment %} {% if user.is_authenticated %} {% endcomment %}
+    {% if user.is_authenticated %}
         <h1>Meus Favoritos</h1>
         <table class="table" style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-family: Helvetica, sans-serif;">
             <thead>
@@ -10,6 +10,7 @@
                     <th style="padding: 8px; text-align: left;">Cafeteria</th>
                     <th style="padding: 8px; text-align: left;">Página</th>
                     <th style="padding: 8px; text-align: left;">Descrição</th>
+                    <th style="padding: 8px; text-align: left;">Remover</th> <!-- Nova coluna para o botão de remover -->
                 </tr>
             </thead>
             <tbody>
@@ -19,14 +20,15 @@
                     <td style="padding: 8px; text-align: left;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.nome_cafeteria }}</span></td>
                     <td style="padding: 8px;"><span><button style="width: 80px; border: #ddd;"><a href="{% url 'detalhes' favorito.cafe.id %}" style="color: #000;">Ir</a></button></span></td>
                     <td style="padding: 8px;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.descricao }}</span></td>
+                    <td style="padding: 8px;"><span><button style="width: 80px; border: #ddd;"><a href="{% url 'favoritar' favorito.cafe.id %}" style="color: #000;">Remover</a></button></span></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-    {% comment %} {% else %}
+    {% else %}
         <h1 style="font-family: Helvetica, sans-serif; font-weight: bold;">Meus Favoritos</h1>
         <p>Por favor, faça login para ver seus favoritos.</p>
         <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-    {% endif %} {% endcomment %}
+    {% endif %}
 </div>
 {% endblock %}
