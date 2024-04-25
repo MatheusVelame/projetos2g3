@@ -47,8 +47,9 @@
     }
 
     .btn-outline-secondary:hover {
-        background-color: #333333;
-        color: white;
+        background-color: #ccc;
+        border: 1px solid #ccc;
+        color: #000;
     }
 
     .text-body-secondary {
@@ -83,8 +84,9 @@
     .foto-cafe {
         margin-right: auto;
         margin-left: auto;
-        max-width: 200px;
-        max-height: 200px;
+        max-width: 255px;
+        max-height: 255px;
+        object-fit: fill;
     }
 
 </style>
@@ -93,13 +95,13 @@
     {% for cafe in cafes %}
         <div class="card shadow-sm">
             {% if cafe.foto_ambiente %}
-            <img src="{{ cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ cafe.nome }}">
+            <img src="{{ cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ cafe.nome }}" preserveAspectRatio="xMidYMid slice">
             {% else %}
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
                 role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef"
-                    dy=".3em">Thumbnail</text>
+                <rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef"
+                    dy=".3em">{{ cafe.nome_cafeteria }}</text>
             </svg>
             {% endif %}
             <div class="card-body">
@@ -109,7 +111,7 @@
                     <div class="btn-group">
                         <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">ver mais</a>
                     </div>
-                    <small class="text-body-secondary">{{ cafe.ticket_medio }}</small>
+                    <small class="text-body-secondary">{{ cafe.horas_funcionamento }}</small>
                 </div>
             </div>
         </div>

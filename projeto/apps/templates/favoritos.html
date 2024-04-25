@@ -8,13 +8,16 @@
                 <tr>
                     <th style="padding: 8px; text-align: left;">#</th>
                     <th style="padding: 8px; text-align: left;">Cafeteria</th>
+                    <th style="padding: 8px; text-align: left;">Página</th>
+                    <th style="padding: 8px; text-align: left;">Descrição</th>
                 </tr>
             </thead>
             <tbody>
                 {% for favorito in favoritos %}
                 <tr>
                     <td style="padding: 8px;">{{ forloop.counter }}</td>
-                    <td style="padding: 8px;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.nome }}</span></td>
+                    <td style="padding: 8px; text-align: left;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.nome_cafeteria }}</span></td>
+                    <td style="padding: 8px;"><span><button style="width: 80px; border: #ddd;"><a href="{% url 'detalhes' favorito.cafe.id %}" style="color: #000;">Ir</a></button></span></td>
                     <td style="padding: 8px;"><span class="hover-blue" style="font-family: Helvetica, sans-serif;">{{ favorito.cafe.descricao }}</span></td>
                 </tr>
                 {% endfor %}
