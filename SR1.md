@@ -56,12 +56,14 @@
 
  ***Print do backlog do projeto:***
   
-  
+  ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/6a018ca3-b054-4214-8cdb-c50446d5227c)
+
 
 <br/>  
  
 ***Print do quadro da Sprint:***
 
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/dc627ba3-cae1-4131-b84b-a78f4fe77967)
 
 
 
