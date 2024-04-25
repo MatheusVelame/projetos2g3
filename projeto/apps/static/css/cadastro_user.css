@@ -33,7 +33,7 @@ form{
     align-items: center;
 }
 
-.form-box1, .form-box2 {
+.form-box1, .form-box2  {
     max-width: 30vw;
     padding: 20px;
     border: 1px solid #ccc;
