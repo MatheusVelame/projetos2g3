@@ -24,7 +24,7 @@ def detalhes(request, cafe_id):
     detalhes_cafe = cafe.detalhes()
     return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
 
-# @login_required
+@login_required
 def favoritar(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
     
@@ -47,30 +47,29 @@ def favoritar(request, cafe_id):
     # return HttpResponseRedirect(reverse('detalhes', args=[cafe_id]))
     return redirect('home')
 
-# @login_required
+@login_required
 def lista_favoritos(request):
-    # if request.user.is_authenticated:
-    favoritos = Favorito.objects.all() # .filter(usuario=request.user)
-    return render(request, 'favoritos.html', {'favoritos': favoritos})
-    # else:
-    #     return redirect('login')
+    if request.user.is_authenticated:
+        favoritos = Favorito.objects.filter(usuario=request.user)
+        return render(request, 'favoritos.html', {'favoritos': favoritos})
+    else:
+        return redirect('login')
 
 def login_view(request):
-    title = "Login"
-    next_url = request.GET.get('next', '')
     if request.method == 'POST':
-        email = request.POST.get('email')
+        email = request.POST.get('email')  # Pega o email do formulário
         password = request.POST.get('password')
-        
-        user = authenticate(request, email=email, password=password)
+        # Autenticar usando o email
+        user = authenticate(request, username=User.objects.get(email=email).username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(next_url or 'home')
+            return redirect(home) 
         else:
-            return render(request, 'apps/login.html', {"erro": "Usuário não encontrado"})
-    return render(request, 'apps/login.html', {'next': next_url})
+            return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
+    return render(request, 'login.html')
 
-# @login_required
+
+@login_required
 def enviar_whatsapp(request, cafe_id):
     cafeteria = get_object_or_404(Cafe, pk=cafe_id)
     if cafeteria.whatsapp:
@@ -168,29 +167,26 @@ def cadastro_cafeteria(request):
 
 def UserCadastro(request):
     if request.method == 'POST':
-        
-        nome_completo = request.POST.get('nome_completo')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        name = request.POST['name']
+        email = request.POST['email']
+        password = request.POST['password']
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-                messages.error(request, 'As senhas não correspondem.')
+                messages.error(request, 'As senhas não coincidem.')
                 return render(request, 'cadastro_usuario.html')
+        
+        if User.objects.filter(username=username).exists():
+            return render(request, 'cadastro_usuario.html', {"erro": "Usuário já existe"})
+        elif User.objects.filter(email=email).exists():
+            return render(request, 'cadastro_usuario.html', {"erro": "Email já cadastrado"})
 
-        if UserCliente.objects.filter(email=email).exists():
-            messages.error(request, 'Email já existe.')
-            return render(request, 'cadastro_usuario.html')
-
-        user = UserCliente(
-            nome_completo=nome_completo,
-            email=email,
-            password=password
-        )
-        user.save()
-        messages.success(request, 'Cadastro realizado com sucesso!')
-        return redirect('home') 
-
+        user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
+        login(request, user)
+        request.session["usuario"] = username
+        return redirect(home)
+        
     return render(request, 'cadastro_usuario.html')
 
 def cadastro_cafeteria_sucesso(request):

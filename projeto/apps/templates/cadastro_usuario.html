@@ -1,3 +1,4 @@
+
 {% extends 'global/base.html' %}
 {% block content %}
 {% load static %}
@@ -7,21 +8,20 @@
 <section class="section">
     <div class="container">
         <h2>Criar conta</h2>
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+        {% if erro %}
+        <p style="color: red;">{{ erro }}</p>
         {% endif %}
         <form method="post" class="form-outter">
             {% csrf_token %}
             <div class="form-box2">
-                <label for="nome_completo">Seu nome:</label>
-                <input type="text" id="nome_completo" name="nome_completo" required><br>
+                <label for="name">Seu nome:</label>
+                <input type="text" id="name" name="name" required><br>
                 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required><br>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
                 
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" required><br>

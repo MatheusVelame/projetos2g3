@@ -64,7 +64,7 @@
     }
 
     .container {
-        max-width: 1200px;
+        max-width: 600px;
         margin: 0 auto;
         padding: 0 15px;
     }
@@ -73,13 +73,27 @@
         margin: 0 15px 20px;
     }
 
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 10px;
+        grid-auto-rows: minmax(auto-fill, 300px);
+        overflow: hidden;
+    }
+    .foto-cafe {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 200px;
+        max-height: 200px;
+    }
+
 </style>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="cards">
     {% for cafe in cafes %}
-    <div class="col">
         <div class="card shadow-sm">
             {% if cafe.foto_ambiente %}
-            <img src="{{ cafe.foto_ambiente.url }}" class="bd-placeholder-img card-img-top" alt="{{ cafe.nome }}">
+            <img src="{{ cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ cafe.nome }}">
             {% else %}
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
                 role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -89,7 +103,7 @@
             </svg>
             {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ cafe.nome }}</h5>
+                <h5 class="card-title">{{ cafe.nome_cafeteria }}</h5>
                 <p class="card-text">{{ cafe.descricao }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
@@ -99,7 +113,7 @@
                 </div>
             </div>
         </div>
-    </div>
     {% endfor %}
+</div>
 </div>
 {% endblock %}
