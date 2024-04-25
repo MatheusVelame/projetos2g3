@@ -10,7 +10,8 @@
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
             <h2>{{ title }}</h2>
-            <div class="radio-options">
+            <!--
+                <div class="radio-options">
                 <div class="radio-option">
                     <input type="radio" id="cliente" name="tipo_usuario" value="cliente" checked>
                     <label for="cliente">Cliente</label>
@@ -20,8 +21,9 @@
                     <label for="cafeteria">Cafeteria</label>
                 </div>
             </div>
+        -->
             <div class="box-user">
-                <label>Nome de usuário:</label><br>
+                <label>Email:</label><br>
                 <input type="text" name="email" required><br>
             </div>
 
