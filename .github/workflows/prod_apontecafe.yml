@@ -34,10 +34,10 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          cd projetos2g3/projeto/
+          cd projeto/
           zip release.zip ./* -r
           cd ..
-          mv projetos2g3/projeto//release.zip .
+          mv projeto//release.zip .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
