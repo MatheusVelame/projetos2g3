@@ -11,7 +11,7 @@
       >Protótipo de Lo-Fi no Figma - Sketches e Storyboards</a>
   </li>
    <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=DeHn3ZFjyk8"
       >Screencast - Figma</a>
   </li>
   <li>
@@ -105,6 +105,8 @@ Confirmação/Validação:
 
 <br/>
 ***Diagrama de atividades do sistema:***
+
+![diagrama_atividades](https://github.com/MatheusVelame/projetos2g3/assets/142773064/3a0f2236-18da-4603-a659-7b09ed7ca434)
 
 
 
