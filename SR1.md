@@ -92,18 +92,17 @@ Confirmação/Validação:
 - Vou tentar deixar uma avaliação para a cafeteria cadastrada “Amélie Poulain” sem estar logada no sistema (apesar de cadastrada como Joana Maria Sales - e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e não funcionará;
 - Vou tentar deixar um comentário para uma cafeteria não cadastrada no sistema após devidamente cadastrado e logado no sistema como João Maurício Santos (e-mail “jsm@gmail.com”, senha “mauricio123”) e não conseguirei.
 
-<br/>
+
 ***Histórias Implementadas:***
 
 - Cadastro de Usuários
-- Cadastro de Cafeterias
 - Favoritar cafeteria
 
-<br/>
+
 ***Instruções de acesso ao projeto:***
 
 
-<br/>
+
 ***Diagrama de atividades do sistema:***
 
 ![diagrama_atividades](https://github.com/MatheusVelame/projetos2g3/assets/142773064/3a0f2236-18da-4603-a659-7b09ed7ca434)
