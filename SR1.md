@@ -115,13 +115,21 @@ Confirmação/Validação:
   
   - Issues em abertas:
     
-   
+   ![Screenshot 2024-04-25 225340](https://github.com/MatheusVelame/projetos2g3/assets/144596701/417050ca-428a-4e82-80c1-0b9b4a3f60ed)
 
-    
+![Screenshot 2024-04-25 225349](https://github.com/MatheusVelame/projetos2g3/assets/144596701/5028c669-4cfc-4091-bd23-791b04c6f613)
+ 
 
   - Issues fechadas:
-  
-  
+
+  ![Screenshot 2024-04-25 225715](https://github.com/MatheusVelame/projetos2g3/assets/144596701/668ad653-1c1c-41db-81db-525a35e63e3b)
+
+  ![Screenshot 2024-04-25 225802](https://github.com/MatheusVelame/projetos2g3/assets/144596701/ef24942c-2a06-48ea-bf74-d28aa1b26eda)
+
+![Screenshot 2024-04-25 225830](https://github.com/MatheusVelame/projetos2g3/assets/144596701/b20a9582-1e2c-449e-93d0-5173c18e32ff)
+
+![Screenshot 2024-04-25 225842](https://github.com/MatheusVelame/projetos2g3/assets/144596701/93b7a7d7-3fc2-4ea2-b344-187d46b52313)
+
 
 <br/>
 
