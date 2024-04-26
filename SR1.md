@@ -96,7 +96,6 @@ Confirmação/Validação:
 ***Histórias Implementadas:***
 
 - Cadastro de Usuários
-- Cadastro de Cafeterias
 - Favoritar cafeteria
 
 <br/>
