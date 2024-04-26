@@ -105,7 +105,8 @@ Confirmação/Validação:
 <br/>
 ***Diagrama de atividades do sistema:***
 
-![diagrama_atividades](https://github.com/MatheusVelame/projetos2g3/assets/142773064/3a0f2236-18da-4603-a659-7b09ed7ca434)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/029c17f1-62b3-4ef9-908c-15ac8b936bb6)
+
 
 
 
