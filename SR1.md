@@ -123,19 +123,19 @@ Elias Lima Menezes - 1 User:
 
 Cadastro do Usuário:
 
-Nome: Elias Lima Menezes
-E-mail: elm201@gmail.com
-Username: eliaslm
-Senha: elima123
+- Nome: Elias Lima Menezes
+- E-mail: elm201@gmail.com
+- Username: eliaslm
+- Senha: elima123
 
 Gabriel Santana Vila Lobos - 2 User:
 
 Cadastro do Usuário:
 
-Nome: Gabriel Santana Vila Lobos
-E-mail: gvilalobos@gmail.com
-Username: gblobos
-Senha: vilal123
+- Nome: Gabriel Santana Vila Lobos
+- E-mail: gvilalobos@gmail.com
+- Username: gblobos
+- Senha: vilal123
 
 ****Cafeterias cadastradas****
 
@@ -143,10 +143,10 @@ Cafeteria Soberana - 1 Cafeteria:
 
 Cadastro da cafeteria:
 
-Responsável: Carlos Antônio Lacerda
-Nome da cafeteria: Cafeteria Soberana
-Endereço: R. Dr. João Santos Filho, 255 - Parnamirim, Recife - PE, 52060-904
-Descrição: A Cafeteria Soberana é reconhecida como um marco no cenário local, oferecendo um refúgio tranquilo para quem deseja escapar do ritmo acelerado do dia a dia. 
+- Responsável: Carlos Antônio Lacerda
+- Nome da cafeteria: Cafeteria Soberana
+- Endereço: R. Dr. João Santos Filho, 255 - Parnamirim, Recife - PE, 52060-904
+- Descrição: A Cafeteria Soberana é reconhecida como um marco no cenário local, oferecendo um refúgio tranquilo para quem deseja escapar do ritmo acelerado do dia a dia. 
 
 Ao entrar na Cafeteria Soberana, os clientes são recebidos por um ambiente que combina o charme clássico com toques modernos, criando um espaço sofisticado e confortável. A decoração é cuidadosamente selecionada para refletir um padrão de qualidade superior, com móveis de madeira fina e detalhes artísticos que enriquecem a experiência.
 
@@ -156,23 +156,23 @@ Para complementar a experiência, a Cafeteria Soberana também serve uma seleç�
 
 Em resumo, a Cafeteria Soberana não é apenas um lugar para beber café, mas um destino onde os amantes do café podem se deleitar com a arte da cafeicultura em um ambiente que é ao mesmo tempo acolhedor e majestoso. É o lugar perfeito para reuniões de negócios, encontros casuais ou momentos de reflexão solitária.
 
-E-mail: cafetsoberana@gmail.com
-Whatsapp: 5581993716563
-Horário de funcionamento: 6:00 - 17:00
-Link do instagram: https://www.instagram.com/cafeteriasoberana
-Site da cafeteria: https://www.instagram.com/cafeteriasoberana
-CNPJ: 67563810000159
-Senha: csoberana123
+- E-mail: cafetsoberana@gmail.com
+- Whatsapp: 5581993716563
+- Horário de funcionamento: 6:00 - 17:00
+- Link do instagram: https://www.instagram.com/cafeteriasoberana
+- Site da cafeteria: https://www.instagram.com/cafeteriasoberana
+- CNPJ: 67563810000159
+- Senha: csoberana123
 
 
 Cafeteria Café Sereno - 2 Cafeteria:
 
 Cadastro da cafeteria:
 
-Responsável: Luiza Gomes de Almeida Muniz
-Nome da cafeteria: Café Sereno
-Endereço: Armazém Original - Mercado da Torre - R. José Bonifácio, 747 - Torre, Recife - PE, 50710-001
-Descrição: A cafeteria Café Sereno convida todos os apreciadores de um bom café a desfrutarem de um ambiente único, onde cada detalhe é cuidadosamente planejado para proporcionar uma experiência transcendental. Localizada em um bairro charmoso, a cafeteria se destaca pela sua decoração elegante e convidativa, que combina elementos modernos com toques clássicos, criando um espaço onde o tempo parece desacelerar.
+- Responsável: Luiza Gomes de Almeida Muniz
+- Nome da cafeteria: Café Sereno
+- Endereço: Armazém Original - Mercado da Torre - R. José Bonifácio, 747 - Torre, Recife - PE, 50710-001
+- Descrição: A cafeteria Café Sereno convida todos os apreciadores de um bom café a desfrutarem de um ambiente único, onde cada detalhe é cuidadosamente planejado para proporcionar uma experiência transcendental. Localizada em um bairro charmoso, a cafeteria se destaca pela sua decoração elegante e convidativa, que combina elementos modernos com toques clássicos, criando um espaço onde o tempo parece desacelerar.
 
 O cardápio da Café Sereno foi criado para satisfazer os paladares mais exigentes, oferecendo uma seleção diversificada de cafés especiais, provenientes de várias partes do mundo. Cada bebida é preparada com precisão por baristas experientes, garantindo a extração perfeita dos aromas e sabores. Além dos cafés, a cafeteria também serve chás artesanais, bebidas à base de chocolate e uma variedade de sucos naturais.
 
@@ -181,19 +181,18 @@ Para acompanhar, os visitantes podem escolher entre diversas opções de bolos, 
 O Café Sereno é mais do que uma simples cafeteria; é um espaço onde a arte do café é celebrada, onde amigos se encontram e novas amizades nascem. É um convite para pausar a correria do dia a dia, sentar e saborear cada momento em um ambiente que eleva a experiência do café a um patamar celestial.
 
 
-E-mail: cafesereno@gmail.com
-Whatsapp: 5581907729053
-Horário de funcionamento: 6:00 - 17:00
-Link do instagram: https://www.instagram.com/cafeserenito
-Site da cafeteria: https://www.cafesereno.com/cafesereno
-CNPJ: 56572816000159
-Senha: cafeserenito123
+- E-mail: cafesereno@gmail.com
+- Whatsapp: 5581907729053
+- Horário de funcionamento: 6:00 - 17:00
+- Link do instagram: https://www.instagram.com/cafeserenito
+- Site da cafeteria: https://www.cafesereno.com/cafesereno
+- CNPJ: 56572816000159
+- Senha: cafeserenito123
 
 
 ***Diagrama de atividades do sistema:***
 
 ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/88783806-b261-42f5-84a4-c355d96a311f)
-
 
 
 <br/>
@@ -225,16 +224,11 @@ Senha: cafeserenito123
 ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/d01ea0a4-ff42-4ac4-a470-0ec8c00a3ce6)
 
 
-
-
 <br/>  
  
 ***Print do quadro da Sprint:***
 
 ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/c2c80443-d43e-4854-ad24-5df502ac6176)
-
-
-
 
 
 <br/>
