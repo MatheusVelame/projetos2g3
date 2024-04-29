@@ -36,6 +36,11 @@ class Cafe(models.Model):
             'senha': self.senha,
             'cnpj': self.cnpj,
         }
+    def get_short_description(self):
+        if len(self.descricao) > 100:
+            return self.descricao[:100].__add__("...")
+        else:
+            return self.descricao
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
