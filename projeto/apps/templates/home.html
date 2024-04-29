@@ -114,7 +114,7 @@
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ cafe.nome_cafeteria }}</h5>
-                <p class="card-text">{{ cafe.descricao }}</p>
+                <p class="card-text">{{ cafe.get_short_description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                         <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">ver mais</a>

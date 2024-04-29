@@ -125,10 +125,10 @@
                     {% endif %}
                     <div class="card-body">
                     <div class="right btn-group">
-                        <a href="{% url 'favoritar' favorito.cafe.id %}" class="btn-outline-secondary"><img style="height: 20px;" src="{% static '../static/images/desfavoritar2.png' %}"></a></a>
+                        <a href="{% url 'favoritar' favorito.cafe.id %}" class="btn-outline-secondary"><img style="height: 20px;" src="{% static '../static/images/desfavoritar1.png' %}"></a></a>
                     </div>
                         <h5 class="card-title">{{favorito.cafe.nome_cafeteria }}</h5>
-                        <p class="card-text">{{favorito.cafe.descricao }}</p>
+                        <p class="card-text">{{ favorito.cafe.get_short_description}}</p>
                         <div> 
                             
                             <div class="btn-group">
