@@ -2,9 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
-# Create your models here.
-
-# quem tiver com essa ponta de cadastro das cafeterias pode elaborar o model abaixo, só tô colocando um pontapé pra conseguir fazer o model "Favorito"
 class Cafe(models.Model):
     responsavel = models.CharField(max_length=100, blank=False, default='Nome do responsável não informado')
     nome_cafeteria = models.CharField(max_length=100, blank=False, default='Nome não informado')
