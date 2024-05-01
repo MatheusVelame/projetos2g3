@@ -12,8 +12,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 
-
-
 # Create your views here.
 def home(request):
     cafes = Cafe.objects.all()
@@ -122,7 +120,7 @@ def cadastro_cafeteria(request):
             messages.error(request, 'As senhas não correspondem.')
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        if User.objects.filter(username=email).exists():
+        if User.objects.filter(email=email).exists():
             messages.error(request, 'Este email já está cadastrado.')
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
@@ -137,12 +135,6 @@ def cadastro_cafeteria(request):
         cnpj = request.POST.get('cnpj')
         site_cafeteria = request.POST.get('site_cafeteria')
 
-        # Criação do usuário
-        user = User.objects.create_user(username=email, password=senha, email=email, first_name=responsavel)
-        login(request, user)
-        request.session["usuario"] = email  # Usando email como identificador na sessão
-
-        # Criação da cafeteria
         cafe = Cafe(
             responsavel=responsavel,
             nome_cafeteria=nome_cafeteria,
@@ -167,9 +159,14 @@ def cadastro_cafeteria(request):
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-            return redirect('cadastro_cafeteria_sucesso')  # Supondo que 'home' é a URL de sucesso
+        user = User.objects.create_user(password=senha, email=email, first_name=responsavel)
+        login(request, user)
+        request.session["usuario"] = email 
+
+        return redirect('cadastro_cafeteria_sucesso') 
 
     return render(request, 'cadastro_cafeteria.html')
+
 
 def UserCadastro(request):
     if request.method == 'POST':
