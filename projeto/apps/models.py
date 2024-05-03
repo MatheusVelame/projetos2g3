@@ -59,12 +59,3 @@ class Favorito(models.Model):
     def _str_(self):
         return f'{self.usuario.username} - {self.cafe.nome}'
     
-class UserCliente(models.Model):
-    
-    nome_completo = models.CharField(max_length=150, default="Desconhecido")
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255, null=True)
-    confirm_password = models.CharField(max_length=255, null=True)
-
-    def _str_(self):
-        return self.email
