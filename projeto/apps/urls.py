@@ -17,4 +17,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('cadastro_cafeteria_sucesso/', views.cadastro_cafeteria_sucesso, name='cadastro_cafeteria_sucesso'),
     path('cadastro_user_sucesso/', views.cadastro_user_sucesso, name='cadastro_user_sucesso'),
+    path('buscar-cafeterias/', views.buscar_cafeterias, name='buscar_cafeterias'),
 ]

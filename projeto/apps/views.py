@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError 
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 # Create your views here.
 def home(request):
@@ -200,3 +201,15 @@ def cadastro_cafeteria_sucesso(request):
 
 def cadastro_user_sucesso(request):
     return render(request, 'cadastro_user_sucesso.html')
+
+def buscar_cafeterias(request):
+    if 'termo' in request.GET:
+        termo = request.GET['termo']
+        resultados = Cafe.objects.filter(Q(nome_cafeteria__icontains=termo) | Q(descricao__icontains=termo))
+        if resultados:
+            return render(request, 'resultado_busca.html', {'resultados': resultados, 'termo': termo})
+        else:
+            mensagem_alerta = f'Nenhuma cafeteria encontrada com o termo "{termo}".'
+            return render(request, 'resultado_busca.html', {'mensagem_alerta': mensagem_alerta})
+    else:
+        return redirect('home')
