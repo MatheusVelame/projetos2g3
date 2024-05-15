@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 # from django.core.validators import RegexValidator -> esta linha está sem uso
 
 # Create your models here.
+class UserCliente(models.Model):
+    nome_completo = models.CharField(max_length=150, default="Desconhecido")
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=255, null=True)
+    confirm_password = models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return self.email
 
 class Cafe(models.Model):
     responsavel = models.CharField(max_length=100, blank=False, default='Nome do responsável não informado')
@@ -41,7 +49,6 @@ class Cafe(models.Model):
             return self.descricao[:100].__add__("...")
         else:
             return self.descricao
-
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
