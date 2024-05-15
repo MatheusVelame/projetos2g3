@@ -91,6 +91,11 @@ ROOT_URLCONF = 'g3.urls'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'home'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 3600
+SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_HTTPONLY = True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
