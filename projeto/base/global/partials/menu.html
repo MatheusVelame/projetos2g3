@@ -10,9 +10,10 @@
                 <li class="nav-item">
                     <a href="{% url 'cadastro_cafeteria' %}">Cadastrar cafeteria</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'UserCadastro' %}">Cadastrar usuário</a>
-                </li>
+
+
+
+
                 <li class="nav-item">
                     <a href="{% url 'favoritos' %}">Favoritos</a>
                 </li>
@@ -29,7 +30,7 @@
             </form>
             {% else %}
             <div class="nav-item">
-                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'login' %}">Login/Cadastro</a>
                 {% endif %}
             </div>
         </div>
