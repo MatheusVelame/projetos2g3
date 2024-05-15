@@ -30,6 +30,7 @@ def buscar_cafeterias(request):
     else:
         return redirect('home')
 
+@login_required
 def cadastro_cafeteria(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -246,9 +247,13 @@ def logout(request):
 
 @login_required
 def minhas_reservas(request):
-    cliente = get_object_or_404(UserCliente, email=request.user.email)
+    try:
+        cliente = UserCliente.objects.get(email=request.user.email)
+    except UserCliente.DoesNotExist:
+        return redirect('login')
+
     reservas = ReservaCafe.objects.filter(cliente=cliente)
-    return render(request, 'apps/minhas_reservas.html', {'reservas': reservas})
+    return render(request, 'minhas_reservas.html', {'reservas': reservas})
 
 def perfil_cafeteria(request, cafe_id):
     cafeteria = get_object_or_404(Cafe, pk=cafe_id)
