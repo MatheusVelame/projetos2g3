@@ -1,0 +1,43 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/resultado_busca.css' %}">
+
+<div class="container mt-4">
+    <h3>Resultados da Busca para "{{ termo }}"</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="cards">
+            {% for cafe in resultados %}
+                <div class="card shadow-sm">
+                    {% if cafe.foto_ambiente %}
+                    <img src="{{ cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ cafe.nome_cafeteria }}" preserveAspectRatio="xMidYMid slice">
+                    {% else %}
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                        <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ cafe.nome_cafeteria }}</text>
+                    </svg>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ cafe.nome_cafeteria }}</h5>
+                        <p class="card-text">{{ cafe.get_short_description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
+                            </div>
+                            <small class="text-body-secondary">{{ cafe.horas_funcionamento }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if not resultados %}
+    <div class="alert alert-info" role="alert">
+        Nenhuma cafeteria encontrada com o termo "{{ termo }}."
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

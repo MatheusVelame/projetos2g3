@@ -36,16 +36,12 @@ class Cafe(models.Model):
             'senha': self.senha,
             'cnpj': self.cnpj,
         }
+    def get_short_description(self):
+        if len(self.descricao) > 100:
+            return self.descricao[:100].__add__("...")
+        else:
+            return self.descricao
 
-class UserCliente(models.Model):
-    
-    nome_completo = models.CharField(max_length=150, default="Desconhecido")
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=255, null=True)
-    confirm_password = models.CharField(max_length=255, null=True)
-
-    def _str_(self):
-        return self.email
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -72,11 +68,6 @@ class ReservaCafe(models.Model):
     data_reserva = models.DateField()
     horario_reserva = models.TimeField()
     numero_de_pessoas = models.PositiveIntegerField(default=1)
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2)
-    parcela = models.IntegerField(null=True, blank=True)
-    valor_parcelas = models.DecimalField(max_digits=10, decimal_places=2)
-    avaliacao = models.IntegerField(blank=True, null=True)
-    comentario_avaliacao = models.TextField(blank=True, null=True)
 
     @property
     def status(self):
