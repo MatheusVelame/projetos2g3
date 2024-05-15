@@ -1,10 +1,10 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
+# from django.core.validators import RegexValidator -> esta linha está sem uso
 
 # Create your models here.
 
-# quem tiver com essa ponta de cadastro das cafeterias pode elaborar o model abaixo, só tô colocando um pontapé pra conseguir fazer o model "Favorito"
 class Cafe(models.Model):
     responsavel = models.CharField(max_length=100, blank=False, default='Nome do responsável não informado')
     nome_cafeteria = models.CharField(max_length=100, blank=False, default='Nome não informado')
@@ -37,26 +37,6 @@ class Cafe(models.Model):
             'cnpj': self.cnpj,
         }
 
-class Favorito(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
-
-    def detalhes(self):
-        return {
-            'nome': self.nome,
-            'endereco': self.endereco,
-            'descricao': self.descricao,
-            'email': self.email,
-            'whatsapp': self.whatsapp,
-            'horas_funcionamento': self.horas_funcionamento,
-            'link_redesocial': self.link_redesocial,
-            'foto_ambiente': self.foto_ambiente.url if self.foto_ambiente else None,
-            'ticket_medio': str(self.ticket_medio)
-        }
-
-    def _str_(self):
-        return f'{self.usuario.username} - {self.cafe.nome}'
-    
 class UserCliente(models.Model):
     
     nome_completo = models.CharField(max_length=150, default="Desconhecido")
@@ -66,3 +46,51 @@ class UserCliente(models.Model):
 
     def _str_(self):
         return self.email
+
+class Favorito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+
+    def detalhes(self):
+        return {
+            'nome': self.cafe.nome_cafeteria,
+            'endereco': self.cafe.endereco,
+            'descricao': self.cafe.descricao,
+            'email': self.cafe.email,
+            'whatsapp': self.cafe.whatsapp,
+            'horas_funcionamento': self.cafe.horas_funcionamento,
+            'link_redesocial': self.cafe.link_redesocial,
+            'foto_ambiente': self.cafe.foto_ambiente.url if self.cafe.foto_ambiente else None,
+        }
+
+    def __str__(self):
+        return f'{self.usuario.username} - {self.cafe.nome_cafeteria}'
+    
+class ReservaCafe(models.Model):
+    cafe = models.ForeignKey(Cafe, on_delete=models.PROTECT)
+    cliente = models.ForeignKey(UserCliente, on_delete=models.PROTECT)
+    data_reserva = models.DateField()
+    horario_reserva = models.TimeField()
+    numero_de_pessoas = models.PositiveIntegerField(default=1)
+    valor_total = models.DecimalField(max_digits=10, decimal_places=2)
+    parcela = models.IntegerField(null=True, blank=True)
+    valor_parcelas = models.DecimalField(max_digits=10, decimal_places=2)
+    avaliacao = models.IntegerField(blank=True, null=True)
+    comentario_avaliacao = models.TextField(blank=True, null=True)
+
+    @property
+    def status(self):
+        hoje = timezone.now().date()
+        if self.data_reserva < hoje:
+            return "Reserva terminada"
+        elif self.data_reserva == hoje:
+            return "Reserva para hoje"
+        else:
+            return "Reserva futura"
+
+    @classmethod
+    def minhas_reservas(cls, cliente_email):
+        return cls.objects.filter(cliente__email=cliente_email)
+
+    def __str__(self):
+        return f"Reserva no {self.cafe.nome_cafeteria} por {self.cliente.nome_completo}"
