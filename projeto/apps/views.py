@@ -80,7 +80,7 @@ def cadastro_cafeteria(request):
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        user = User.objects.create_user(password=senha, email=email, first_name=responsavel)
+        user = User.objects.create_user(username=email,password=senha, email=email, first_name=responsavel)
         login(request, user)
         request.session["usuario"] = email 
 
