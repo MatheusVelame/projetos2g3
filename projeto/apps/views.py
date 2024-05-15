@@ -18,6 +18,81 @@ def home(request):
     cafes = Cafe.objects.all()
     return render(request, 'home.html', {'cafes': cafes})
 
+def buscar_cafeterias(request):
+    if 'termo' in request.GET:
+        termo = request.GET['termo']
+        resultados = Cafe.objects.filter(Q(nome_cafeteria__icontains=termo) | Q(descricao__icontains=termo))
+        if resultados:
+            return render(request, 'resultado_busca.html', {'resultados': resultados, 'termo': termo})
+        else:
+            mensagem_alerta = f'Nenhuma cafeteria encontrada com o termo "{termo}".'
+            return render(request, 'resultado_busca.html', {'mensagem_alerta': mensagem_alerta})
+    else:
+        return redirect('home')
+
+def cadastro_cafeteria(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        confirmar_senha = request.POST.get('confirmar_senha')
+
+        if senha != confirmar_senha:
+            messages.error(request, 'As senhas não correspondem.')
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Este email já está cadastrado.')
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        senha_criptografada = make_password(senha)
+        responsavel = request.POST.get('responsavel')
+        nome_cafeteria = request.POST.get('nome_cafeteria')
+        endereco = request.POST.get('endereco')
+        descricao = request.POST.get('descricao')
+        whatsapp = request.POST.get('whatsapp')
+        horas_funcionamento = request.POST.get('horas_funcionamento')
+        link_redesocial = request.POST.get('link_redesocial', '')
+        cnpj = request.POST.get('cnpj')
+        site_cafeteria = request.POST.get('site_cafeteria')
+
+        cafe = Cafe(
+            responsavel=responsavel,
+            nome_cafeteria=nome_cafeteria,
+            endereco=endereco,
+            descricao=descricao,
+            email=email,
+            whatsapp=whatsapp,
+            horas_funcionamento=horas_funcionamento,
+            link_redesocial=link_redesocial,
+            senha=senha_criptografada,
+            cnpj=cnpj,
+            site_cafeteria=site_cafeteria,
+        )
+
+        if 'foto_ambiente' in request.FILES:
+            cafe.foto_ambiente = request.FILES['foto_ambiente']
+
+        try:
+            cafe.full_clean()
+            cafe.save()
+        except ValidationError as e:
+            messages.error(request, e.message_dict)
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        user = User.objects.create_user(password=senha, email=email, first_name=responsavel)
+        login(request, user)
+        request.session["usuario"] = email 
+
+        return redirect('cadastro_cafeteria_sucesso') 
+
+    return render(request, 'cadastro_cafeteria.html')
+
+def cadastro_cafeteria_sucesso(request):
+    return render(request, 'cadastro_cafeteria_sucesso.html')
+
+def cadastro_user_sucesso(request):
+    return render(request, 'cadastro_user_sucesso.html')
+
 @login_required
 def cancelar_reserva(request, reserva_id):
     reserva = get_object_or_404(ReservaCafe, id=reserva_id, cliente__email=request.user.email)
@@ -91,6 +166,30 @@ def detalhes(request, cafe_id):
         detalhes_cafe = cafe.detalhes()
         return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
 
+@login_required
+def enviar_whatsapp(request, cafe_id):
+    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
+    if cafeteria.whatsapp:
+        whatsapp_url = f"https://wa.me/{cafeteria.whatsapp}"
+        return redirect(whatsapp_url)
+    else:
+        messages.error(request, "Número de WhatsApp não disponível.")
+        return HttpResponseRedirect(reverse('perfil_cafeteria', args=[cafe_id]))
+
+def enviar_email(request, cafe_id):
+    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
+    if request.method == 'POST':
+        mensagem = request.POST.get('mensagem', '')
+        send_mail(
+            'Mensagem do MyCafeApp',
+            mensagem,
+            'from@example.com',
+            [cafeteria.email],
+            fail_silently=False,
+        )
+        messages.success(request, "Email enviado com sucesso!")
+        return render(request, 'email_enviado.html', {'cafeteria': cafeteria})
+    return render(request, 'enviar_email.html', {'cafeteria': cafeteria})
 
 @login_required
 def favoritar(request, cafe_id):
@@ -139,31 +238,11 @@ def login_view(request):
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
     return render(request, 'login.html')
 
-
-@login_required
-def enviar_whatsapp(request, cafe_id):
-    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
-    if cafeteria.whatsapp:
-        whatsapp_url = f"https://wa.me/{cafeteria.whatsapp}"
-        return redirect(whatsapp_url)
-    else:
-        messages.error(request, "Número de WhatsApp não disponível.")
-        return HttpResponseRedirect(reverse('perfil_cafeteria', args=[cafe_id]))
-
-def enviar_email(request, cafe_id):
-    cafeteria = get_object_or_404(Cafe, pk=cafe_id)
-    if request.method == 'POST':
-        mensagem = request.POST.get('mensagem', '')
-        send_mail(
-            'Mensagem do MyCafeApp',
-            mensagem,
-            'from@example.com',
-            [cafeteria.email],
-            fail_silently=False,
-        )
-        messages.success(request, "Email enviado com sucesso!")
-        return render(request, 'email_enviado.html', {'cafeteria': cafeteria})
-    return render(request, 'enviar_email.html', {'cafeteria': cafeteria})
+def logout(request):
+    logout(request)
+    if "usuario" in request.session:
+        del request.session["usuario"]
+    return redirect(home)
 
 @login_required
 def minhas_reservas(request):
@@ -174,70 +253,6 @@ def minhas_reservas(request):
 def perfil_cafeteria(request, cafe_id):
     cafeteria = get_object_or_404(Cafe, pk=cafe_id)
     return render(request, 'perfil_cafeteria.html', {'cafeteria': cafeteria})
-
-def logout(request):
-    logout(request)
-    if "usuario" in request.session:
-        del request.session["usuario"]
-    return redirect(home)
-
-def cadastro_cafeteria(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-        confirmar_senha = request.POST.get('confirmar_senha')
-
-        if senha != confirmar_senha:
-            messages.error(request, 'As senhas não correspondem.')
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Este email já está cadastrado.')
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
-
-        senha_criptografada = make_password(senha)
-        responsavel = request.POST.get('responsavel')
-        nome_cafeteria = request.POST.get('nome_cafeteria')
-        endereco = request.POST.get('endereco')
-        descricao = request.POST.get('descricao')
-        whatsapp = request.POST.get('whatsapp')
-        horas_funcionamento = request.POST.get('horas_funcionamento')
-        link_redesocial = request.POST.get('link_redesocial', '')
-        cnpj = request.POST.get('cnpj')
-        site_cafeteria = request.POST.get('site_cafeteria')
-
-        cafe = Cafe(
-            responsavel=responsavel,
-            nome_cafeteria=nome_cafeteria,
-            endereco=endereco,
-            descricao=descricao,
-            email=email,
-            whatsapp=whatsapp,
-            horas_funcionamento=horas_funcionamento,
-            link_redesocial=link_redesocial,
-            senha=senha_criptografada,
-            cnpj=cnpj,
-            site_cafeteria=site_cafeteria,
-        )
-
-        if 'foto_ambiente' in request.FILES:
-            cafe.foto_ambiente = request.FILES['foto_ambiente']
-
-        try:
-            cafe.full_clean()
-            cafe.save()
-        except ValidationError as e:
-            messages.error(request, e.message_dict)
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
-
-        user = User.objects.create_user(password=senha, email=email, first_name=responsavel)
-        login(request, user)
-        request.session["usuario"] = email 
-
-        return redirect('cadastro_cafeteria_sucesso') 
-
-    return render(request, 'cadastro_cafeteria.html')
-
 
 def UserCadastro(request):
     if request.method == 'POST':
@@ -262,21 +277,3 @@ def UserCadastro(request):
         return redirect('cadastro_user_sucesso')
         
     return render(request, 'cadastro_usuario.html')
-
-def cadastro_cafeteria_sucesso(request):
-    return render(request, 'cadastro_cafeteria_sucesso.html')
-
-def cadastro_user_sucesso(request):
-    return render(request, 'cadastro_user_sucesso.html')
-
-def buscar_cafeterias(request):
-    if 'termo' in request.GET:
-        termo = request.GET['termo']
-        resultados = Cafe.objects.filter(Q(nome_cafeteria__icontains=termo) | Q(descricao__icontains=termo))
-        if resultados:
-            return render(request, 'resultado_busca.html', {'resultados': resultados, 'termo': termo})
-        else:
-            mensagem_alerta = f'Nenhuma cafeteria encontrada com o termo "{termo}".'
-            return render(request, 'resultado_busca.html', {'mensagem_alerta': mensagem_alerta})
-    else:
-        return redirect('home')

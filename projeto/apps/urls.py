@@ -5,6 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('', views.home, name = 'home'),
+    path('buscar-cafeterias/', views.buscar_cafeterias, name='buscar_cafeterias'),
     path('cadastro_cafeteria/', views.cadastro_cafeteria, name='cadastro_cafeteria'),
     path('cadastro_cafeteria_sucesso/', views.cadastro_cafeteria_sucesso, name='cadastro_cafeteria_sucesso'),
     path('cadastro_user_sucesso/', views.cadastro_user_sucesso, name='cadastro_user_sucesso'),
@@ -20,5 +21,4 @@ urlpatterns = [
     path('minhas_reservas/', minhas_reservas, name='minhas_reservas'),
     path('reservar_cafe/<int:cafe_id>/', criar_reserva, name='criar_reserva'),
     path('UserCadastro/',views.UserCadastro, name='UserCadastro'),
-    path('buscar-cafeterias/', views.buscar_cafeterias, name='buscar_cafeterias'),
 ]
