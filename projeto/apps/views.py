@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
-from .models import Cafe
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,12 +12,71 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 
-
-
 # Create your views here.
 def home(request):
     cafes = Cafe.objects.all()
     return render(request, 'home.html', {'cafes': cafes})
+
+@login_required
+def cancelar_reserva(request, reserva_id):
+    reserva = get_object_or_404(ReservaCafe, id=reserva_id, cliente__email=request.user.email)
+
+    if request.method == 'POST':
+        reserva.delete()
+        messages.success(request, 'Reserva cancelada com sucesso.')
+        return redirect('minhas_reservas')
+    
+    return render(request, 'apps/cancelar_reserva.html', {'reserva': reserva})
+
+@login_required
+def criar_reserva(request, cafe_id):
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    cliente = get_object_or_404(UserCliente, email=request.user.email)
+    
+    if request.method == 'POST':
+        data_reserva = request.POST.get('data_reserva')
+        horario_reserva = request.POST.get('horario_reserva')
+        numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
+
+        if not data_reserva or not horario_reserva:
+            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Por favor, preencha a data e horário da reserva.'})
+
+        try:
+            data_reserva = datetime.strptime(data_reserva, '%Y-%m-%d').date()
+            horario_reserva = datetime.strptime(horario_reserva, '%H:%M').time()
+        except ValueError:
+            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Formato de data ou horário inválido.'})
+
+        today_date = datetime.today().date()
+        if data_reserva < today_date:
+            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'A data selecionada deve ser futura.'})
+
+        if numero_de_pessoas <= 0:
+            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'O número de pessoas deve ser maior que zero.'})
+
+        reservas_conflitantes = ReservaCafe.objects.filter(
+            cafe=cafe,
+            data_reserva=data_reserva,
+            horario_reserva=horario_reserva
+        )
+
+        if reservas_conflitantes.exists():
+            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Café já reservado para o horário solicitado!'})
+
+        reserva = ReservaCafe(
+            cafe=cafe,
+            cliente=cliente,
+            data_reserva=data_reserva,
+            horario_reserva=horario_reserva,
+            numero_de_pessoas=numero_de_pessoas
+        )
+        reserva.save()
+        
+        messages.success(request, 'Reserva efetuada com sucesso.')
+        return redirect('minhas_reservas')
+    
+    else:
+        return render(request, 'reservar_cafe.html', {'cafe': cafe})
 
 def detalhes(request, cafe_id):
     if request.user.is_authenticated:
@@ -104,6 +163,12 @@ def enviar_email(request, cafe_id):
         messages.success(request, "Email enviado com sucesso!")
         return render(request, 'email_enviado.html', {'cafeteria': cafeteria})
     return render(request, 'enviar_email.html', {'cafeteria': cafeteria})
+
+@login_required
+def minhas_reservas(request):
+    cliente = get_object_or_404(UserCliente, email=request.user.email)
+    reservas = ReservaCafe.objects.filter(cliente=cliente)
+    return render(request, 'apps/minhas_reservas.html', {'reservas': reservas})
 
 def perfil_cafeteria(request, cafe_id):
     cafeteria = get_object_or_404(Cafe, pk=cafe_id)

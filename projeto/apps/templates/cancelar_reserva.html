@@ -1,0 +1,17 @@
+{% extends "global/base.html" %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static '../static/css/style_cancelar_reserva.css' %}">
+<section class="section">
+    <div class="container">
+        <h1>Cancelar Reserva</h1>
+        <p>Tem certeza de que deseja cancelar sua reserva no café <strong>{{ reserva.cafe.nome_cafeteria }}</strong> para o dia <strong>{{ reserva.data_reserva }}</strong> às <strong>{{ reserva.horario_reserva }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-submit">Confirmar Cancelamento</button>
+            <a href="{% url 'minhas_reservas' %}" class="btn-cancel">Voltar</a>
+        </form>
+    </div>
+</section>
+{% endblock content %}
