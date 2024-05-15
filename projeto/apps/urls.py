@@ -20,4 +20,5 @@ urlpatterns = [
     path('minhas_reservas/', minhas_reservas, name='minhas_reservas'),
     path('reservar_cafe/<int:cafe_id>/', criar_reserva, name='criar_reserva'),
     path('UserCadastro/',views.UserCadastro, name='UserCadastro'),
+    path('buscar-cafeterias/', views.buscar_cafeterias, name='buscar_cafeterias'),
 ]

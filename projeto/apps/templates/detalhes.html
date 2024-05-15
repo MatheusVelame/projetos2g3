@@ -1,6 +1,7 @@
 {% extends 'global/base.html' %}
 
 {% block content %}
+{% load static %}
 <style>
     #carouselExampleIndicators .carousel-item img {
         object-fit: cover;
@@ -36,16 +37,12 @@
     }
 
     .btn {
-        color:black;
         background-color: #fff;
-        padding: 5px;
-        border: 2px solid #ddd;
+        border: 0px;
     }
     .btn :hover{
+        border: 0px;
 
-        background-color: #ccc;
-        padding: 8px;
-        border: 0px solid #ccc;
     }
 
 </style>
@@ -112,13 +109,13 @@
                                     {% if user.is_authenticated %}
                                         {% if cafe %}
                                             {% if favorito %}
-                                                <button class="btn"><a href="{% url 'favoritar' cafe.id %}" style="color: black;">Desfavoritar</a></button>
+                                                <button class="btn"><a href="{% url 'favoritar' cafe.id %}"><img style="height: 20px;" src="{% static '../static/images/desfavoritar1.png' %}"></a></button>
                                             {% else %}
-                                                <button class="btn"><a href="{% url 'favoritar' cafe.id %}" style="color: black;">Favoritar</a></button>
+                                                <button class="btn"><a href="{% url 'favoritar' cafe.id %}"><img style="height: 20px;" src="{% static '../static/images/favoritar.png' %}"></a></button>
                                             {% endif %}
                                         {% endif %}
                                     {% else %}
-                                        <button class="btn"><a href="{% url 'login' %}" style="color: black;">Favoritar</a></button>
+                                        <button class="btn"><a href="{% url 'login' %}"><img style="height: 10px;" src="{% static '../static/images/favoritar.png' %}"></a></button>
                                     {% endif %}
                                 </div>
                             <button class="btn"><a href="{% url 'enviar_whatsapp' cafe.id %}" style="color: black;">Enviar Mensagem via WhatsApp</a></button>
