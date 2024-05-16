@@ -1,19 +1,92 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style_menu.css' %}">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bricolage Grotesque';
+    font-weight: bold;
+}
+
+header{
+    padding: 10px 0;
+    display: flex;
+    background-color: #fff;
+}
+
+.sessao{
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho {
+    width: 100vw;
+    color: #000; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header .div-logo a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 1.5rem; 
+}
+
+header .div-menu ul {
+    list-style: none; 
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header .div-menu ul li.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s ease; 
+}
+
+header .div-menu ul li.nav-item a:hover {
+    color: #333; 
+}
+
+header form {
+    margin: 0;
+}
+
+header form button {
+    background-color: #f44336; 
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+header form button:hover {
+    background-color: #c62828;
+}
+</style>
+
+
 <header>
     <div class="cabecalho">
         <div class="div-logo">
-            <a href="{% url 'home' %}">Aponte Cafés</a>
+            <a href="{% url 'home' %}"><img style="height: 50px;" src="{% static '../static/images/logo.png' %}"></a>
         </div>
         <div class="div-menu">
             <ul>
                 <li class="nav-item">
                     <a href="{% url 'cadastro_cafeteria' %}">Cadastrar cafeteria</a>
                 </li>
-
-
-
-
                 <li class="nav-item">
                     <a href="{% url 'favoritos' %}">Favoritos</a>
                 </li>
