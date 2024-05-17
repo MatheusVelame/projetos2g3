@@ -23,7 +23,6 @@ class Cafe(models.Model):
     horas_funcionamento = models.CharField(max_length=100, blank=False, default='Horário não informado')
     link_redesocial = models.URLField(max_length=200, blank=True)
     foto_ambiente = models.ImageField(upload_to='fotos_cafeterias/', blank=True, null=True)
-    senha = models.CharField(max_length=128, default='0000')
     cnpj = models.CharField(max_length=14, unique=True, default='00000000000000')
     site_cafeteria = models.URLField(max_length=200, blank=True)
 
@@ -41,7 +40,6 @@ class Cafe(models.Model):
             'horas_funcionamento': self.horas_funcionamento,
             'link_redesocial': self.link_redesocial,
             'foto_ambiente': self.foto_ambiente.url if self.foto_ambiente else None,
-            'senha': self.senha,
             'cnpj': self.cnpj,
         }
     def get_short_description(self):

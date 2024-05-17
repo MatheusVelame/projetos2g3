@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.exceptions import ValidationError 
-from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.contrib.auth.models import Group
 
 # Create your views here.
 def home(request):
@@ -30,22 +30,16 @@ def buscar_cafeterias(request):
     else:
         return redirect('home')
 
+from django.contrib import messages
+from django.contrib.auth.models import Group
+from .models import Cafe
+
 @login_required
 def cadastro_cafeteria(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-        confirmar_senha = request.POST.get('confirmar_senha')
+        usuario = request.user
+        email = usuario.email 
 
-        if senha != confirmar_senha:
-            messages.error(request, 'As senhas não correspondem.')
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Este email já está cadastrado.')
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
-
-        senha_criptografada = make_password(senha)
         responsavel = request.POST.get('responsavel')
         nome_cafeteria = request.POST.get('nome_cafeteria')
         endereco = request.POST.get('endereco')
@@ -56,6 +50,18 @@ def cadastro_cafeteria(request):
         cnpj = request.POST.get('cnpj')
         site_cafeteria = request.POST.get('site_cafeteria')
 
+        if len(whatsapp) > 13:
+            messages.error(request, 'O número de WhatsApp deve ter no máximo 13 dígitos.')
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        if not cnpj.isdigit() or len(cnpj) != 14:
+            messages.error(request, 'O CNPJ deve conter apenas números e ter 14 dígitos.')
+            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+
+        is_empresario = False
+        if usuario.groups.filter(name='Empresários').exists():
+            is_empresario = True
+
         cafe = Cafe(
             responsavel=responsavel,
             nome_cafeteria=nome_cafeteria,
@@ -65,7 +71,6 @@ def cadastro_cafeteria(request):
             whatsapp=whatsapp,
             horas_funcionamento=horas_funcionamento,
             link_redesocial=link_redesocial,
-            senha=senha_criptografada,
             cnpj=cnpj,
             site_cafeteria=site_cafeteria,
         )
@@ -76,17 +81,20 @@ def cadastro_cafeteria(request):
         try:
             cafe.full_clean()
             cafe.save()
+            empresario_group = Group.objects.get(name='Empresários')
+            usuario.groups.add(empresario_group)
+            is_empresario = True
         except ValidationError as e:
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        user = User.objects.create_user(username=email,password=senha, email=email, first_name=responsavel)
-        login(request, user)
-        request.session["usuario"] = email 
-
-        return redirect('cadastro_cafeteria_sucesso') 
+        if is_empresario:
+            return redirect('pagina_empresario') 
+        else:
+            return redirect('pagina_cliente') 
 
     return render(request, 'cadastro_cafeteria.html')
+
 
 def cadastro_cafeteria_sucesso(request):
     return render(request, 'cadastro_cafeteria_sucesso.html')
