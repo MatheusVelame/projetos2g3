@@ -17,8 +17,12 @@ urlpatterns = [
     path('favoritos/', views.lista_favoritos, name='favoritos'),
     path('favoritar/<int:cafe_id>', views.favoritar, name='favoritar'),
     path('login/', login_view, name='login'),
+    path('pagina_empresario/', views.pagina_empresario, name='pagina_empresario'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('minhas_reservas/', minhas_reservas, name='minhas_reservas'),
     path('reservar_cafe/<int:cafe_id>/', criar_reserva, name='criar_reserva'),
     path('UserCadastro/',views.UserCadastro, name='UserCadastro'),
+    path('cadastro_empresario_sucesso/', views.cadastro_empresario_sucesso, name='cadastro_empresario_sucesso'),
+    path('cafeterias_empresarios/', views.cafeterias_empresarios, name='cafeterias_empresarios'),
+    path('acesso_negado_cadastrar_cafeteria/', views.acesso_negado_cadastrar_cafeteria, name='acesso_negado_cadastrar_cafeteria'),
 ]

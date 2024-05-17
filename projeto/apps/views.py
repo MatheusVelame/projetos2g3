@@ -12,8 +12,8 @@ from django.core.exceptions import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.contrib.auth.models import Group
+from .models import Cafe, UserCliente
 
-# Create your views here.
 def home(request):
     cafes = Cafe.objects.all()
     return render(request, 'home.html', {'cafes': cafes})
@@ -30,16 +30,18 @@ def buscar_cafeterias(request):
     else:
         return redirect('home')
 
-from django.contrib import messages
-from django.contrib.auth.models import Group
-from .models import Cafe
-
 @login_required
 def cadastro_cafeteria(request):
-    if request.method == 'POST':
-        usuario = request.user
-        email = usuario.email 
+    usuario = request.user
+    email = usuario.email 
 
+    if not usuario.groups.filter(name='Empresários').exists():
+        messages.error(request, 'Apenas empresários podem cadastrar cafeterias.')
+        return redirect('acesso_negado_cadastrar_cafeteria')
+     
+    UserCliente.objects.get(email=email)
+        
+    if request.method == 'POST':
         responsavel = request.POST.get('responsavel')
         nome_cafeteria = request.POST.get('nome_cafeteria')
         endereco = request.POST.get('endereco')
@@ -57,10 +59,6 @@ def cadastro_cafeteria(request):
         if not cnpj.isdigit() or len(cnpj) != 14:
             messages.error(request, 'O CNPJ deve conter apenas números e ter 14 dígitos.')
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
-
-        is_empresario = False
-        if usuario.groups.filter(name='Empresários').exists():
-            is_empresario = True
 
         cafe = Cafe(
             responsavel=responsavel,
@@ -81,17 +79,11 @@ def cadastro_cafeteria(request):
         try:
             cafe.full_clean()
             cafe.save()
-            empresario_group = Group.objects.get(name='Empresários')
-            usuario.groups.add(empresario_group)
-            is_empresario = True
         except ValidationError as e:
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        if is_empresario:
-            return redirect('pagina_empresario') 
-        else:
-            return redirect('pagina_cliente') 
+        return redirect('cadastro_cafeteria_sucesso') 
 
     return render(request, 'cadastro_cafeteria.html')
 
@@ -242,10 +234,15 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            if user.groups.filter(name='Empresários').exists():
+                return redirect('pagina_empresario')
+            else: 
+                return redirect('home')
         else:
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
+        
     return render(request, 'login.html')
+# alterar 'pagina_empresario' para o redirecionamento correto ^
 
 def logout(request):
     logout(request)
@@ -274,6 +271,7 @@ def UserCadastro(request):
         email = request.POST['email']
         password = request.POST['password']
         confirm_password = request.POST.get('confirm_password')
+        is_business = request.POST.get('is_business') == 'on'
 
         if password != confirm_password:
                 messages.error(request, 'As senhas não correspondem.')
@@ -285,8 +283,36 @@ def UserCadastro(request):
             return render(request, 'cadastro_usuario.html', {"erro": "Email já cadastrado"})
 
         user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
+
+        if is_business:
+            empresario_group = Group.objects.get(name='Empresários')
+            user.groups.add(empresario_group)
+
         login(request, user)
         request.session["usuario"] = email
-        return redirect('cadastro_user_sucesso')
+
+        if is_business:
+            return redirect('cadastro_empresario_sucesso') 
+        else:
+            return redirect('cadastro_user_sucesso')
         
     return render(request, 'cadastro_usuario.html')
+
+@login_required
+def cadastro_empresario_sucesso(request):
+    return render(request, 'cadastro_empresario_sucesso.html')
+
+@login_required
+def cafeterias_empresarios(request):
+    usuario = request.user
+    cafeterias = Cafe.objects.filter(email=usuario.email)
+    return render(request, 'cafeterias_empresarios', {'cafeterias': cafeterias}) 
+
+# modelo acima criado p exibir cafeterias cadastradas pelo empresario, para ele poder visualizar suas cafeterias, só criei a base 
+
+@login_required
+def pagina_empresario(request):
+    return render(request, 'pagina_empresario.html')
+
+def acesso_negado_cadastrar_cafeteria(request):
+    return render(request, 'acesso_negado_cadastrar_cafeteria.html')
