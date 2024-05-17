@@ -6,7 +6,6 @@
 <section class="section">
     <div class="container">
         <h1>Entrar no Aponte Cafés</h1>
-        <!-- Mensagem de erro -->
         {% if error %}
             <div class="alert alert-danger">
                 {{ error }}
@@ -27,8 +26,7 @@
             <button type="submit" class="btn-submit">Entrar</button>
             <div class="signup-message">
                 <p>Não tem cadastro? Crie sua conta:</p>
-                <a href="{% url 'UserCadastro' %}?tipo_usuario=cliente" class="btn btn-light">Cliente</a>
-                <a href="{% url 'cadastro_cafeteria' %}?tipo_usuario=cafeteria" class="btn btn-light">Proprietário</a>
+                <a href="{% url 'UserCadastro' %}?tipo_usuario=cliente" class="btn btn-light">Cadastre-se</a>
             </div>
         </form>
     </div>

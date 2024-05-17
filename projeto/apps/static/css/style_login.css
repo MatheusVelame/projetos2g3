@@ -1,17 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+:root {
 
-:root{
-    --primary: #FF8915; /* Uma tonalidade de marrom */
-    --secondary: #7F4000;
-    --hoover: #1c2e44; 
-    --botao: #215A8F;
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal:#1D1D1B;
+    --branco-navbar:#FFFFFF;
+    --branco-fundo: #C7C7CA;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes:#A75938;
+    --fonte-principal: 'Bricolage Grotesque';
 }
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 body{

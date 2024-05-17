@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-# from django.core.validators import RegexValidator -> esta linha está sem uso
 
-# Create your models here.
 class UserCliente(models.Model):
     nome_completo = models.CharField(max_length=150, default="Desconhecido")
     email = models.EmailField(unique=True)
@@ -25,6 +23,7 @@ class Cafe(models.Model):
     foto_ambiente = models.ImageField(upload_to='fotos_cafeterias/', blank=True, null=True)
     cnpj = models.CharField(max_length=14, unique=True, default='00000000000000')
     site_cafeteria = models.URLField(max_length=200, blank=True)
+    empresario = models.ForeignKey(UserCliente, on_delete=models.CASCADE, related_name='cafeterias', null=True, blank=True)
 
     def _str_(self):
         return self.nome_cafeteria
