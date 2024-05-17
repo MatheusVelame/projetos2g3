@@ -7,14 +7,13 @@
 <section class="section">
   <div class="container">
     {% if messages %}
-    <div class="messages">
-      {% for message in messages %}
-      <div class="{{ message.tags }}">
-        {{ message }}
-      </div>
-      {% endfor %}
-    </div>
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
+
     <form action="{% url 'cadastro_cafeteria' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="form-outter">

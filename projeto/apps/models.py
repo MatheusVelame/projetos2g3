@@ -3,10 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class UserCliente(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     nome_completo = models.CharField(max_length=150, default="Desconhecido")
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=255, null=True)
     confirm_password = models.CharField(max_length=255, null=True)
+    is_business = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email

@@ -13,6 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.contrib.auth.models import Group
 from .models import Cafe, UserCliente
+from django.contrib.auth import logout as auth_logout
 
 def home(request):
     cafes = Cafe.objects.all()
@@ -33,14 +34,30 @@ def buscar_cafeterias(request):
 @login_required
 def cadastro_cafeteria(request):
     usuario = request.user
-    email = usuario.email 
+    email = usuario.email
 
-    if not usuario.groups.filter(name='Empresários').exists():
+    # Verifique o conteúdo da sessão
+    print(f"Conteúdo da sessão: {request.session.items()}")
+
+    print(f"Usuário logado: {usuario.username}, ID: {usuario.id}")
+    print(f"Grupos do usuário: {[group.name for group in usuario.groups.all()]}")
+
+    is_empresario = usuario.groups.filter(name='Empresários').exists()
+    print(f"Usuário é empresário: {is_empresario}")
+
+    if not is_empresario:
+        print("Usuário não está no grupo 'Empresários'.")
         messages.error(request, 'Apenas empresários podem cadastrar cafeterias.')
         return redirect('acesso_negado_cadastrar_cafeteria')
-     
-    UserCliente.objects.get(email=email)
-        
+
+    try:
+        user_cliente = UserCliente.objects.get(user=usuario)
+        print(f"UserCliente encontrado: {user_cliente}")
+    except UserCliente.DoesNotExist:
+        print("UserCliente não encontrado.")
+        messages.error(request, 'Perfil de usuário não encontrado. Complete seu cadastro.')
+        return redirect('cadastro_usuario')
+
     if request.method == 'POST':
         responsavel = request.POST.get('responsavel')
         nome_cafeteria = request.POST.get('nome_cafeteria')
@@ -71,6 +88,7 @@ def cadastro_cafeteria(request):
             link_redesocial=link_redesocial,
             cnpj=cnpj,
             site_cafeteria=site_cafeteria,
+            empresario=user_cliente
         )
 
         if 'foto_ambiente' in request.FILES:
@@ -83,7 +101,7 @@ def cadastro_cafeteria(request):
             messages.error(request, e.message_dict)
             return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
-        return redirect('cadastro_cafeteria_sucesso') 
+        return redirect('cadastro_cafeteria_sucesso')
 
     return render(request, 'cadastro_cafeteria.html')
 
@@ -245,10 +263,11 @@ def login_view(request):
 # alterar 'pagina_empresario' para o redirecionamento correto ^
 
 def logout(request):
-    logout(request)
+    auth_logout(request)
     if "usuario" in request.session:
         del request.session["usuario"]
-    return redirect(home)
+    request.session.flush()
+    return redirect('home')
 
 @login_required
 def minhas_reservas(request):
@@ -287,6 +306,9 @@ def UserCadastro(request):
         if is_business:
             empresario_group = Group.objects.get(name='Empresários')
             user.groups.add(empresario_group)
+
+        user_cliente = UserCliente(user=user, nome_completo=name, email=email, is_business=is_business)
+        user_cliente.save()
 
         login(request, user)
         request.session["usuario"] = email
