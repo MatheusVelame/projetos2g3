@@ -8,7 +8,7 @@
         --cor-principal: #902C00;
         --preto-principal:#1D1D1B;
         --branco-navbar:#FFFFFF;
-        --branco-fundo: #C7C7CA;
+        --branco-fundo: #F9F9F9;;
         --cor-glass-login-cadastro: #F9F9F9;
         --cor-botoes:#A75938;
         --fonte-principal: 'Bricolage Grotesque';
@@ -27,6 +27,7 @@
         background-color: var(--branco-navbar);
         padding: 10px 20px;
         position: relative;
+        box-shadow: rgba(0, 0, 0, 0.2) 0.5px 3px 2.6px;
     }
 
     .div-logo a img {
@@ -36,6 +37,7 @@
     .dropdown {
         position: relative;
         display: inline-block;
+        margin-right: 40px;
     }
 
     .dropdown-menu {
@@ -79,6 +81,12 @@
         height: 20px;
     }
 
+    .button-sair {
+
+    font-size: 17px;
+    padding: 0;
+}
+
 </style>
 </head>
 <body>
@@ -100,7 +108,7 @@
             {% if user.is_authenticated %}
             <form method="POST" action="{% url 'logout' %}">
                 {% csrf_token %}
-                <button type="submit">Sair</button>
+                <button class="button-sair" type="submit">Sair</button>
             </form>
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
