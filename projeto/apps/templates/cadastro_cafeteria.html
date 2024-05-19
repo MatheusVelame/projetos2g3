@@ -1,10 +1,13 @@
-{% extends 'global/base.html' %}
+{% extends 'global/base_empresario.html' %}
 {% block content %}
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/cadastro_cafeteria.css' %}">
 
 <section class="section">
+  <a href="{% url 'home' %}">
+    <img class="img" src="{% static 'images/logo.png' %}" alt="Logo">
+  </a>
   <div class="container">
     {% if messages %}
     <ul class="messages">
@@ -13,7 +16,6 @@
         {% endfor %}
     </ul>
     {% endif %}
-
     <form action="{% url 'cadastro_cafeteria' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="form-outter">
@@ -38,14 +40,10 @@
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required>
           </div>
-          <div class="campo">
-            <label for="whatsapp">Whatsapp da empresa (apenas números):</label>
-            <input type="tel" id="whatsapp" name="whatsapp">
-          </div>
         </div>
         <div class="form-box2" id="form2">
           <div class="campo">
-            <label for="horas_funcionamento">Horário/dias de funcionamento (XX:XX-YY:YY)/(XXXXX às XXXXXX):</label>
+            <label for="horas_funcionamento">Horário/dias de funcionamento:</label>
             <input type="text" id="horas_funcionamento" name="horas_funcionamento" required>
           </div>
           <div class="campo">
@@ -61,8 +59,14 @@
             <input type="number" name="cnpj" id="cnpj" required>
           </div>
           <div class="campo">
-            <label for="foto_ambiente">Insira uma foto do seu estabelecimento (opcional):</label>
-            <input type="file" id="foto_ambiente" name="foto_ambiente" accept="image/*">
+            <label for="whatsapp">Whatsapp da empresa (apenas números):</label>
+            <input type="tel" id="whatsapp" name="whatsapp">
+          </div>
+          <div class="campo">
+            <label for="foto_ambiente">Para deixar seu perfil mais atrativo, 
+              adicione fotos da sua cafeteria:</label><br>
+            <input class="inputfile" type="file" id="file" name="file" accept="image/*">
+            <label for="file">Escolher imagem</label>
           </div>
         </div>
     </div>
