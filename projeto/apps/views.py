@@ -353,7 +353,6 @@ def registrar_historico(request, cafe_id):
     
     if not visita_hoje:
         Historico.objects.create(usuario=usuario, cafe=cafe)
-        messages.success(request, 'Visita registrada no histórico!')
 
     return redirect('cafe_detalhes', cafe_id=cafe.id)
 
@@ -382,7 +381,6 @@ def detalhes(request, cafe_id):
 
     if not visita_hoje:
         Historico.objects.create(usuario=usuario, cafe=cafe, visited_at=timezone.now())
-        messages.success(request, 'Visita registrada no histórico!')
 
     return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito': favorito})
     
