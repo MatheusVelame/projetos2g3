@@ -1,9 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+:root {
+
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal:#1D1D1B;
+    --branco-navbar:#FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes:#A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 header{
@@ -71,4 +82,4 @@ header form button {
 
 header form button:hover {
     background-color: #c62828;
-}
+} */
