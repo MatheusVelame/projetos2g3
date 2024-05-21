@@ -216,6 +216,7 @@ def editar_reserva(request, reserva_id):
     cafe = reserva.cafe
     
     if request.method == 'POST':
+        nome_cliente = request.POST.get('nome')
         data_reserva = request.POST.get('data_reserva')
         horario_reserva = request.POST.get('horario_reserva')
         numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
