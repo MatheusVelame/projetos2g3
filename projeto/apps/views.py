@@ -211,6 +211,70 @@ def detalhes_anonimo(request, cafe_id):
         return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
 
 @login_required
+def editar_reserva(request, reserva_id):
+    reserva = get_object_or_404(ReservaCafe, id=reserva_id)
+    cafe = reserva.cafe
+    
+    if request.method == 'POST':
+        data_reserva = request.POST.get('data_reserva')
+        horario_reserva = request.POST.get('horario_reserva')
+        numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
+        observacao = request.POST.get('observacao', '')
+
+        if not data_reserva or not horario_reserva:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'Por favor, preencha todos os campos obrigatórios.'
+            })
+
+        try:
+            data_reserva = datetime.strptime(data_reserva, '%Y-%m-%d').date()
+            horario_reserva = datetime.strptime(horario_reserva, '%H:%M').time()
+        except ValueError:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'Formato de data ou horário inválido.'
+            })
+
+        today_date = datetime.today().date()
+        if data_reserva < today_date:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'A data selecionada deve ser futura.'
+            })
+
+        if numero_de_pessoas <= 0:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'O número de pessoas deve ser maior que zero.'
+            })
+
+        reservas_conflitantes = ReservaCafe.objects.filter(
+            cafe=cafe,
+            data_reserva=data_reserva,
+            horario_reserva=horario_reserva
+        ).exclude(id=reserva.id)
+
+        if reservas_conflitantes.exists():
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'Café já reservado para o horário solicitado!'
+            })
+
+        reserva.data_reserva = data_reserva
+        reserva.horario_reserva = horario_reserva
+        reserva.numero_de_pessoas = numero_de_pessoas
+        reserva.observacao = observacao
+        reserva.save()
+        
+        messages.success(request, 'Reserva atualizada com sucesso.')
+        return redirect('minhas_reservas')
+    
+    return render(request, 'editar_reserva.html', {
+        'reserva': reserva
+    })
+
+@login_required
 def enviar_whatsapp(request, cafe_id):
     cafeteria = get_object_or_404(Cafe, pk=cafe_id)
     if cafeteria.whatsapp:
@@ -234,6 +298,19 @@ def enviar_email(request, cafe_id):
         messages.success(request, "Email enviado com sucesso!")
         return render(request, 'email_enviado.html', {'cafeteria': cafeteria})
     return render(request, 'enviar_email.html', {'cafeteria': cafeteria})
+
+@login_required
+def excluir_reserva(request, reserva_id):
+    reserva = get_object_or_404(ReservaCafe, id=reserva_id)
+    
+    if request.method == 'POST':
+        reserva.delete()
+        messages.success(request, 'Reserva excluída com sucesso.')
+        return redirect('minhas_reservas')
+    
+    return render(request, 'excluir_reserva.html', {
+        'reserva': reserva
+    })
 
 @login_required
 def favoritar(request, cafe_id):
