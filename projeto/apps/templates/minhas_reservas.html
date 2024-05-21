@@ -7,46 +7,47 @@
     <div class="container">
         <h1>Minhas Reservas</h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for reserva in reservas %}
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Café: {{ reserva.cafe.nome_cafeteria }}</h5>
-                        <p class="card-text">
-                            Data: {{ reserva.data_reserva }}<br>
-                            Horário: {{ reserva.horario_reserva }}<br>
-                            Número de Pessoas: {{ reserva.numero_de_pessoas }}<br>
-                            Status: {{ reserva.status }}<br>
-                        </p>
+            {% if reservas %}
+                {% for reserva in reservas %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Café: {{ reserva.cafe.nome_cafeteria }}</h5>
+                            <p class="card-text">
+                                Data: {{ reserva.data_reserva }}<br>
+                                Horário: {{ reserva.horario_reserva }}<br>
+                                Número de Pessoas: {{ reserva.numero_de_pessoas }}<br>
+                                Status: {{ reserva.status }}<br>
+                            </p>
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-outline-secondary">Editar</a>
-                                <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger">Excluir</button>
-                                </form>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-outline-secondary">Editar</a>
+                                    <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
-                        {% if reserva.status == "Reserva terminada" %}
-                        <div class="mt-2">
-                            <a href="{% url 'avaliar_reserva' reserva.id %}" class="btn btn-outline-secondary">Avaliar!</a>
+                            {% if reserva.status == "Reserva terminada" %}
+                            <div class="mt-2">
+                                <a href="{% url 'avaliar_reserva' reserva.id %}" class="btn btn-outline-secondary">Avaliar!</a>
+                            </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
                     </div>
                 </div>
-            </div>
-            {% endfor %}
-            {% empty %}
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <p>Você não tem reservas.</p>
+                {% endfor %}
+            {% else %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Você não tem reservas.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endempty %}
+            {% endif %}
         </div>
     </div>
 </section>
