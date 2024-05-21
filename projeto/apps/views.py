@@ -12,6 +12,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+import json
 
 # Create your views here.
 def home(request):
@@ -111,25 +112,39 @@ def criar_reserva(request, cafe_id):
     cliente = get_object_or_404(UserCliente, email=request.user.email)
     
     if request.method == 'POST':
+        nome = request.POST.get('nome')
         data_reserva = request.POST.get('data_reserva')
         horario_reserva = request.POST.get('horario_reserva')
         numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
+        observacao = request.POST.get('observacao', '')
 
-        if not data_reserva or not horario_reserva:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Por favor, preencha a data e horário da reserva.'})
+        if not nome or not data_reserva or not horario_reserva:
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'Por favor, preencha todos os campos obrigatórios.'
+            })
 
         try:
             data_reserva = datetime.strptime(data_reserva, '%Y-%m-%d').date()
             horario_reserva = datetime.strptime(horario_reserva, '%H:%M').time()
         except ValueError:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Formato de data ou horário inválido.'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'Formato de data ou horário inválido.'
+            })
 
         today_date = datetime.today().date()
         if data_reserva < today_date:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'A data selecionada deve ser futura.'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'A data selecionada deve ser futura.'
+            })
 
         if numero_de_pessoas <= 0:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'O número de pessoas deve ser maior que zero.'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'O número de pessoas deve ser maior que zero.'
+            })
 
         reservas_conflitantes = ReservaCafe.objects.filter(
             cafe=cafe,
@@ -138,14 +153,18 @@ def criar_reserva(request, cafe_id):
         )
 
         if reservas_conflitantes.exists():
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Café já reservado para o horário solicitado!'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'Café já reservado para o horário solicitado!'
+            })
 
         reserva = ReservaCafe(
             cafe=cafe,
             cliente=cliente,
             data_reserva=data_reserva,
             horario_reserva=horario_reserva,
-            numero_de_pessoas=numero_de_pessoas
+            numero_de_pessoas=numero_de_pessoas,
+            observacao=observacao
         )
         reserva.save()
         
@@ -153,7 +172,19 @@ def criar_reserva(request, cafe_id):
         return redirect('minhas_reservas')
     
     else:
-        return render(request, 'reservar_cafe.html', {'cafe': cafe})
+        reservas = ReservaCafe.objects.filter(cafe=cafe).values('data_reserva', 'horario_reserva')
+        horarios_reservados = {}
+        for reserva in reservas:
+            data_str = reserva['data_reserva'].strftime('%Y-%m-%d')
+            horario_str = reserva['horario_reserva'].strftime('%H:%M')
+            if data_str not in horarios_reservados:
+                horarios_reservados[data_str] = []
+            horarios_reservados[data_str].append(horario_str)
+
+        return render(request, 'reservar_cafe.html', {
+            'cafe': cafe,
+            'horarios_reservados_json': json.dumps(horarios_reservados)
+        })
 
 def detalhes(request, cafe_id):
     if request.user.is_authenticated:
