@@ -1,0 +1,14 @@
+{% extends "global/base.html" %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1>Excluir Reserva</h1>
+        <p>Você tem certeza que deseja excluir a reserva no café "{{ reserva.cafe.nome_cafeteria }}" para o dia {{ reserva.data_reserva }} às {{ reserva.horario_reserva }}?</p>
+        <form method="post" action="{% url 'excluir_reserva' reserva.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+            <a href="{% url 'minhas_reservas' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from .models import Cafe, Avaliacao, UserCliente
 from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -12,8 +13,10 @@ from django.core.exceptions import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.contrib.auth.models import Group
-from .models import Cafe, UserCliente
 from django.contrib.auth import logout as auth_logout
+from django.utils import timezone
+from django.db.models import Max
+import json
 
 def home(request):
     cafes = Cafe.objects.all()
@@ -129,25 +132,39 @@ def criar_reserva(request, cafe_id):
     cliente = get_object_or_404(UserCliente, email=request.user.email)
     
     if request.method == 'POST':
+        nome = request.POST.get('nome')
         data_reserva = request.POST.get('data_reserva')
         horario_reserva = request.POST.get('horario_reserva')
         numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
+        observacao = request.POST.get('observacao', '')
 
-        if not data_reserva or not horario_reserva:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Por favor, preencha a data e horário da reserva.'})
+        if not nome or not data_reserva or not horario_reserva:
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'Por favor, preencha todos os campos obrigatórios.'
+            })
 
         try:
             data_reserva = datetime.strptime(data_reserva, '%Y-%m-%d').date()
             horario_reserva = datetime.strptime(horario_reserva, '%H:%M').time()
         except ValueError:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Formato de data ou horário inválido.'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'Formato de data ou horário inválido.'
+            })
 
         today_date = datetime.today().date()
         if data_reserva < today_date:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'A data selecionada deve ser futura.'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'A data selecionada deve ser futura.'
+            })
 
         if numero_de_pessoas <= 0:
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'O número de pessoas deve ser maior que zero.'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'O número de pessoas deve ser maior que zero.'
+            })
 
         reservas_conflitantes = ReservaCafe.objects.filter(
             cafe=cafe,
@@ -156,14 +173,18 @@ def criar_reserva(request, cafe_id):
         )
 
         if reservas_conflitantes.exists():
-            return render(request, 'reservar_cafe.html', {'cafe': cafe, 'error_message': 'Café já reservado para o horário solicitado!'})
+            return render(request, 'reservar_cafe.html', {
+                'cafe': cafe,
+                'error_message': 'Café já reservado para o horário solicitado!'
+            })
 
         reserva = ReservaCafe(
             cafe=cafe,
             cliente=cliente,
             data_reserva=data_reserva,
             horario_reserva=horario_reserva,
-            numero_de_pessoas=numero_de_pessoas
+            numero_de_pessoas=numero_de_pessoas,
+            observacao=observacao
         )
         reserva.save()
         
@@ -171,19 +192,89 @@ def criar_reserva(request, cafe_id):
         return redirect('minhas_reservas')
     
     else:
-        return render(request, 'reservar_cafe.html', {'cafe': cafe})
+        reservas = ReservaCafe.objects.filter(cafe=cafe).values('data_reserva', 'horario_reserva')
+        horarios_reservados = {}
+        for reserva in reservas:
+            data_str = reserva['data_reserva'].strftime('%Y-%m-%d')
+            horario_str = reserva['horario_reserva'].strftime('%H:%M')
+            if data_str not in horarios_reservados:
+                horarios_reservados[data_str] = []
+            horarios_reservados[data_str].append(horario_str)
 
-def detalhes(request, cafe_id):
-    if request.user.is_authenticated:
-        cafe = get_object_or_404(Cafe, id=cafe_id)
-        usuario = request.user
-        favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
-        detalhes_cafe = cafe.detalhes()
-        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito':favorito})
-    else:
+        return render(request, 'reservar_cafe.html', {
+            'cafe': cafe,
+            'horarios_reservados_json': json.dumps(horarios_reservados)
+        })
+
+def detalhes_anonimo(request, cafe_id):
         cafe = get_object_or_404(Cafe, id=cafe_id)
         detalhes_cafe = cafe.detalhes()
         return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
+
+@login_required
+def editar_reserva(request, reserva_id):
+    reserva = get_object_or_404(ReservaCafe, id=reserva_id)
+    cafe = reserva.cafe
+    
+    if request.method == 'POST':
+        nome_cliente = request.POST.get('nome')
+        data_reserva = request.POST.get('data_reserva')
+        horario_reserva = request.POST.get('horario_reserva')
+        numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
+        observacao = request.POST.get('observacao', '')
+
+        if not data_reserva or not horario_reserva:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'Por favor, preencha todos os campos obrigatórios.'
+            })
+
+        try:
+            data_reserva = datetime.strptime(data_reserva, '%Y-%m-%d').date()
+            horario_reserva = datetime.strptime(horario_reserva, '%H:%M').time()
+        except ValueError:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'Formato de data ou horário inválido.'
+            })
+
+        today_date = datetime.today().date()
+        if data_reserva < today_date:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'A data selecionada deve ser futura.'
+            })
+
+        if numero_de_pessoas <= 0:
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'O número de pessoas deve ser maior que zero.'
+            })
+
+        reservas_conflitantes = ReservaCafe.objects.filter(
+            cafe=cafe,
+            data_reserva=data_reserva,
+            horario_reserva=horario_reserva
+        ).exclude(id=reserva.id)
+
+        if reservas_conflitantes.exists():
+            return render(request, 'editar_reserva.html', {
+                'reserva': reserva,
+                'error_message': 'Café já reservado para o horário solicitado!'
+            })
+
+        reserva.data_reserva = data_reserva
+        reserva.horario_reserva = horario_reserva
+        reserva.numero_de_pessoas = numero_de_pessoas
+        reserva.observacao = observacao
+        reserva.save()
+        
+        messages.success(request, 'Reserva atualizada com sucesso.')
+        return redirect('minhas_reservas')
+    
+    return render(request, 'editar_reserva.html', {
+        'reserva': reserva
+    })
 
 @login_required
 def enviar_whatsapp(request, cafe_id):
@@ -211,6 +302,19 @@ def enviar_email(request, cafe_id):
     return render(request, 'enviar_email.html', {'cafeteria': cafeteria})
 
 @login_required
+def excluir_reserva(request, reserva_id):
+    reserva = get_object_or_404(ReservaCafe, id=reserva_id)
+    
+    if request.method == 'POST':
+        reserva.delete()
+        messages.success(request, 'Reserva excluída com sucesso.')
+        return redirect('minhas_reservas')
+    
+    return render(request, 'excluir_reserva.html', {
+        'reserva': reserva
+    })
+
+@login_required
 def favoritar(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
     
@@ -231,6 +335,7 @@ def favoritar(request, cafe_id):
     
     return redirect('home')
 
+
 @login_required
 def lista_favoritos(request):
     if request.user.is_authenticated:
@@ -238,6 +343,59 @@ def lista_favoritos(request):
         return render(request, 'favoritos.html', {'favoritos': favoritos})
     else:
         return redirect('login')
+    
+@login_required
+def registrar_historico(request, cafe_id): 
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    
+    usuario = request.user
+    # Evita múltiplas entradas no mesmo dia
+    visita_hoje = Historico.objects.filter(usuario=usuario, cafe=cafe, visited_at__date=timezone.now().date()).exists()
+    
+    if not visita_hoje:
+        Historico.objects.create(usuario=usuario, cafe=cafe)
+
+    return redirect('cafe_detalhes', cafe_id=cafe.id)
+
+@login_required
+def lista_historico(request):
+    if request.user.is_authenticated:
+        historico = Historico.objects.filter(usuario=request.user).order_by('-visited_at')
+        return render(request, 'historico.html', {'historico': historico})
+    else:
+        return redirect('login')
+    
+@login_required
+def detalhes(request, cafe_id):
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    usuario = request.user
+    favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
+    detalhes_cafe = cafe.detalhes()
+
+    today = timezone.localdate()
+
+    visita_hoje = Historico.objects.filter(
+        usuario=usuario, 
+        cafe=cafe, 
+        visited_at__date=today
+    ).exists()
+
+    if not visita_hoje:
+        Historico.objects.create(usuario=usuario, cafe=cafe, visited_at=timezone.now())
+
+    return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito': favorito})
+    
+def limpar_historico_duplicado():
+    # Encontrar a última visita para cada usuário e cafeteria por dia
+    ultimas_visitas = Historico.objects.values('usuario_id', 'cafe_id', 'visited_at__date').annotate(
+        ultima_visita=Max('visited_at')
+    )
+
+    # Converter resultados em uma lista de IDs de visitas para manter
+    ids_para_manter = [visita['ultima_visita'] for visita in ultimas_visitas]
+
+    # Excluir todas as visitas que não estão na lista de IDs para manter
+    Historico.objects.exclude(id__in=ids_para_manter).delete()
 
 def login_view(request):
     if request.method == 'POST':
@@ -338,3 +496,29 @@ def pagina_empresario(request):
 
 def acesso_negado_cadastrar_cafeteria(request):
     return render(request, 'acesso_negado_cadastrar_cafeteria.html')
+
+@login_required
+def avaliar_cafe(request, cafe_id):
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    cliente = get_object_or_404(UserCliente, email=request.user.email)
+
+    if request.method == 'POST':
+        avaliacao = int(request.POST.get('avaliacao'))
+        comentario = request.POST.get('comentario')
+        valor_gasto = request.POST.get('valor_gasto')
+
+        Avaliacao.objects.create(
+            cafe=cafe,
+            cliente=cliente,
+            avaliacao=avaliacao,
+            comentario=comentario,
+            valor_gasto=valor_gasto
+        )
+
+        messages.success(request, 'Avaliação enviada com sucesso.')
+        return redirect('avaliacao_sucesso')
+
+    return render(request, 'avaliar_cafe.html', {'cafe': cafe, 'range': range(1, 6)})
+
+def avaliacao_sucesso(request):
+    return render(request, 'avaliacao_sucesso.html')

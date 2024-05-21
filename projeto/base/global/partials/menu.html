@@ -105,6 +105,7 @@
             <a href="{% url 'minhas_reservas' %}">Minhas reservas</a>
             <a href="{% url 'cadastro_cafeteria' %}">Cadastre sua cafeteria</a>
             <a href="{% url 'favoritos' %}">Favoritos</a>
+            <a href="{% url 'historico' %}">Histórico</a>
             {% if user.is_authenticated %}
             <form method="POST" action="{% url 'logout' %}">
                 {% csrf_token %}

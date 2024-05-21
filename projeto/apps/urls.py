@@ -13,9 +13,13 @@ urlpatterns = [
     path('cafeteria/<int:cafe_id>/', perfil_cafeteria, name='perfil-cafeteria'),
     path('cafeteria/<int:cafe_id>/whatsapp/', enviar_whatsapp, name='enviar_whatsapp'),
     path('cancelar_reserva/<int:reserva_id>/', cancelar_reserva, name='cancelar_reserva'),
-    path('detalhes/<int:cafe_id>/', views.detalhes, name='detalhes'),
+    path('detalhes/<int:cafe_id>/', views.detalhes_anonimo, name='detalhes_anonimo'),
+    path('editar_reserva/<int:reserva_id>/', editar_reserva, name='editar_reserva'),
+    path('excluir_reserva/<int:reserva_id>/', excluir_reserva, name='excluir_reserva'),
     path('favoritos/', views.lista_favoritos, name='favoritos'),
     path('favoritar/<int:cafe_id>', views.favoritar, name='favoritar'),
+    path('historico/', views.lista_historico,name='historico'),
+    path('cafeteria/detalhes2/<int:cafe_id>/', detalhes, name='detalhes'),
     path('login/', login_view, name='login'),
     path('pagina_empresario/', views.pagina_empresario, name='pagina_empresario'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -25,4 +29,7 @@ urlpatterns = [
     path('cadastro_empresario_sucesso/', views.cadastro_empresario_sucesso, name='cadastro_empresario_sucesso'),
     path('cafeterias_empresarios/', views.cafeterias_empresarios, name='cafeterias_empresarios'),
     path('acesso_negado_cadastrar_cafeteria/', views.acesso_negado_cadastrar_cafeteria, name='acesso_negado_cadastrar_cafeteria'),
+    path('avaliar/<int:cafe_id>/', views.avaliar_cafe, name='avaliar_cafe'),
+    path('avaliacao_sucesso/', views.avaliacao_sucesso, name='avaliacao_sucesso'),
+    
 ]
