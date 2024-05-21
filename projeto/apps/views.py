@@ -206,14 +206,7 @@ def criar_reserva(request, cafe_id):
             'horarios_reservados_json': json.dumps(horarios_reservados)
         })
 
-def detalhes(request, cafe_id):
-    if request.user.is_authenticated:
-        cafe = get_object_or_404(Cafe, id=cafe_id)
-        usuario = request.user
-        favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
-        detalhes_cafe = cafe.detalhes()
-        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito':favorito})
-    else:
+def detalhes_anonimo(request, cafe_id):
         cafe = get_object_or_404(Cafe, id=cafe_id)
         detalhes_cafe = cafe.detalhes()
         return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
@@ -298,7 +291,7 @@ def lista_historico(request):
 from django.utils import timezone
 
 @login_required
-def detalhes2(request, cafe_id):
+def detalhes(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
     usuario = request.user
     favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
