@@ -5,6 +5,10 @@
         <h1>Editar Reserva</h1>
         <form method="post" action="{% url 'editar_reserva' reserva.id %}">
             {% csrf_token %}
+            <div class="box-reserva">
+                <label for="nome">Nome:</label><br>
+                <input type="text" id="nome" name="nome" required><br>
+            </div>
             <div class="mb-3">
                 <label for="data_reserva" class="form-label">Data da Reserva</label>
                 <input type="date" class="form-control" id="data_reserva" name="data_reserva" value="{{ reserva.data_reserva }}">

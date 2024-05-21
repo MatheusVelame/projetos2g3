@@ -94,6 +94,7 @@ class Historico(models.Model):
 class ReservaCafe(models.Model):
     cafe = models.ForeignKey(Cafe, on_delete=models.PROTECT)
     cliente = models.ForeignKey(UserCliente, on_delete=models.PROTECT)
+    nome_cliente = models.CharField(max_length=100, blank=True, null=True)
     data_reserva = models.DateField()
     horario_reserva = models.TimeField()
     numero_de_pessoas = models.PositiveIntegerField(default=1)
