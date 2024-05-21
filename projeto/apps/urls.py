@@ -29,5 +29,7 @@ urlpatterns = [
     path('cadastro_empresario_sucesso/', views.cadastro_empresario_sucesso, name='cadastro_empresario_sucesso'),
     path('cafeterias_empresarios/', views.cafeterias_empresarios, name='cafeterias_empresarios'),
     path('acesso_negado_cadastrar_cafeteria/', views.acesso_negado_cadastrar_cafeteria, name='acesso_negado_cadastrar_cafeteria'),
+    path('avaliar/<int:cafe_id>/', views.avaliar_cafe, name='avaliar_cafe'),
+    path('avaliacao_sucesso/', views.avaliacao_sucesso, name='avaliacao_sucesso'),
     
 ]

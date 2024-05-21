@@ -112,6 +112,15 @@
                     <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Quero reservar!</a>
                 {% endif %}
             </div>
+            <div class="btn-group">
+                {% if user.is_authenticated %}
+                    {% if cafe %}
+                        <a href="{% url 'avaliar_cafe' cafe.id %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Fazer uma avaliação</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Fazer uma avaliação</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
