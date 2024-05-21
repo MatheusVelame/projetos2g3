@@ -49,11 +49,6 @@
         border-color: #333333;
     }
 
-    .btn-outline-secondary:hover {
-        background-color: #ccc;
-        border: 1px solid #ccc;
-        color: #000;
-    }
 
     .text-body-secondary {
         color: #888888;
@@ -74,13 +69,13 @@
     }
 
     .card {
-        margin: 0 15px 20px;
+        margin: 0 10px 20px;
     }
 
     .cards {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        grid-gap: 10px;
+        grid-gap: 0px;
         grid-auto-rows: minmax(auto-fill, 300px);
         overflow: hidden;
     }
@@ -110,6 +105,7 @@
 }
 
 .search-input {
+    padding: 10px;
     flex-grow: 1; /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
     padding-right: 30px; /* Espaço para não sobrepor o ícone */
 }
@@ -119,6 +115,7 @@
 }
 
 .search-icon {
+    color: #ccc;
     background: none;
     border: none;
     cursor: pointer;
@@ -132,8 +129,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8"> <!-- Ajustado para maior largura -->
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control search-input" placeholder="Buscar cafeterias..." name="termo" id="search-input">
-                    <div class="input-group-append">
+                    <input type="text" class="form-control search-input" placeholder="Buscar cafeterias..." name="termo" id="search-input" style="border: 0px;">
+                    <div class="input-group-append" >
                         <button class="btn search-icon" type="submit">
                             <i class="fas fa-search" id="search-icon"></i>
                         </button>
@@ -173,7 +170,7 @@
                 <h5 class="card-title">{{ cafe.nome_cafeteria }}</h5>
                 <p class="card-text">{{ cafe.get_short_description}}</p>
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
+                    <div class="btn-group" style="padding-bottom: 0%; ">
                         {% if user.is_authenticated %}
                         <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
                         {% else %}

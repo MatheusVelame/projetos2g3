@@ -4,8 +4,26 @@
 
 <link rel="stylesheet" href="{% static 'css/resultado_busca.css' %}">
 
+<h3>Resultados da Busca para "{{ termo }}"</h3>
+
+<form action="{% url 'buscar_cafeterias' %}" method="GET" class="search-form">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8"> <!-- Ajustado para maior largura -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control search-input" placeholder="Buscar cafeterias..." name="termo" id="search-input" style="border: 0px;">
+                    <div class="input-group-append" >
+                        <button class="btn search-icon" type="submit">
+                            <i class="fas fa-search" id="search-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <div class="container mt-4">
-    <h3>Resultados da Busca para "{{ termo }}"</h3>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="cards">
             {% for cafe in resultados %}
@@ -40,4 +58,16 @@
     </div>
     {% endif %}
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search-input');
+        const searchIcon = document.getElementById('search-icon');
+    
+        searchInput.addEventListener('input', function() {
+            // Muda a cor da lupa com base na presença de texto
+            searchIcon.style.color = searchInput.value.trim() ? '#333' : '#ccc';
+        });
+    });
+    </script>
 {% endblock %}
