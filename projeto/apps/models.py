@@ -97,6 +97,8 @@ class ReservaCafe(models.Model):
     data_reserva = models.DateField()
     horario_reserva = models.TimeField()
     numero_de_pessoas = models.PositiveIntegerField(default=1)
+    observacao = models.TextField(blank=False, default='Descrição não informada')
+
 
     @property
     def status(self):
