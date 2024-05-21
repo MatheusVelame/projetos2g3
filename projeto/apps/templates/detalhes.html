@@ -96,7 +96,7 @@
                     {% endif %}
                     {% endif %}
                     {% else %}
-                    <button class="btn"><a href="{% url 'login' %}"><img style="height: 10px;"
+                    <button class="btn"><a href="{% url 'login' %}"><img style="height: 20px;"
                                 src="{% static '../static/images/favoritar.png' %}"></a></button>
                     {% endif %}
                 </div>
@@ -106,10 +106,10 @@
             <div class="btn-group">
                 {% if user.is_authenticated %}
                     {% if cafe %}
-                        <a href="{% url 'criar_reserva' cafe.id %}" class="btn btn-lg btn-outline-secondary">Quero reservar!</a>
+                        <a href="{% url 'criar_reserva' cafe.id %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Quero reservar!</a>
                     {% endif %}
                 {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary">Quero reservar!</a>
+                    <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Quero reservar!</a>
                 {% endif %}
             </div>
         </div>
