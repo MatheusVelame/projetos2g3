@@ -4,7 +4,7 @@ from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -12,7 +12,6 @@ from django.core.exceptions import ValidationError
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.contrib.auth.models import Group
-from .models import Cafe, UserCliente
 from django.contrib.auth import logout as auth_logout
 from django.utils import timezone
 from django.db.models import Max
@@ -288,8 +287,6 @@ def lista_historico(request):
     else:
         return redirect('login')
     
-from django.utils import timezone
-
 @login_required
 def detalhes(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
