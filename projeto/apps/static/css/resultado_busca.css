@@ -105,3 +105,26 @@ height: 100%;
 .box1 img {
 object-fit: cover;
 }
+.search-form .input-group {
+    width: 70%;  /* Define a largura do grupo de input para 70% da largura do container pai */
+    display: flex; /* Garante que o input e o ícone/button estejam alinhados horizontalmente */
+    align-items: center;
+    margin: 0 auto; /* Centraliza o grupo de input horizontalmente se o container for mais largo */
+}
+
+.search-input {
+    padding: 10px;
+    flex-grow: 1; /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
+    padding-right: 30px; /* Espaço para não sobrepor o ícone */
+}
+
+.input-group-append {
+    margin-left: -40px; /* Posiciona o ícone/button dentro do campo de input */
+}
+
+.search-icon {
+    color: #ccc;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
