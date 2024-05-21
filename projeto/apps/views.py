@@ -14,6 +14,8 @@ from django.db.models import Q
 from django.contrib.auth.models import Group
 from .models import Cafe, UserCliente
 from django.contrib.auth import logout as auth_logout
+from django.utils import timezone
+from django.db.models import Max
 
 def home(request):
     cafes = Cafe.objects.all()
@@ -231,6 +233,7 @@ def favoritar(request, cafe_id):
     
     return redirect('home')
 
+
 @login_required
 def lista_favoritos(request):
     if request.user.is_authenticated:
@@ -238,6 +241,63 @@ def lista_favoritos(request):
         return render(request, 'favoritos.html', {'favoritos': favoritos})
     else:
         return redirect('login')
+    
+@login_required
+def registrar_historico(request, cafe_id): 
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    
+    usuario = request.user
+    # Evita múltiplas entradas no mesmo dia
+    visita_hoje = Historico.objects.filter(usuario=usuario, cafe=cafe, visited_at__date=timezone.now().date()).exists()
+    
+    if not visita_hoje:
+        Historico.objects.create(usuario=usuario, cafe=cafe)
+        messages.success(request, 'Visita registrada no histórico!')
+
+    return redirect('cafe_detalhes', cafe_id=cafe.id)
+
+@login_required
+def lista_historico(request):
+    if request.user.is_authenticated:
+        historico = Historico.objects.filter(usuario=request.user).order_by('-visited_at')
+        return render(request, 'historico.html', {'historico': historico})
+    else:
+        return redirect('login')
+    
+from django.utils import timezone
+
+@login_required
+def detalhes2(request, cafe_id):
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    usuario = request.user
+    favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
+    detalhes_cafe = cafe.detalhes()
+
+    today = timezone.localdate()
+
+    visita_hoje = Historico.objects.filter(
+        usuario=usuario, 
+        cafe=cafe, 
+        visited_at__date=today
+    ).exists()
+
+    if not visita_hoje:
+        Historico.objects.create(usuario=usuario, cafe=cafe, visited_at=timezone.now())
+        messages.success(request, 'Visita registrada no histórico!')
+
+    return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito': favorito})
+    
+def limpar_historico_duplicado():
+    # Encontrar a última visita para cada usuário e cafeteria por dia
+    ultimas_visitas = Historico.objects.values('usuario_id', 'cafe_id', 'visited_at__date').annotate(
+        ultima_visita=Max('visited_at')
+    )
+
+    # Converter resultados em uma lista de IDs de visitas para manter
+    ids_para_manter = [visita['ultima_visita'] for visita in ultimas_visitas]
+
+    # Excluir todas as visitas que não estão na lista de IDs para manter
+    Historico.objects.exclude(id__in=ids_para_manter).delete()
 
 def login_view(request):
     if request.method == 'POST':

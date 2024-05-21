@@ -67,7 +67,30 @@ class Favorito(models.Model):
 
     def __str__(self):
         return f'{self.usuario.username} - {self.cafe.nome_cafeteria}'
-    
+
+class Historico(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE)
+    visited_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('usuario', 'cafe', 'visited_at')  # Evita duplicatas exatas
+
+    def detalhes(self):
+        return {
+            'nome': self.cafe.nome_cafeteria,
+            'endereco': self.cafe.endereco,
+            'descricao': self.cafe.descricao,
+            'email': self.cafe.email,
+            'whatsapp': self.cafe.whatsapp,
+            'horas_funcionamento': self.cafe.horas_funcionamento,
+            'link_redesocial': self.cafe.link_redesocial,
+            'foto_ambiente': self.cafe.foto_ambiente.url if self.cafe.foto_ambiente else None,
+        }
+
+    def __str__(self):
+        return f'{self.usuario.username} - {self.cafe.nome_cafeteria}'
+
 class ReservaCafe(models.Model):
     cafe = models.ForeignKey(Cafe, on_delete=models.PROTECT)
     cliente = models.ForeignKey(UserCliente, on_delete=models.PROTECT)
