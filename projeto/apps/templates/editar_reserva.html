@@ -1,0 +1,28 @@
+{% extends "global/base.html" %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1>Editar Reserva</h1>
+        <form method="post" action="{% url 'editar_reserva' reserva.id %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="data_reserva" class="form-label">Data da Reserva</label>
+                <input type="date" class="form-control" id="data_reserva" name="data_reserva" value="{{ reserva.data_reserva }}">
+            </div>
+            <div class="mb-3">
+                <label for="horario_reserva" class="form-label">Horário da Reserva</label>
+                <input type="time" class="form-control" id="horario_reserva" name="horario_reserva" value="{{ reserva.horario_reserva }}">
+            </div>
+            <div class="mb-3">
+                <label for="numero_de_pessoas" class="form-label">Número de Pessoas</label>
+                <input type="number" class="form-control" id="numero_de_pessoas" name="numero_de_pessoas" value="{{ reserva.numero_de_pessoas }}" min="1">
+            </div>
+            <div class="mb-3">
+                <label for="observacao" class="form-label">Observação</label>
+                <textarea class="form-control" id="observacao" name="observacao">{{ reserva.observacao }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -2,62 +2,33 @@
 {% block content %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'css/style_reserva.css' %}">
+<link rel="stylesheet" href="{% static '../static/css/style_reservas.css' %}">
 <section class="section">
     <div class="container">
-        <h1>Reservar Café: {{ cafe.nome_cafeteria }}</h1>
-        {% if error_message %}
-            <div class="alert alert-danger">
-                {{ error_message }}
-            </div>
-        {% endif %}
-        <form class="reserva" method="post">
-            {% csrf_token %}
-            <div class="box-reserva">
-                <label for="nome">Nome:</label><br>
-                <input type="text" id="nome" name="nome" required><br>
-            </div>
-            <div class="box-reserva">
-                <label for="data_reserva">Data da Reserva:</label><br>
-                <input type="date" id="data_reserva" name="data_reserva" required><br>
-            </div>
-            <div class="box-reserva">
-                <label for="horario_reserva">Horário da Reserva:</label><br>
-                <input type="time" id="horario_reserva" name="horario_reserva" required><br>
-            </div>
-            <div class="box-reserva">
-                <label for="numero_de_pessoas">Número de Pessoas:</label><br>
-                <input type="number" id="numero_de_pessoas" name="numero_de_pessoas" required value="1" min="1"><br>
-            </div>
-            <div class="box-reserva">
-                <label for="observacao">Observação:</label><br>
-                <textarea id="observacao" name="observacao"></textarea><br>
-            </div>
-            <button type="submit" class="btn-submit" style="color: black;">Reservar</button>
-        </form>
+        <h1>Minhas Reservas</h1>
+        <ul class="reservas-list">
+            {% for reserva in reservas %}
+                <li class="reserva-item">
+                    <strong>Café: {{ reserva.cafe.nome_cafeteria }}</strong><br>
+                    Data: {{ reserva.data_reserva }}<br>
+                    Horário: {{ reserva.horario_reserva }}<br>
+                    Número de Pessoas: {{ reserva.numero_de_pessoas }}<br>
+                    Status: {{ reserva.status }}<br>
+
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <div class="btn-group">
+                            <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-outline-secondary">Editar</a>
+                            <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="reserva-item">Você não tem reservas.</li>
+            {% endfor %}
+        </ul>
     </div>
 </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const horariosReservados = {{ horarios_reservados_json|safe }};
-        const horarioInput = document.getElementById('horario_reserva');
-        const dataInput = document.getElementById('data_reserva');
-
-        function atualizarHorarios() {
-            const dataSelecionada = dataInput.value;
-            horarioInput.querySelectorAll('option').forEach(option => {
-                if (horariosReservados[dataSelecionada] && horariosReservados[dataSelecionada].includes(option.value)) {
-                    option.disabled = true;
-                } else {
-                    option.disabled = false;
-                }
-            });
-        }
-
-        dataInput.addEventListener('change', atualizarHorarios);
-        horarioInput.addEventListener('change', atualizarHorarios);
-    });
-</script>
-
-{% endblock %}
+{% endblock content %}
