@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from .models import Cafe, Avaliacao, UserCliente
 from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
@@ -495,3 +496,29 @@ def pagina_empresario(request):
 
 def acesso_negado_cadastrar_cafeteria(request):
     return render(request, 'acesso_negado_cadastrar_cafeteria.html')
+
+@login_required
+def avaliar_cafe(request, cafe_id):
+    cafe = get_object_or_404(Cafe, id=cafe_id)
+    cliente = get_object_or_404(UserCliente, email=request.user.email)
+
+    if request.method == 'POST':
+        avaliacao = int(request.POST.get('avaliacao'))
+        comentario = request.POST.get('comentario')
+        valor_gasto = request.POST.get('valor_gasto')
+
+        Avaliacao.objects.create(
+            cafe=cafe,
+            cliente=cliente,
+            avaliacao=avaliacao,
+            comentario=comentario,
+            valor_gasto=valor_gasto
+        )
+
+        messages.success(request, 'Avaliação enviada com sucesso.')
+        return redirect('avaliacao_sucesso')
+
+    return render(request, 'avaliar_cafe.html', {'cafe': cafe, 'range': range(1, 6)})
+
+def avaliacao_sucesso(request):
+    return render(request, 'avaliacao_sucesso.html')
