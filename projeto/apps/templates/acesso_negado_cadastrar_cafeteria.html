@@ -1,0 +1,16 @@
+{% extends 'global/base.html' %}
+{% block content %}
+{% load static %}
+
+<h1>Acesso Negado</h1>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<p>Você não tem permissão para acessar esta página. Apenas empresários podem realizar esta ação.</p>
+<a href="{% url 'home' %}">Voltar para Home</a>
+{% endblock %}

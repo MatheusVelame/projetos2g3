@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+:root {
+
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal:#1D1D1B;
+    --branco-navbar:#FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes:#A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
