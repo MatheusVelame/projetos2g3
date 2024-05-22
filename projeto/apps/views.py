@@ -72,7 +72,7 @@ def cadastro_cafeteria(request):
         cnpj = request.POST.get('cnpj')
         site_cafeteria = request.POST.get('site_cafeteria')
 
-        if len(whatsapp) > 13:
+        if not whatsapp.isdigit() or len(whatsapp) != 13:
             return render(request, 'cadastro_cafeteria.html', {"erro": "O número de WhatsApp deve ter no máximo 13 dígitos."})
 
         if not cnpj.isdigit() or len(cnpj) != 14:
