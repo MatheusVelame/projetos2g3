@@ -1,111 +1,129 @@
 {% extends 'global/base.html' %}
-
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static '../static/css/detalhes_cafeteria.css' %}">
-    <div class="cards">
-        <div class="card">
-            <div class="carousel-inner">
-                {% if cafe.foto_ambiente %}
-                <div class="carousel-item active">
-                    <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}" style="height: 225px;">
-                </div>
+
+<style>
+    #carouselExampleIndicators .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    h1 {
+        padding-left: 20px;
+        padding-top: 30px;
+    }
+
+    h2 {
+        padding-left: 25px;
+        padding-top: 5px;
+        color: #999999;
+    }
+
+    .collums {
+        padding: 0 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .card {
+        padding: 30px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 10px;
+        grid-auto-rows: minmax(auto-fill, 700px);
+        overflow: hidden;
+    }
+
+    #carouselExampleIndicators,
+    .collums {
+        font-family: Helvetica, sans-serif;
+    }
+
+    .btn {
+        background-color: #fff;
+        border: 0px;
+    }
+
+    .btn :hover {
+        border: 0px;
+    }
+
+     /* Estilos específicos para a seção de avaliações */
+    .container2 {
+        margin-top: 20px;
+    }
+
+    .review-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .review-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .review-header img {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .review-header h4 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .stars {
+        color: #f5b301;
+    }
+
+    .review-content {
+        margin-top: 10px;
+    }
+
+    .review-images img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+</style>
+
+<h1>{{detalhes_cafe.nome_cafeteria}}</h1>
+<h2>{{detalhes_cafe.endereco}}</h2>
+<div class="cards">
+    <div class="card">
+        <div class="carousel-inner">
+            {% if cafe.foto_ambiente %}
+            <div class="carousel-item active">
+                <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}" style="height: 225px;">
+            </div>
             {% else %}
             <div class="carousel-item active">
-                <svg class="bd-placeholder-img d-block w-100" width="100%" height="225"
+                <svg class="bd-placeholder-img d-block w-100" width="400" height="500"
                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ cafe.nome_cafeteria }}</text>
+                    <rect width="400" height="400" fill="#55595c" rx="40" ry="40"></rect>
+                    <text x="50%" y="40%" fill="#eceeef" dy=".3em" text-anchor="middle">{{ cafe.nome_cafeteria }}</text>
                 </svg>
             </div>
             {% endif %}
         </div>
     </div>
-    <div class="card">
-        <div class="collums">
-            <h2 style="font-weight: bold; font-size: 50px;">{{ detalhes_cafe.nome }}</h2>
-
-            <h5>Descrição:</h5>
-            <p>{{ detalhes_cafe.descricao }}</p>
-
-            <h5>Endereço:</h5>
-            <p>{{ detalhes_cafe.endereco }}</p>
-
-            <h5>Horário de Funcionamento:</h5>
-            <p>{{ detalhes_cafe.horas_funcionamento }}</p>
-
-            <h5>WhatsApp:</h5>
-            <p>{{ detalhes_cafe.whatsapp }}</p>
-
-            <div class="btn-group">
-                <div class="btn-group">
-                    {% if user.is_authenticated %}
-                    {% if cafe %}
-                    {% if favorito %}
-                    <button class="btn"><a href="{% url 'favoritar' cafe.id %}"><img style="height: 20px;"
-                                src="{% static '../static/images/desfavoritar.png' %}"></a></button>
-                    {% else %}
-                    <button class="btn"><a href="{% url 'favoritar' cafe.id %}"><img style="height: 20px;"
-                                src="{% static '../static/images/favoritar.png' %}"></a></button>
-                    {% endif %}
-                    {% endif %}
-                    {% else %}
-                    <button class="btn"><a href="{% url 'login' %}"><img style="height: 20px;"
-                                src="{% static '../static/images/favoritar.png' %}"></a></button>
-                    {% endif %}
-                </div>
-                <button class="btn"><a href="{% url 'enviar_whatsapp' cafe.id %}" style="color: black;">Enviar Mensagem
-                        via WhatsApp</a></button>
-            </div>
-            <div class="btn-group">
-                {% if user.is_authenticated %}
-                    {% if cafe %}
-                        <a href="{% url 'criar_reserva' cafe.id %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Quero reservar!</a>
-                    {% endif %}
-                {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Quero reservar!</a>
-                {% endif %}
-            </div>
-            <div class="btn-group">
-                {% if user.is_authenticated %}
-                    {% if cafe %}
-                        <a href="{% url 'avaliar_cafe' cafe.id %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Fazer uma avaliação</a>
-                    {% endif %}
-                {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-lg btn-outline-secondary" style="color: black;">Fazer uma avaliação</a>
-                {% endif %}
-            </div>
-            <div class="container2">
-                <h3>Avaliações</h3>
-                {% if cafe.avaliacao_set.all %}
-                {% for avaliacao in cafe.avaliacao_set.all %}
-                <div class="review-card">
-                    <div class="review-header">
-                        <h4>{{ avaliacao.cliente.nome_completo }}</h4>
-                        <div class="stars">
-                            {% for _ in "1"|slice:":5" %}
-                            <i class="fa fa-star{% if forloop.counter > avaliacao.avaliacao %}-o{% endif %}"></i>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <div class="review-content">
-                        <p>{{ avaliacao.comentario }}</p>
-                    </div>
-                    <div class="review-images">
-                        {% if avaliacao.foto_avaliacao %}
-                        <img src="{{ avaliacao.foto_avaliacao.url }}" alt="Avaliação Foto">
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <div class="no-reviews">Nenhuma avaliação disponível.</div>
-                {% endif %}
-            </div>
-        </div>
-
-<!-- Conteúdo à direita -->
+</div>
 
 {% endblock %}
