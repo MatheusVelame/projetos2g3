@@ -129,3 +129,4 @@ class Avaliacao(models.Model):
     def __str__(self):
         return f"Avaliação de {self.cliente.nome_completo} para {self.cafe.nome_cafeteria}"
 
+
