@@ -9,6 +9,13 @@
         width: 100%;
     }
 
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
     h1 {
         padding-left: 20px;
         padding-top: 30px;
@@ -18,6 +25,20 @@
         padding-left: 25px;
         padding-top: 5px;
         color: #999999;
+    }
+
+    .text_descricao {
+        font-size: 28px;
+    }
+
+    .detalhes_descricao {
+        padding-left: 40px;
+        padding-top: 5px;
+        font-size: 15px;
+    }
+
+    a {
+        font-size: 18px;
     }
 
     .collums {
@@ -31,15 +52,27 @@
     }
 
     .card {
-        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 50px;
+        padding-top: 20px;
+    }
+
+    .card2 {
+        padding-left: 0px;
+    }
+
+    .card3 {
+        padding-left: 20px;
+        padding-top: 40px;
     }
 
     .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        grid-gap: 10px;
-        grid-auto-rows: minmax(auto-fill, 700px);
-        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
     }
 
     #carouselExampleIndicators,
@@ -48,7 +81,7 @@
     }
 
     .btn {
-        background-color: #fff;
+        background-color: #f4f4f4;
         border: 0px;
     }
 
@@ -56,7 +89,7 @@
         border: 0px;
     }
 
-     /* Estilos específicos para a seção de avaliações */
+    /* Estilos específicos para a seção de avaliações */
     .container2 {
         margin-top: 20px;
     }
@@ -113,16 +146,31 @@
             </div>
             {% else %}
             <div class="carousel-item active">
-                <svg class="bd-placeholder-img d-block w-100" width="400" height="500"
+                <svg class="bd-placeholder-img d-block w-100" width="700" height="400"
                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
-                    <rect width="400" height="400" fill="#55595c" rx="40" ry="40"></rect>
-                    <text x="50%" y="40%" fill="#eceeef" dy=".3em" text-anchor="middle">{{ cafe.nome_cafeteria }}</text>
+                    <rect width="500" height="400" fill="#55595c" rx="40" ry="40"></rect>
+                    <text x="35%" y="50%" fill="#eceeef" dy=".3em" text-anchor="middle">{{ cafe.nome_cafeteria }}</text>
                 </svg>
             </div>
             {% endif %}
         </div>
+    </div>
+</div>
+
+<div class="card2">
+    <div class="collums">
+        <div class="btn-group">
+            <button class="btn"><a href="{% url 'enviar_whatsapp' cafe.id %}" style="color: black;">Entre em contato com {{ detalhes_cafe.nome_cafeteria }}</a></button>
+        </div>
+    </div>
+</div>
+
+<div class="card3">
+    <div class="collums">
+        <p class="text_descricao">Sobre o local:</p>
+        <p class="detalhes_descricao">{{ detalhes_cafe.descricao }}</p>
     </div>
 </div>
 
