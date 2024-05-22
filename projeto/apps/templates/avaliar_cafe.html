@@ -1,4 +1,5 @@
 {% extends 'global/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -12,138 +13,190 @@
         padding: 0;
     }
 
-    .card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .header {
+        text-align: center;
+        margin-top: 40px;
         margin-bottom: 20px;
-        overflow: hidden;
     }
 
-    .card-img-top {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-    .card-body {
-        padding: 15px;
-    }
-
-    .card-title {
-        margin: 0;
+    .header h1 {
+        font-size: 24px;
         color: #333333;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .card-text {
-        color: #666666;
-        font-size: 14px;
-        margin-top: 10px;
-        margin-bottom: 15px;
-    }
-
-    .btn-outline-secondary {
-        color: #333333;
-        border-color: #333333;
-    }
-
-
-    .text-body-secondary {
-        color: #888888;
-        font-size: 14px;
-    }
-    .row {
-        margin-right: auto;
-        margin-left: auto;
-        margin-top: 20px;
-        padding-right: 15px;
-        padding-left: 15px;
     }
 
     .container {
         max-width: 600px;
         margin: 0 auto;
-        padding: 0 15px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .card {
-        margin: 0 10px 20px;
-    }
-
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        grid-gap: 0px;
-        grid-auto-rows: minmax(auto-fill, 300px);
-        overflow: hidden;
-    }
-    .foto-cafe {
+    .rating-stars {
         display: flex;
-        width: 100%;
-        height: 225px;
-        overflow: hidden;
-
+        flex-direction: row-reverse; /* Altera a direção para row-reverse */
+        justify-content: center;
+        margin-bottom: 20px;
     }
-.box img {
-  width: 100%;
-  height: 100%;
-}
 
-.box1 img {
-  object-fit: cover;
-}
+    .rating-stars input {
+        display: none;
+    }
 
+    .rating-stars label {
+        font-size: 30px !important;
+        color: #ccc;
+        cursor: pointer;
+        margin: 0 5px;
+    }
 
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+        color: #f5b301;
+    }
 
-.search-form .input-group {
-    width: 70%;  /* Define a largura do grupo de input para 70% da largura do container pai */
-    display: flex; /* Garante que o input e o ícone/button estejam alinhados horizontalmente */
-    align-items: center;
-    margin: 0 auto; /* Centraliza o grupo de input horizontalmente se o container for mais largo */
-}
+    .rating-stars input:checked ~ label,
+    .rating-stars input:checked ~ label ~ label {
+        color: #ccc;
+    }
 
-.search-input {
-    padding: 10px;
-    flex-grow: 1; /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
-    padding-right: 30px; /* Espaço para não sobrepor o ícone */
-}
+    .rating-stars input:checked + label,
+    .rating-stars input:checked + label ~ label {
+        color: #f5b301;
+    }
 
-.input-group-append {
-    margin-left: -40px; /* Posiciona o ícone/button dentro do campo de input */
-}
+    .form-group {
+        margin-bottom: 20px;
+        padding: 10px;
+    }
 
-.search-icon {
-    color: #ccc;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
+    .form-group.text-centered label {
+        text-align: center;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        color: #333333;
+        margin-bottom: 8px;
+        text-align: left;
+    }
+
+    .form-group textarea,
+    .form-group input[type="text"],
+    .form-group input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        height: 100px;
+    }
+
+    .form-group .input-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .input-group input[type="radio"] {
+        display: none;
+    }
+
+    .input-group label {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+    }
+
+    .input-group input[type="radio"]:checked + label,
+    .input-group label:hover {
+        background-color: #f5b301;
+        color: #ffffff;
+        border-color: #f5b301;
+    }
+
+    .submit-btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .submit-btn {
+        padding: 12px 100px;
+        display: inline-block;
+        background-color: #A75938;
+        border: none;
+        border-radius: 29px;
+        color: #F9F9F9;
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+        width: auto;
+    }
+
+    .submit-btn:hover {
+        background-color: #e1a600;
+    }
 </style>
 
-<h1>Avalie o {{ cafe.nome_cafeteria }}</h1>
-<form method="post">
-    {% csrf_token %}
-    <div>
-        <label for="avaliacao">Qual o seu nível de satisfação?</label>
-        <select name="avaliacao" id="avaliacao">
-            {% for i in range %}
-            <option value="{{ i }}">{{ i }} Estrelas</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div>
-        <label for="comentario">Adicione uma avaliação escrita</label>
-        <textarea name="comentario" id="comentario"></textarea>
-    </div>
-    <div>
-        <label for="valor_gasto">Quanto você gastou por pessoa?</label>
-        <input type="text" name="valor_gasto" id="valor_gasto">
-    </div>
-    <button type="submit">Enviar</button>
-</form>
+<div class="header">
+    <h1>Avalie a {{ cafe.nome_cafeteria }}</h1>
+</div>
 
-<!-- Fim -->
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group text-centered">
+            <label for="avaliacao">Qual o seu nível de satisfação?</label>
+            <div class="rating-stars">
+                <input type="radio" name="avaliacao" id="star5" value="5"><label for="star5" class="fa fa-star"></label>
+                <input type="radio" name="avaliacao" id="star4" value="4"><label for="star4" class="fa fa-star"></label>
+                <input type="radio" name="avaliacao" id="star3" value="3"><label for="star3" class="fa fa-star"></label>
+                <input type="radio" name="avaliacao" id="star2" value="2"><label for="star2" class="fa fa-star"></label>
+                <input type="radio" name="avaliacao" id="star1" value="1"><label for="star1" class="fa fa-star"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="foto_experiencia">Adicione fotos da sua experiência</label>
+            <input type="file" name="foto_experiencia" id="foto_experiencia" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="comentario">Adicione uma avaliação escrita</label>
+            <textarea name="comentario" id="comentario" placeholder="Digite a sua avaliação aqui..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Quanto você gastou por pessoa?</label>
+            <div class="input-group">
+                <input type="radio" name="valor_gasto" id="gasto1" value="1-20"><label for="gasto1">R$1-20</label>
+                <input type="radio" name="valor_gasto" id="gasto2" value="20-40"><label for="gasto2">R$20-40</label>
+                <input type="radio" name="valor_gasto" id="gasto3" value="40-60"><label for="gasto3">R$40-60</label>
+                <input type="radio" name="valor_gasto" id="gasto4" value="60-80"><label for="gasto4">R$60-80</label>
+                <input type="radio" name="valor_gasto" id="gasto5" value="80-100"><label for="gasto5">R$80-100</label>
+                <input type="radio" name="valor_gasto" id="gasto6" value="100-120"><label for="gasto6">R$100-120</label>
+                <input type="radio" name="valor_gasto" id="gasto7" value="120-140"><label for="gasto7">R$120-140</label>
+                <input type="radio" name="valor_gasto" id="gasto8" value="140-160"><label for="gasto8">R$140-160</label>
+                <input type="radio" name="valor_gasto" id="gasto9" value="160-180"><label for="gasto9">R$160-180</label>
+                <input type="radio" name="valor_gasto" id="gasto10" value="180-200"><label for="gasto10">R$180-200</label>
+                <input type="radio" name="valor_gasto" id="gasto11" value="200+"><label for="gasto11">+R$200</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="submit-btn-container">
+    <button type="submit" class="submit-btn">Enviar</button>
+</div>
 
 {% endblock %}
