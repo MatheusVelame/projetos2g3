@@ -149,6 +149,31 @@
     .submit-btn:hover {
         background-color: #e1a600;
     }
+
+    .messages {
+        margin-bottom: 20px;
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
+    .alert-error {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
 </style>
 
 <div class="header">
@@ -156,6 +181,15 @@
 </div>
 
 <div class="container">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         <div class="form-group text-centered">
@@ -192,11 +226,9 @@
                 <input type="radio" name="valor_gasto" id="gasto11" value="200+"><label for="gasto11">+R$200</label>
             </div>
         </div>
+        <div class="submit-btn-container">
+            <button type="submit" class="submit-btn">Enviar</button>
+        </div>
     </form>
 </div>
-
-<div class="submit-btn-container">
-    <button type="submit" class="submit-btn">Enviar</button>
-</div>
-
 {% endblock %}
