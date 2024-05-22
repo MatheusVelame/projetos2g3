@@ -517,6 +517,7 @@ def avaliar_cafe(request, cafe_id):
         avaliacao = request.POST.get('avaliacao')
         comentario = request.POST.get('comentario')
         valor_gasto = request.POST.get('valor_gasto')
+        foto_experiencia = request.FILES.get('foto_experiencia')
 
         if not avaliacao or not comentario or not valor_gasto:
             messages.error(request, 'Por favor, preencha todos os campos obrigatórios.')
@@ -527,7 +528,8 @@ def avaliar_cafe(request, cafe_id):
             cliente=cliente,
             avaliacao=int(avaliacao),
             comentario=comentario,
-            valor_gasto=valor_gasto
+            valor_gasto=valor_gasto,
+            foto_avaliacao=foto_experiencia
         )
 
         messages.success(request, 'Avaliação enviada com sucesso.')

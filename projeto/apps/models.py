@@ -125,6 +125,7 @@ class Avaliacao(models.Model):
     comentario = models.TextField(blank=True, null=True)
     valor_gasto = models.CharField(max_length=50, blank=True, null=True)
     data_avaliacao = models.DateTimeField(auto_now_add=True)
+    foto_avaliacao= models.ImageField(upload_to='fotos_experiencias/', blank=True, null=True)
 
     def __str__(self):
         return f"Avaliação de {self.cliente.nome_completo} para {self.cafe.nome_cafeteria}"
