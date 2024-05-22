@@ -1,0 +1,15 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Perfil do Usuário</h1>
+    <div class="perfil-info">
+        <p><strong>Username:</strong> {{ user_cliente.user.username }}</p>
+        <p><strong>Nome Completo:</strong> {{ user_cliente.nome_completo }}</p>
+        <p><strong>Email:</strong> {{ user_cliente.email }}</p>
+        <p><strong>Tipo de Usuário:</strong> {% if user_cliente.is_business %} Empresário {% else %} Cliente {% endif %}</p>
+        <a href="{% url 'editar_perfil' %}">Editar Perfil</a>
+    </div>
+</div>
+{% endblock %}
