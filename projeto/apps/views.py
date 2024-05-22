@@ -546,7 +546,6 @@ def perfil_usuario(request):
     }
     return render(request, 'perfil_usuario.html', context)
 
-
 @login_required
 def editar_perfil(request):
     user_cliente = UserCliente.objects.get(user=request.user)
