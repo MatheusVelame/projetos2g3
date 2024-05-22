@@ -2,103 +2,14 @@
 
 {% block content %}
 {% load static %}
-<style>
-    #carouselExampleIndicators .carousel-item img {
-        object-fit: cover;
-        height: 100%;
-        width: 100%;
-    }
-
-    .collums {
-        padding: 0 20px;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 0 15px;
-    }
-
-    .card {
-        padding: 50px;
-        margin: 0 15px 20px;
-    }
-
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-        grid-gap: 10px;
-        grid-auto-rows: minmax(auto-fill, 700px);
-        overflow: hidden;
-    }
-
-    #carouselExampleIndicators,
-    .collums {
-        font-family: Helvetica, sans-serif;
-    }
-
-    .btn {
-        background-color: #fff;
-        border: 0px;
-    }
-
-    .btn :hover {
-        border: 0px;
-
-    }
-
-     /* Estilos específicos para a seção de avaliações */
-     .container2 {
-        margin-top: 20px;
-    }
-
-    .review-card {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-
-    .review-header {
-        display: flex;
-        align-items: center;
-    }
-
-    .review-header img {
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-
-    .review-header h4 {
-        margin: 0;
-        font-size: 18px;
-    }
-
-    .stars {
-        color: #f5b301;
-    }
-
-    .review-content {
-        margin-top: 10px;
-    }
-
-    .review-images img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        margin-right: 10px;
-        margin-top: 10px;
-    }
-
-</style>
-<div class="cards">
-    <div class="card">
-        <div class="carousel-inner">
-            {% if cafe.foto_ambiente %}
-            <div class="carousel-item active">
-                <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}" style="height: 225px;">
-            </div>
+<link rel="stylesheet" href="{% static '../static/css/detalhes_cafeteria.css' %}">
+    <div class="cards">
+        <div class="card">
+            <div class="carousel-inner">
+                {% if cafe.foto_ambiente %}
+                <div class="carousel-item active">
+                    <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}" style="height: 225px;">
+                </div>
             {% else %}
             <div class="carousel-item active">
                 <svg class="bd-placeholder-img d-block w-100" width="100%" height="225"
