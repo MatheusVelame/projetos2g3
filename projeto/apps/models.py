@@ -18,7 +18,7 @@ class Cafe(models.Model):
     nome_cafeteria = models.CharField(max_length=100, blank=False, default='Nome não informado')
     endereco = models.CharField(max_length=100, blank=False, default='Endereço não informado')
     descricao = models.TextField(blank=False, default='Descrição não informada')
-    email = models.EmailField(unique=True,default="default@example.com")
+    email = models.EmailField()
     whatsapp = models.CharField(max_length=13, default='5500000000000')
     horas_funcionamento = models.CharField(max_length=100, blank=False, default='Horário não informado')
     link_redesocial = models.URLField(max_length=200, blank=True)
