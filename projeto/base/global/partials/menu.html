@@ -107,6 +107,10 @@
             <a href="{% url 'favoritos' %}">Favoritos</a>
             <a href="{% url 'historico' %}">Histórico</a>
             {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'perfil_usuario' %}">
+                {% csrf_token %}
+                <a href="{% url 'perfil_usuario' %}">Meu perfil</a>
+            </form>
             <form method="POST" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button class="button-sair" type="submit">Sair</button>
