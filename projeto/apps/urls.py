@@ -31,5 +31,7 @@ urlpatterns = [
     path('acesso_negado_cadastrar_cafeteria/', views.acesso_negado_cadastrar_cafeteria, name='acesso_negado_cadastrar_cafeteria'),
     path('avaliar/<int:cafe_id>/', views.avaliar_cafe, name='avaliar_cafe'),
     path('avaliacao_sucesso/', views.avaliacao_sucesso, name='avaliacao_sucesso'),
+    path('perfil/', perfil_usuario, name='perfil_usuario'),
+    path('editar_perfil', editar_perfil, name='editar_perfil'),
     
 ]

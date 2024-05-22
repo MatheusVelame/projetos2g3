@@ -33,9 +33,6 @@ def buscar_cafeterias(request):
     else:
         return redirect('home')
 
-from django.core.exceptions import ValidationError
-from django.contrib import messages
-
 @login_required
 def cadastro_cafeteria(request):
     usuario = request.user
@@ -60,6 +57,8 @@ def cadastro_cafeteria(request):
         print("UserCliente não encontrado.")
         messages.error(request, 'Perfil de usuário não encontrado. Complete seu cadastro.')
         return redirect('cadastro_usuario')
+
+    print(f"user_cliente.is_business: {user_cliente.is_business}")
 
     if request.method == 'POST':
         responsavel = request.POST.get('responsavel')
@@ -101,14 +100,11 @@ def cadastro_cafeteria(request):
         if 'foto_ambiente' in request.FILES:
             cafe.foto_ambiente = request.FILES['foto_ambiente']
 
-
         cafe.full_clean()
         cafe.save()
         return redirect('cadastro_cafeteria_sucesso')
 
     return render(request, 'cadastro_cafeteria.html')
-
-
 
 def cadastro_cafeteria_sucesso(request):
     return render(request, 'cadastro_cafeteria_sucesso.html')
@@ -478,6 +474,8 @@ def UserCadastro(request):
         login(request, user)
         request.session["usuario"] = email
 
+        print(f"Usuário {username} criado com is_business={is_business}")
+
         if is_business:
             return redirect('cadastro_empresario_sucesso') 
         else:
@@ -540,3 +538,48 @@ def avaliar_cafe(request, cafe_id):
 @login_required
 def avaliacao_sucesso(request):
     return render(request, 'avaliacao_sucesso.html')
+
+@login_required
+def perfil_usuario(request):
+    user_cliente = UserCliente.objects.get(user=request.user)
+    print(f"Tipo de Usuário: {user_cliente.is_business}")
+    context = {
+        'user_cliente': user_cliente
+    }
+    return render(request, 'perfil_usuario.html', context)
+
+@login_required
+def editar_perfil(request):
+    user_cliente = UserCliente.objects.get(user=request.user)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        nome_completo = request.POST.get('nome_completo')
+        email = request.POST.get('email')
+
+        if not username:
+            username = user_cliente.user.username
+        if not nome_completo:
+            nome_completo = user_cliente.nome_completo
+        if not email:
+            email = user_cliente.email
+
+        if UserCliente.objects.filter(email=email).exclude(id=user_cliente.id).exists():
+            return render(request, 'editar_perfil.html', {
+                'error': 'Este email já está em uso por outro usuário.',
+                'user_cliente': user_cliente
+            })
+
+        if User.objects.filter(username=username).exclude(id=user_cliente.user.id).exists():
+            return render(request, 'editar_perfil.html', {
+                'error': 'Este username já está em uso por outro usuário.',
+                'user_cliente': user_cliente
+            })
+
+        user_cliente.user.username = username
+        user_cliente.nome_completo = nome_completo
+        user_cliente.email = email
+        user_cliente.save()
+
+        return redirect('perfil_usuario')
+    else:
+        return render(request, 'editar_perfil.html', {'user_cliente': user_cliente})
