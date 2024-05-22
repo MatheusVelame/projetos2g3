@@ -9,7 +9,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.core.exceptions import ValidationError 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.contrib.auth.models import Group
@@ -34,14 +33,15 @@ def buscar_cafeterias(request):
     else:
         return redirect('home')
 
+from django.core.exceptions import ValidationError
+from django.contrib import messages
+
 @login_required
 def cadastro_cafeteria(request):
     usuario = request.user
     email = usuario.email
 
-    # Verifique o conteúdo da sessão
     print(f"Conteúdo da sessão: {request.session.items()}")
-
     print(f"Usuário logado: {usuario.username}, ID: {usuario.id}")
     print(f"Grupos do usuário: {[group.name for group in usuario.groups.all()]}")
 
@@ -73,12 +73,16 @@ def cadastro_cafeteria(request):
         site_cafeteria = request.POST.get('site_cafeteria')
 
         if len(whatsapp) > 13:
-            messages.error(request, 'O número de WhatsApp deve ter no máximo 13 dígitos.')
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+            return render(request, 'cadastro_cafeteria.html', {"erro": "O número de WhatsApp deve ter no máximo 13 dígitos."})
 
         if not cnpj.isdigit() or len(cnpj) != 14:
-            messages.error(request, 'O CNPJ deve conter apenas números e ter 14 dígitos.')
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
+            return render(request, 'cadastro_cafeteria.html', {"erro": "O CNPJ deve conter apenas números e ter 14 dígitos."})
+
+        if Cafe.objects.filter(whatsapp=whatsapp).exists():
+            return render(request, 'cadastro_cafeteria.html', {"erro": "O número de WhatsApp já está em uso."})
+
+        if Cafe.objects.filter(cnpj=cnpj).exists():
+            return render(request, 'cadastro_cafeteria.html', {"erro": "O CNPJ já está em uso."})
 
         cafe = Cafe(
             responsavel=responsavel,
@@ -97,16 +101,13 @@ def cadastro_cafeteria(request):
         if 'foto_ambiente' in request.FILES:
             cafe.foto_ambiente = request.FILES['foto_ambiente']
 
-        try:
-            cafe.full_clean()
-            cafe.save()
-        except ValidationError as e:
-            messages.error(request, e.message_dict)
-            return render(request, 'cadastro_cafeteria.html', {'form': request.POST})
 
+        cafe.full_clean()
+        cafe.save()
         return redirect('cadastro_cafeteria_sucesso')
 
     return render(request, 'cadastro_cafeteria.html')
+
 
 
 def cadastro_cafeteria_sucesso(request):
@@ -411,14 +412,13 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if user.groups.filter(name='Empresários').exists():
-                return redirect('pagina_empresario')
+                return redirect('home_empresario')
             else: 
                 return redirect('home')
         else:
             return render(request, 'login.html', {'error': 'Usuário ou senha inválidos'})
         
     return render(request, 'login.html')
-# alterar 'pagina_empresario' para o redirecionamento correto ^
 
 def logout(request):
     auth_logout(request)
@@ -491,8 +491,8 @@ def cafeterias_empresarios(request):
 # modelo acima criado p exibir cafeterias cadastradas pelo empresario, para ele poder visualizar suas cafeterias, só criei a base 
 
 @login_required
-def pagina_empresario(request):
-    return render(request, 'pagina_empresario.html')
+def home_empresario(request):
+    return render(request, 'home_empresario.html')
 
 def acesso_negado_cadastrar_cafeteria(request):
     return render(request, 'acesso_negado_cadastrar_cafeteria.html')
