@@ -16,6 +16,7 @@ from django.contrib.auth import logout as auth_logout
 from django.utils import timezone
 from django.db.models import Max
 import json
+from django.core.files.storage import FileSystemStorage
 
 def home(request):
     cafes = Cafe.objects.all()
@@ -553,6 +554,7 @@ def editar_perfil(request):
         username = request.POST.get('username')
         nome_completo = request.POST.get('nome_completo')
         email = request.POST.get('email')
+        profile_image = request.FILES.get('profile_image')
 
         if not username:
             username = user_cliente.user.username
@@ -576,6 +578,12 @@ def editar_perfil(request):
         user_cliente.user.username = username
         user_cliente.nome_completo = nome_completo
         user_cliente.email = email
+
+        if profile_image:
+            fs = FileSystemStorage()
+            filename = fs.save(profile_image.name, profile_image)
+            user_cliente.profile_image = filename
+            
         user_cliente.save()
 
         return redirect('perfil_usuario')
