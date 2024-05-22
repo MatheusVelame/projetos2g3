@@ -380,7 +380,14 @@ def detalhes(request, cafe_id):
     if not visita_hoje:
         Historico.objects.create(usuario=usuario, cafe=cafe, visited_at=timezone.now())
 
-    return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'favorito': favorito})
+    star_range = range(1, 6)
+
+    return render(request, 'detalhes.html', {
+        'cafe': cafe,
+        'detalhes_cafe': detalhes_cafe,
+        'favorito': favorito,
+        'star_range': star_range
+    })
     
 def limpar_historico_duplicado():
     # Encontrar a última visita para cada usuário e cafeteria por dia
@@ -498,17 +505,25 @@ def acesso_negado_cadastrar_cafeteria(request):
 @login_required
 def avaliar_cafe(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
-    cliente = get_object_or_404(UserCliente, email=request.user.email)
+    try:
+        cliente = get_object_or_404(UserCliente, user=request.user)
+    except UserCliente.DoesNotExist:
+        messages.error(request, 'Perfil de usuário não encontrado. Complete seu cadastro.')
+        return redirect('cadastro_usuario')
 
     if request.method == 'POST':
-        avaliacao = int(request.POST.get('avaliacao'))
+        avaliacao = request.POST.get('avaliacao')
         comentario = request.POST.get('comentario')
         valor_gasto = request.POST.get('valor_gasto')
+
+        if not avaliacao or not comentario or not valor_gasto:
+            messages.error(request, 'Por favor, preencha todos os campos obrigatórios.')
+            return render(request, 'avaliar_cafe.html', {'cafe': cafe, 'range': range(1, 6)})
 
         Avaliacao.objects.create(
             cafe=cafe,
             cliente=cliente,
-            avaliacao=avaliacao,
+            avaliacao=int(avaliacao),
             comentario=comentario,
             valor_gasto=valor_gasto
         )
@@ -518,6 +533,7 @@ def avaliar_cafe(request, cafe_id):
 
     return render(request, 'avaliar_cafe.html', {'cafe': cafe, 'range': range(1, 6)})
 
+@login_required
 def avaliacao_sucesso(request):
     return render(request, 'avaliacao_sucesso.html')
 
