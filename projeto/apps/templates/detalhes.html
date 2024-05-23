@@ -16,6 +16,23 @@
         padding: 0;
     }
 
+.flex-container {
+display: flex;
+justify-content: space-between;
+align-items: center; 
+}
+
+.left-content {
+display: flex;
+gap: 10px; 
+
+}
+
+.right-content {
+text-align: right; 
+padding-left: 20px;
+}
+
     h1 {
         padding-left: 20px;
         padding-top: 30px;
@@ -32,10 +49,29 @@
     }
 
     .detalhes_descricao {
+        color: #828282;
         padding-left: 40px;
         padding-top: 5px;
         font-size: 15px;
     }
+
+    .rounded-button {
+            background-color: #A75938; 
+            border: none; 
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        .rounded-button:hover {
+            background-color: #A75938;
+        }
 
     a {
         font-size: 18px;
@@ -68,12 +104,33 @@
         padding-top: 40px;
     }
 
+    .card4 {
+        padding-left: 20px;
+    }
+
     .cards {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 80vh;
     }
+
+    table{
+            border: 1px solid black;
+            border-collapse: separate;
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            padding: 20px;
+            margin-right: 50px;
+            border-radius: 30px;
+            box-shadow: 0 4px 4px #C2C2C2; 
+        }
+
+    th, td {
+        padding: 10px; 
+    }
+
 
     #carouselExampleIndicators,
     .collums {
@@ -89,9 +146,12 @@
         border: 0px;
     }
 
-    /* Estilos específicos para a seção de avaliações */
     .container2 {
         margin-top: 20px;
+    }
+
+    .relogioimg {
+        padding-right: 10px;
     }
 
     .review-card {
@@ -167,10 +227,44 @@
     </div>
 </div>
 
-<div class="card3">
-    <div class="collums">
-        <p class="text_descricao">Sobre o local:</p>
-        <p class="detalhes_descricao">{{ detalhes_cafe.descricao }}</p>
+<div class="flex-container">
+    <div class="left-content">
+        <div class="card3">
+            <div class="collums">
+                <p class="text_descricao">Sobre o local:</p>
+                <p class="detalhes_descricao">{{ detalhes_cafe.descricao }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="card4">
+            <table>
+                <thead>
+                    <tr>
+                        <th><p>Horário de Funcionamento:<br>
+                            <img class="relogioimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR4nK3Sy00DQQwG4O/MtgWc9rQFcEj2nAooAiSoAHJJlgZ41ENyoQGesuSg0UAyQsKS5fGMf3t+2/yzdBixxBNu0+9awFNs8YJHrNOGv8HJIeArJgyp58V5yvcfCbqsGAF96gyfaXd3E55rCmN+bWiAh4ybl+Blcusb4L5o4rc8YFUFneEDV9X9CvetyqEXeMf1ocrjL5x3eok3LArOs7rbm6rbpS6qbh/V44r5lXMuweHf5fvxvkWJBJE5vhbcYsPChh/3e4ElhZjjTTYxbHBs7vaf5AsKIUk6VJ+ddwAAAABJRU5ErkJggg==" width="15" height="15">{{ detalhes_cafe.horas_funcionamento }}</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {% if user.is_authenticated %}
+                                {% if cafe %}
+                                    {% if favorito %}
+                                        <button class="rounded-button">
+                                            <a href="{% url 'criar_reserva' cafe.id %}" style="color: white; text-decoration: none;">Quero reservar!</a>
+                                        </button>
+                                    {% else %}
+                                        <a href="{% url 'login' %}" class="rounded-button" style="color: white; text-decoration: none;">Quero reservar!</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
