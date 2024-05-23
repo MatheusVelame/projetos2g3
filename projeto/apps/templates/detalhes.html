@@ -251,14 +251,11 @@ padding-left: 20px;
                         <td>
                             {% if user.is_authenticated %}
                                 {% if cafe %}
-                                    {% if favorito %}
-                                        <button class="rounded-button">
-                                            <a href="{% url 'criar_reserva' cafe.id %}" style="color: white; text-decoration: none;">Quero reservar!</a>
-                                        </button>
-                                    {% else %}
-                                        <a href="{% url 'login' %}" class="rounded-button" style="color: white; text-decoration: none;">Quero reservar!</a>
-                                    {% endif %}
+                                    <a href="{% url 'criar_reserva' cafe.id %}" class="rounded-button" style="color: white; text-decoration: none;">Quero reservar!</a>
+                                
                                 {% endif %}
+                            {% else %}
+                                <a href="{% url 'login' %}" class="rounded-button" style="color: white; text-decoration: none;">Quero reservar!</a>
                             {% endif %}
                         </td>
                     </tr>
