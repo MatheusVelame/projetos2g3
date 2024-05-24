@@ -86,6 +86,7 @@ padding-left: 20px;
         padding-left: 40px;
         padding-top: 5px;
         font-size: 15px;
+        max-width: 500px;
     }
 
     .rounded-button {
@@ -210,11 +211,11 @@ padding-left: 20px;
         border: 0px;
     }
 
-.container2 {
+    .container2 {
     display: flex;
     flex-direction: column;
-    align-items: start; 
-    gap: 1em; 
+    align-items: start;
+    gap: 1em;
     padding-left: 60px;
 }
 
@@ -222,18 +223,18 @@ padding-left: 20px;
         padding-right: 10px;
     }
 
-.review-card {
-    border: 1px solid #ddd; 
+    .review-card {
+    border: 1px solid #ddd;
     background-color: #f4f4f4;
     border-radius: 8px;
-    max-width: 300px; 
+    max-width: 400px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1em;
     margin-bottom: 20px;
-    width: 100%; 
-    word-wrap: break-word; 
-    overflow-wrap: break-word; 
-    box-sizing: border-box; 
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
 }
 
 .review-header {
@@ -258,15 +259,16 @@ padding-left: 20px;
     }
 
     .review-content {
-        margin-top: 10px;
-    }
+    margin-top: 10px;
+}
 
-    .review-images img {
-        max-width: 100%; 
-        height: auto; 
-        border-radius: 5px; 
-        margin-top: 1em; 
-    }
+.review-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 1em;
+    display: block; /* Garante que a imagem seja exibida como um bloco */
+}
 
 </style>
 
@@ -322,12 +324,12 @@ padding-left: 20px;
             </div>
             {% else %}
             <div class="carousel-item active">
-                <svg class="bd-placeholder-img d-block w-100" width="700" height="400"
+                <svg class="bd-placeholder-img d-block w-100" width="500" height="400"
                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
                     <rect width="500" height="400" fill="#55595c" rx="40" ry="40"></rect>
-                    <text x="35%" y="50%" fill="#eceeef" dy=".3em" text-anchor="middle">{{ cafe.nome_cafeteria }}</text>
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em" text-anchor="middle">{{ cafe.nome_cafeteria }}</text>
                 </svg>
             </div>
             {% endif %}
@@ -407,7 +409,7 @@ padding-left: 20px;
         </div>
         <div class="review-images">
             {% if avaliacao.foto_avaliacao %}
-            <img src="{{ avaliacao.foto_avaliacao.url }}" alt="Avaliação Foto">
+            <img src="{{ avaliacao.foto_avaliacao.url }}" alt="Avaliação Foto" class="avaliacao-img">
             {% endif %}
         </div>
     </div>
