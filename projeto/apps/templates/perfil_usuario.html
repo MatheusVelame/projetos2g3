@@ -17,7 +17,7 @@
     <div class="perfil-info">
         <p class="username"><strong>Username:</strong> {{ user_cliente.user.username }}</p>
         <p class="email"><strong>Email:</strong> {{ user_cliente.email }}</p>
-        <p class="tipo-usuario"><strong>Tipo de usuário:</strong> {% if user_cliente.is_business %} Empresário {% else %} Cliente {% endif %}</p>
+        <p class="tipo-usuario"><strong>Tipo de usuário:</strong> {% if user_cliente.is_business %} Empresário {% else %}Cliente {% endif %}</p>
         <a class="editar-perfil" href="{% url 'editar_perfil' %}">Editar</a>
     </div>
 </div>
