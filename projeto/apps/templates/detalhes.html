@@ -83,8 +83,36 @@ padding-left: 20px;
             transition: background-color 0.3s;
         }
         .rounded-button:hover {
-            background-color: #A75938;
+            background-color: #FFC43B;
         }
+
+        .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 80px;
+    margin-bottom: 200px;
+    
+}
+
+.rounded-button2 {
+    background-color: #A75938; 
+    border: none; 
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+}
+
+.rounded-button2:hover {
+    background-color: #FFC43B;
+}
 
     a {
         font-size: 18px;
@@ -324,7 +352,15 @@ padding-left: 20px;
     {% endif %}
 </div>
 
-
+<div class="button-container">
+    {% if user.is_authenticated %}
+        {% if cafe %}
+            <a href="{% url 'avaliar_cafe' cafe.id %}" class="rounded-button2" style="color: white; text-decoration: none;">Fazer uma avaliação</a>
+        {% endif %}
+    {% else %}
+        <a href="{% url 'login' %}" class="rounded-button2" style="color: white; text-decoration: none;">Fazer uma avaliação</a>
+    {% endif %}
+</div>
 
 
 
