@@ -16,7 +16,7 @@
         background-color: #ffffff;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        margin: 0 10px 20px;
         overflow: hidden;
     }
 
@@ -27,6 +27,7 @@
     }
 
     .card-body {
+        align-content: flex-end;
         padding: 15px;
     }
 
@@ -68,11 +69,9 @@
         padding: 0 15px;
     }
 
-    .card {
-        margin: 0 10px 20px;
-    }
-
     .cards {
+        padding-left: 10px;
+        padding-right: 10px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
         grid-gap: 0px;
@@ -105,6 +104,8 @@
 }
 
 .search-input {
+    border-radius: 10px;
+    border: none;
     padding: 10px;
     flex-grow: 1; /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
     padding-right: 30px; /* Espaço para não sobrepor o ícone */
@@ -129,7 +130,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8"> <!-- Ajustado para maior largura -->
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control search-input" placeholder="Buscar cafeterias..." name="termo" id="search-input" style="border: 0px;">
+                    <input type="text" class="form-control search-input" placeholder="Buscar cafeterias..." name="termo" id="search-input">
                     <div class="input-group-append" >
                         <button class="btn search-icon" type="submit">
                             <i class="fas fa-search" id="search-icon"></i>
@@ -153,9 +154,10 @@
 <!-- Fim da Busca -->
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <h1 style="margin: 0 0px 10px 25px;">Cafeterias</h1>
     <div class="cards">
     {% for cafe in cafes %}
-        <div class="card shadow-sm">
+        <div class="card">
             {% if cafe.foto_ambiente %}
             <img src="{{ cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ cafe.nome }}" preserveAspectRatio="xMidYMid slice">
             {% else %}
@@ -166,11 +168,9 @@
                     dy=".3em">{{ cafe.nome_cafeteria }}</text>
             </svg>
             {% endif %}
-            <div class="card-body">
+            <div class="card-body" style="align-content: flex-end;">
                 <h5 class="card-title">{{ cafe.nome_cafeteria }}</h5>
-                <p class="card-text">{{ cafe.get_short_description}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group" style="padding-bottom: 0%; ">
+                    <div class="btn-group">
                         {% if user.is_authenticated %}
                         <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
                         {% else %}
@@ -178,7 +178,6 @@
                         {% endif %}
                     </div>
                     <small class="text-body-secondary">{{ cafe.horas_funcionamento }}</small>
-                </div>
             </div>
         </div>
     {% endfor %}

@@ -134,13 +134,13 @@ def criar_reserva(request, cafe_id):
     cliente = get_object_or_404(UserCliente, email=request.user.email)
     
     if request.method == 'POST':
-        nome = request.POST.get('nome')
+        nome_cliente = request.POST.get('nome_cliente')
         data_reserva = request.POST.get('data_reserva')
         horario_reserva = request.POST.get('horario_reserva')
         numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
         observacao = request.POST.get('observacao', '')
 
-        if not nome or not data_reserva or not horario_reserva:
+        if not nome_cliente or not data_reserva or not horario_reserva:
             return render(request, 'reservar_cafe.html', {
                 'cafe': cafe,
                 'error_message': 'Por favor, preencha todos os campos obrigatórios.'
@@ -219,13 +219,13 @@ def editar_reserva(request, reserva_id):
     cafe = reserva.cafe
     
     if request.method == 'POST':
-        nome_cliente = request.POST.get('nome')
+        nome_cliente = request.POST.get('nome_cliente')
         data_reserva = request.POST.get('data_reserva')
         horario_reserva = request.POST.get('horario_reserva')
         numero_de_pessoas = int(request.POST.get('numero_de_pessoas', 1))
         observacao = request.POST.get('observacao', '')
 
-        if not data_reserva or not horario_reserva:
+        if not nome_cliente or not data_reserva or not horario_reserva:
             return render(request, 'editar_reserva.html', {
                 'reserva': reserva,
                 'error_message': 'Por favor, preencha todos os campos obrigatórios.'
@@ -275,7 +275,7 @@ def editar_reserva(request, reserva_id):
         return redirect('minhas_reservas')
     
     return render(request, 'editar_reserva.html', {
-        'reserva': reserva
+        'reserva': reserva, 'cafe':cafe
     })
 
 @login_required
