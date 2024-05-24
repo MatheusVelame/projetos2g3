@@ -81,6 +81,17 @@ padding-left: 20px;
         padding-top: 80px;
     }
 
+    .img-bordered {
+    border-radius: 40px;
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.bd-placeholder-img {
+    border-radius: 40px;
+}
+
     .detalhes_descricao {
         color: #999999;
         padding-left: 40px;
@@ -320,11 +331,11 @@ padding-left: 20px;
         <div class="carousel-inner">
             {% if cafe.foto_ambiente %}
             <div class="carousel-item active">
-                <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100" alt="{{ cafe.nome }}" style="height: 225px;">
+                <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100 img-bordered" alt="{{ cafe.nome }}">
             </div>
             {% else %}
             <div class="carousel-item active">
-                <svg class="bd-placeholder-img d-block w-100" width="500" height="400"
+                <svg class="bd-placeholder-img d-block w-100 img-bordered" width="500" height="400"
                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                     preserveAspectRatio="xMidYMid slice" focusable="false">
                     <title>Placeholder</title>
