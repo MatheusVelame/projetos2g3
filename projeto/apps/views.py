@@ -71,6 +71,7 @@ def cadastro_cafeteria(request):
         link_redesocial = request.POST.get('link_redesocial', '')
         cnpj = request.POST.get('cnpj')
         site_cafeteria = request.POST.get('site_cafeteria')
+        foto_ambiente = request.POST.get('foto_ambiente')
 
         if not whatsapp.isdigit() or len(whatsapp) != 13:
             return render(request, 'cadastro_cafeteria.html', {"erro": "O número de WhatsApp deve ter no máximo 13 dígitos."})
@@ -83,6 +84,9 @@ def cadastro_cafeteria(request):
 
         if Cafe.objects.filter(cnpj=cnpj).exists():
             return render(request, 'cadastro_cafeteria.html', {"erro": "O CNPJ já está em uso."})
+        
+        if foto_ambiente in request.FILES:
+            cafe.foto_ambiente = request.FILES['foto_ambiente']
 
         cafe = Cafe(
             responsavel=responsavel,
