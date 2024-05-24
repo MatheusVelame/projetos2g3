@@ -44,12 +44,25 @@ padding-left: 20px;
         color: #999999;
     }
 
+    h3 {
+
+        font-size: 25px;
+    }
+
     .text_descricao {
         font-size: 28px;
+        padding-bottom: 30px;
+    }
+
+    .text_avaliacao {
+        font-size: 28px;
+        padding-left: 42px;
+        padding-bottom: 30px;
+        padding-top: 80px;
     }
 
     .detalhes_descricao {
-        color: #828282;
+        color: #999999;
         padding-left: 40px;
         padding-top: 5px;
         font-size: 15px;
@@ -79,6 +92,10 @@ padding-left: 20px;
 
     .collums {
         padding: 0 20px;
+    }
+
+    .no-reviews{
+        color: #999999;
     }
 
     .container {
@@ -112,12 +129,12 @@ padding-left: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 80vh;
+        height: 70vh;
     }
 
     table{
-            border: 1px solid black;
             border-collapse: separate;
+            border: 1px solid #ddd;
             width: 300px;
             height: 100px;
             text-align: center;
@@ -146,26 +163,37 @@ padding-left: 20px;
         border: 0px;
     }
 
-    .container2 {
-        margin-top: 20px;
-    }
+.container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: start; 
+    gap: 1em; 
+    padding-left: 60px;
+}
 
-    .relogioimg {
+.relogioimg {
         padding-right: 10px;
     }
 
-    .review-card {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 15px;
-        margin-bottom: 20px;
-    }
+.review-card {
+    border: 1px solid #ddd; 
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    max-width: 300px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    margin-bottom: 20px;
+    width: 100%; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    box-sizing: border-box; 
+}
 
-    .review-header {
-        display: flex;
-        align-items: center;
-    }
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
     .review-header img {
         border-radius: 50%;
@@ -173,6 +201,7 @@ padding-left: 20px;
     }
 
     .review-header h4 {
+        display: flex;
         margin: 0;
         font-size: 18px;
     }
@@ -186,11 +215,10 @@ padding-left: 20px;
     }
 
     .review-images img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        margin-right: 10px;
-        margin-top: 10px;
+        max-width: 100%; 
+        height: auto; 
+        border-radius: 5px; 
+        margin-top: 1em; 
     }
 
 </style>
@@ -231,7 +259,7 @@ padding-left: 20px;
     <div class="left-content">
         <div class="card3">
             <div class="collums">
-                <p class="text_descricao">Sobre o local:</p>
+                <p class="text_descricao">Sobre o local</p>
                 <p class="detalhes_descricao">{{ detalhes_cafe.descricao }}</p>
             </div>
         </div>
@@ -264,5 +292,40 @@ padding-left: 20px;
         </div>
     </div>
 </div>
+
+
+
+
+<p class="text_avaliacao">Avaliações</p>
+<div class="container2">
+    {% if cafe.avaliacao_set.all %}
+    {% for avaliacao in cafe.avaliacao_set.all %}
+    <div class="review-card">
+        <div class="review-header">
+            <h3>{{ avaliacao.cliente.nome_completo }}</h3>
+            <div class="stars">
+                {% for _ in "1"|slice:":5" %}
+                <i class="fa fa-star{% if forloop.counter > avaliacao.avaliacao %}-o{% endif %}"></i>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="review-content">
+            <p>{{ avaliacao.comentario }}</p>
+        </div>
+        <div class="review-images">
+            {% if avaliacao.foto_avaliacao %}
+            <img src="{{ avaliacao.foto_avaliacao.url }}" alt="Avaliação Foto">
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="no-reviews">Nenhuma avaliação disponível.</div>
+    {% endif %}
+</div>
+
+
+
+
 
 {% endblock %}
