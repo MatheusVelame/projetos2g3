@@ -2,7 +2,7 @@
 {% block content %}
 {% load static %}
 
-<style>
+    <style>
     #carouselExampleIndicators .carousel-item img {
         object-fit: cover;
         height: 100%;
@@ -16,40 +16,40 @@
         padding: 0;
     }
 
-.flex-container {
-display: flex;
-justify-content: space-between;
-align-items: center; 
-}
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+    }
 
-.left-content {
-display: flex;
-gap: 10px; 
+    .left-content {
+        display: flex;
+        gap: 10px; 
 
-}
+    }
 
-.right-content {
-text-align: right; 
-padding-left: 20px;
-}
+    .right-content {
+        text-align: right; 
+        padding-left: 20px;
+    }
 
 
-.flex-container2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    
-}
+    .flex-container2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
 
-.left-content2 {
-    display: flex;
-    padding-left: 50px;
-}
+    }
 
-.right-content2 {
-    text-align: right;
-    padding-right: 50px;
-}
+    .left-content2 {
+        display: flex;
+        padding-left: 50px;
+    }
+
+    .right-content2 {
+        text-align: right;
+        padding-right: 50px;
+    }
 
     h1 {
         font-size: 40px;
@@ -65,7 +65,6 @@ padding-left: 20px;
     }
 
     h3 {
-
         font-size: 25px;
     }
 
@@ -82,15 +81,15 @@ padding-left: 20px;
     }
 
     .img-bordered {
-    border-radius: 40px;
-    width: 600px;
-    height: 400px;
-    object-fit: cover;
-}
+        border-radius: 40px;
+        width: 600px;
+        height: 400px;
+        object-fit: cover;
+    }
 
-.bd-placeholder-img {
-    border-radius: 40px;
-}
+    .bd-placeholder-img {
+        border-radius: 40px;
+    }
 
     .detalhes_descricao {
         color: #999999;
@@ -101,65 +100,62 @@ padding-left: 20px;
     }
 
     .ver_mais {
-
         padding-left: 45px;
         padding-bottom: 30px;
         color: black;
-
     }
 
     .rounded-button {
-            background-color: #A75938; 
-            border: none; 
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 25px;
-            transition: background-color 0.3s;
-        }
-        .rounded-button:hover {
-            background-color: #FFC43B;
-        }
+        background-color: #A75938; 
+        border: none; 
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s;
+    }
+    .rounded-button:hover {
+        background-color: #FFC43B;
+    }
 
-        .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    margin-top: 80px;
-    margin-bottom: 200px;
-    
-}
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        margin-top: 80px;
+        margin-bottom: 200px;
+    }
 
-.rounded-button2 {
-    background-color: #A75938; 
-    border: none; 
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 25px;
-    transition: background-color 0.3s;
-}
+    .rounded-button2 {
+        background-color: #A75938; 
+        border: none; 
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s;
+    }
 
-.rounded-button2:hover {
-    background-color: #FFC43B;
-}
+    .rounded-button2:hover {
+        background-color: #FFC43B;
+    }
 
     a {
         font-size: 18px;
     }
 
     .collums {
-        padding: 0 20px;
+       padding: 0 20px;
     }
 
     .no-reviews{
@@ -200,16 +196,16 @@ padding-left: 20px;
     }
 
     table{
-            border-collapse: separate;
-            border: 1px solid #ddd;
-            width: 300px;
-            height: 100px;
-            text-align: center;
-            padding: 20px;
-            margin-right: 50px;
-            border-radius: 30px;
-            box-shadow: 0 4px 4px #C2C2C2; 
-        }
+        border-collapse: separate;
+        border: 1px solid #ddd;
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        padding: 20px;
+        margin-right: 50px;
+        border-radius: 30px;
+        box-shadow: 0 4px 4px #C2C2C2; 
+    }
 
     th, td {
         padding: 10px; 
@@ -231,36 +227,36 @@ padding-left: 20px;
     }
 
     .container2 {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 1em;
-    padding-left: 60px;
-}
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 1em;
+        padding-left: 60px;
+    }
 
-.relogioimg {
+    .relogioimg {
         padding-right: 10px;
     }
 
     .review-card {
-    border: 1px solid #ddd;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    max-width: 400px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 1em;
-    margin-bottom: 20px;
-    width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    box-sizing: border-box;
-}
+        border: 1px solid #ddd;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        max-width: 400px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1em;
+        margin-bottom: 20px;
+        width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+    }
 
-.review-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+    .review-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     .review-header img {
         border-radius: 50%;
@@ -278,64 +274,64 @@ padding-left: 20px;
     }
 
     .review-content {
-    margin-top: 10px;
-}
+        margin-top: 10px;
+    }
 
-.review-images img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 1em;
-    display: block; /* Garante que a imagem seja exibida como um bloco */
-}
+    .review-images img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 1em;
+        display: block;
+    }
 
-.sugestoes-cafeterias {
-    display: flex;
-    padding-left: 5px;
-    padding-bottom: 100px;
-}
-.sugestao-card {
-    width: 300px;
-    border: 1px solid #ddd;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: left;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 1em; /* Espaçamento à direita de cada cartão */
-}
+    .sugestoes-cafeterias {
+        display: flex;
+        padding-left: 13px;
+        padding-bottom: 100px;
+    }
+    .sugestao-card {
+        width: 300px;
+        border: 1px solid #ddd;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-right: 1em;
+    }
 
-.sugestao-img {
-    width: 100%;
-    border-radius: 5px;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-    padding-top: 8px;
-}
+    .sugestao-img {
+        width: 100%;
+        border-radius: 5px;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+        padding-top: 8px;
+    }
 
-.sugestao-info {
-    padding: 1em;
-}
+    .sugestao-info {
+        padding: 1em;
+    }
 
-.sugestao-info h3 {
-    margin: 0 0 0.5em 0;
-}
+    .sugestao-info h3 {
+        margin: 0 0 0.5em 0;
+    }
 
-.sugestao-info p {
-    margin: 0.5em 0;
-}
+    .sugestao-info p {
+        margin: 0.5em 0;
+    }
 
-.sugestao-info a {
-    text-decoration: none;
-    color: #007bff;
-}
+    .sugestao-info a {
+        text-decoration: none;
+        color: #007bff;
+    }
 
-.sugestao-info a:hover {
-    text-decoration: underline;
-}
+    .sugestao-info a:hover {
+        text-decoration: underline;
+    }
 
 </style>
 
