@@ -17,6 +17,7 @@ from django.utils import timezone
 from django.db.models import Max
 import json
 from django.core.files.storage import FileSystemStorage
+import random
 
 def home(request):
     cafes = Cafe.objects.all()
@@ -211,7 +212,12 @@ def criar_reserva(request, cafe_id):
 def detalhes_anonimo(request, cafe_id):
         cafe = get_object_or_404(Cafe, id=cafe_id)
         detalhes_cafe = cafe.detalhes()
-        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe})
+
+        outras_cafeterias = list(Cafe.objects.exclude(id=cafe_id))
+        random.shuffle(outras_cafeterias)
+        outras_cafeterias = outras_cafeterias[:4]
+
+        return render(request, 'detalhes.html', {'cafe': cafe, 'detalhes_cafe': detalhes_cafe, 'outras_cafeterias': outras_cafeterias})
 
 @login_required
 def editar_reserva(request, reserva_id):
@@ -374,12 +380,17 @@ def detalhes(request, cafe_id):
     favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
     detalhes_cafe = cafe.detalhes()
 
+    outras_cafeterias = list(Cafe.objects.exclude(id=cafe_id))
+    random.shuffle(outras_cafeterias)
+    outras_cafeterias = outras_cafeterias[:4]
+
+
     today = timezone.localdate()
 
     visita_hoje = Historico.objects.filter(
         usuario=usuario, 
         cafe=cafe, 
-        visited_at__date=today
+        visited_at__date=today,
     ).exists()
 
     if not visita_hoje:
@@ -391,7 +402,8 @@ def detalhes(request, cafe_id):
         'cafe': cafe,
         'detalhes_cafe': detalhes_cafe,
         'favorito': favorito,
-        'star_range': star_range
+        'star_range': star_range,
+        'outras_cafeterias': outras_cafeterias
     })
     
 def limpar_historico_duplicado():
