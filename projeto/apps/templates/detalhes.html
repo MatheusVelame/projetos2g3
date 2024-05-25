@@ -103,7 +103,7 @@ padding-left: 20px;
     .ver_mais {
 
         padding-left: 45px;
-        padding-bottom: 20px;
+        padding-bottom: 30px;
         color: black;
 
     }
@@ -506,8 +506,12 @@ padding-left: 20px;
         <img src="{% static 'path/to/default/image.jpg' %}" alt="{{ sugerida.nome }}" class="sugestao-img">
         {% endif %}
         <div class="sugestao-info">
-            <h3>{{ sugerida.nome }}</h3>
-            <p>⭐ 5 • R$ 20-40</p>
+            <h3>{{ sugerida.nome_cafeteria }}</h3>
+            <div class="stars">
+                {% for _ in "1"|slice:":5" %}
+                <i class="fa fa-star{% if forloop.counter > avaliacao.avaliacao %}-o{% endif %}"></i>
+                {% endfor %}
+            </div>
             <p><a href="{% url 'detalhes' sugerida.id %}">Mais detalhes</a></p>
         </div>
     </div>
