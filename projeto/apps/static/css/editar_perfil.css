@@ -1,5 +1,5 @@
-/* editar_perfil.css */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 :root {
     --branco-principal: #F7F7FC;
@@ -15,7 +15,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: 'Inter', sans-serif;
     box-sizing: border-box;
 }
 
@@ -24,10 +24,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 2rem;
+    width: 500px;
+    margin: 2rem auto;
     background-color: var(--cor-glass-login-cadastro);
-    padding: 1.5rem;
-    border-radius: 10px;
+    padding: 2rem;
+    border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -35,18 +36,18 @@ h1 {
     font-size: 2rem;
     color: var(--preto-principal);
     margin-bottom: 1rem;
-    margin-left: 30px;
+    text-align: center;
 }
 
 form {
-    max-width: 500px;
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
 }
 
 .form-group {
+    width: 100%;
     margin-bottom: 1rem;
 }
 
@@ -58,7 +59,7 @@ form {
 }
 
 .form-control {
-    width: 120%;
+    width: 100%;
     padding: 0.5rem;
     font-size: 0.9rem;
     border: 1px solid var(--preto-principal);
@@ -80,9 +81,9 @@ form {
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
-    display: block;
-    margin: 0 auto;
     text-align: center;
+    font-weight: 700;
+    margin-top: 1rem;
 }
 
 .btn-primary:hover {
@@ -115,15 +116,17 @@ form {
 }
 
 .inputfile + label {
+    width: 100%;
     background-color: var(--cor-botoes);
-    color: var(--preto-principal);
-    cursor: pointer; 
+    color: var(--branco-principal);
+    cursor: pointer;
     display: inline-block;
-    padding: 4px 12px;
+    padding: 10px;
     border-radius: 8px;
     text-align: center;
+    font-size: 1rem;
 }
 
-.inputfile + label * {
-    pointer-events: none;
+.inputfile + label:hover {
+    background-color: #a94d00;
 }
