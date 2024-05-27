@@ -33,5 +33,6 @@ urlpatterns = [
     path('avaliacao_sucesso/', views.avaliacao_sucesso, name='avaliacao_sucesso'),
     path('perfil/', perfil_usuario, name='perfil_usuario'),
     path('editar_perfil', editar_perfil, name='editar_perfil'),
+    path('editar_perfil_sucesso/', views.editar_perfil_sucesso, name='editar_perfil_sucesso'),
     
 ]

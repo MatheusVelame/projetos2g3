@@ -604,6 +604,10 @@ def editar_perfil(request):
             
         user_cliente.save()
 
-        return redirect('perfil_usuario')
+        return redirect('editar_perfil_sucesso')
     else:
         return render(request, 'editar_perfil.html', {'user_cliente': user_cliente})
+
+def editar_perfil_sucesso(request):
+    return render(request, 'editar_perfil_sucesso.html')
+
