@@ -95,19 +95,18 @@
 }
 
 .rounded-button1 {
-            background-color: #A75938; 
-            border: none; 
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 25px;
-            margin-left: 30%;
-            transition: background-color 0.3s;
+        background-color: #A75938; 
+        border: none; 
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s;
         }
         .rounded-button1:hover {
             background-color: #FFC43B;
@@ -115,6 +114,7 @@
         
         
         .rounded-button2 {
+            font-weight: bold;
             background-color: #A75938; 
             border: none; 
             color: white;
@@ -131,6 +131,7 @@
         
         
         .rounded-button3 {
+            font-weight: bold;
             background-color: #A75938; 
             border: none; 
             color: white;
@@ -180,15 +181,16 @@
                             <div class="mt-2">
                                 <form action="{% url 'avaliar_cafe' reserva.cafe.id %}" method="post" class="d-inline">
                                     {% csrf_token %}
-                                    <button type="submit" class="rounded-button1">Avaliar</button>
+                                    <button type="submit" class="rounded-button1"><a href="{% url 'excluir_reserva' reserva.id %}" style="text-decoration: none; color: white;">Avaliar</a></button>
+                                    
                                 </form>
                             </div>
                             {% else %}
                             <div class="d-flex justify-content-between align-items-center">
-                                        <form action="{% url 'editar_reserva' reserva.cafe.id %}" method="post" class="d-inline">
+                                        <form action="{% url 'editar_reserva' reserva.id %}" method="post" class="d-inline">
                                             {% csrf_token %}
                                             <button type="submit" class="rounded-button2">Editar</button>
-                                            <form action="{% url 'excluir_reserva' reserva.cafe.id %}" method="post" class="d-inline">
+                                            <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
                                                 {% csrf_token %}
                                                 <button type="submit" class="rounded-button3">Excluir</button>
                                         </form>

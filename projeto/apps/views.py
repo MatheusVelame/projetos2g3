@@ -233,7 +233,7 @@ def editar_reserva(request, reserva_id):
 
         if not nome_cliente or not data_reserva or not horario_reserva:
             return render(request, 'editar_reserva.html', {
-                'reserva': reserva,
+                'reserva': reserva,  'cafe':cafe,
                 'error_message': 'Por favor, preencha todos os campos obrigatórios.'
             })
 
@@ -242,20 +242,20 @@ def editar_reserva(request, reserva_id):
             horario_reserva = datetime.strptime(horario_reserva, '%H:%M').time()
         except ValueError:
             return render(request, 'editar_reserva.html', {
-                'reserva': reserva,
+                'reserva': reserva, 'cafe':cafe,
                 'error_message': 'Formato de data ou horário inválido.'
             })
 
         today_date = datetime.today().date()
         if data_reserva < today_date:
             return render(request, 'editar_reserva.html', {
-                'reserva': reserva,
+                'reserva': reserva, 'cafe':cafe,
                 'error_message': 'A data selecionada deve ser futura.'
             })
 
         if numero_de_pessoas <= 0:
             return render(request, 'editar_reserva.html', {
-                'reserva': reserva,
+                'reserva': reserva, 'cafe':cafe,
                 'error_message': 'O número de pessoas deve ser maior que zero.'
             })
 
@@ -267,7 +267,7 @@ def editar_reserva(request, reserva_id):
 
         if reservas_conflitantes.exists():
             return render(request, 'editar_reserva.html', {
-                'reserva': reserva,
+                'reserva': reserva, 'cafe':cafe,
                 'error_message': 'Café já reservado para o horário solicitado!'
             })
 
