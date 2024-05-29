@@ -190,10 +190,10 @@
                                         <form action="{% url 'editar_reserva' reserva.id %}" method="post" class="d-inline">
                                             {% csrf_token %}
                                             <button type="submit" class="rounded-button2">Editar</button>
-                                            <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
-                                                {% csrf_token %}
-                                                <button type="submit" class="rounded-button3">Excluir</button>
                                         </form>
+                                        <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="rounded-button3">Excluir</button>
                                         </form>
                             </div>
                             {% endif %}
