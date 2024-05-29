@@ -105,9 +105,12 @@ class ReservaCafe(models.Model):
     @property
     def status(self):
         hoje = timezone.now().date()
+        hora = timezone.now().time()
         if self.data_reserva < hoje:
             return "Reserva terminada"
-        elif self.data_reserva == hoje:
+        elif self.data_reserva == hoje and self.horario_reserva < hora:
+            return "Reserva terminada"
+        elif self.data_reserva == hoje and self.horario_reserva > hora:
             return "Reserva para hoje"
         else:
             return "Reserva futura"
