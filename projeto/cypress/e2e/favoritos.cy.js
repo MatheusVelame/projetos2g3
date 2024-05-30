@@ -167,4 +167,104 @@ describe('test Favoritar Cafeteria', () => {
 
         
     });
+
+    it('cenario_3', () => {
+        cy.visit('/');
+        cy.get('.dropdown > button').trigger('mouseover');
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+            cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
+            const loginUrl = $link.attr('href');
+            cy.wait(2000);
+            cy.visit(loginUrl);
+            });
+        });
+        cy.wait(1000);
+        cy.get('.btn').click();
+        cy.wait(2000);
+        cy.get('#is_business').click();
+        cy.get('#name').type('Eduarda Carneiro de Lima');
+        cy.get('#email').type('dudacarneiro@gmail.com');
+        cy.get('#username').type('dudalimaa');
+        cy.get('#password').type('dud12345');
+        cy.get('#confirm_password').type('dud12345');
+        cy.wait(3000);
+        cy.get('.criar-conta').click();
+        cy.wait(2000);
+        cy.get('.botao-pag-inicial').click();
+        cy.get('.dropdown > button').trigger('mouseover');
+        cy.get('.dropdown > button').then(($button) => {
+
+            cy.wrap($button).trigger('mouseover');
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+            cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
+            const loginUrl = $link.attr('href');
+            cy.wait(2000);
+            cy.visit(loginUrl);
+            });
+        });
+        cy.get('#nome_cafeteria').type('Café Bondoso');
+        cy.get('#responsavel').type('Eduarda Carneiro de Lima');
+        cy.get('#endereco').type('R. do Nobre, 19 - Nobre, Paulista - PE, 53401-445');
+        cy.get('#descricao').type('cafeteria bondosa com os clientes');
+        cy.get('#email').type('cafebondoso@gmail.com');
+        cy.get('#horas_funcionamento').type('08:00 - 20:00');
+        cy.get('#link_redesocial').type('https://www.instagram.com/cafebondoso');
+        cy.get('#site_cafeteria').type('https://www.cafebondoso.com');
+        cy.get('#cnpj').type('32483525000111');
+        cy.get('#whatsapp').type('5581997728174');
+        cy.wait(3000);
+        cy.get('.cadastrar').click();
+        cy.wait(2000);
+        cy.get('.botao-pag-inicial').click();
+        cy.wait(1000);
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wait(2000);
+            cy.wrap($button).trigger('mouseover');
+            
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
+
+        cy.wait(3000);
+        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.wait(2000);
+        cy.get('.right-content2 > .btn-group > .btn > a').click();
+        cy.wait(2000);
+        cy.get('.btn').click();
+        cy.wait(2000);
+        cy.get('#name').type('João Santos Mendes');
+        cy.get('#email').type('jsm@gmail.com');
+        cy.get('#username').type('joasantos');
+        cy.get('#password').type('jms123456');
+        cy.get('#confirm_password').type('jms123456');
+        cy.wait(3000);
+        cy.get('.criar-conta').click();
+        cy.wait(2000);
+        cy.get('.botao-pag-inicial').click();
+        cy.wait(2000);
+        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get('.right-content2 > .btn-group > .btn').click();
+        cy.visit('/');
+        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.wait(3000);
+        cy.get('.right-content2 > .btn-group > .btn > a').click();
+        cy.visit('/');
+        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.wait(3000);
+        cy.get('button.btn a').should('contain.text', 'Favoritar');
+        cy.wait(2000);
+
+
+        
+
+        
+    });
   });
