@@ -65,12 +65,32 @@ describe('test Favoritar Cafeteria', () => {
         });
 
         cy.wait(3000);
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(3000);
         cy.get('.right-content2 > .btn-group > .btn > a').click();
         cy.wait(3000);
         cy.get('h1').invoke('text').should('have.string', "Entrar no Aponte Cafés")
         cy.wait(2000);
+
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click();
+        cy.wait(2000);
+        cy.get(':nth-child(1) > .field-username > a').click();
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
+        cy.get('#logout-form > button').click();
+        cy.visit('/');
+
+        
     });
 
     it('cenario_2', () => {
@@ -139,7 +159,7 @@ describe('test Favoritar Cafeteria', () => {
         });
 
         cy.wait(3000);
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(2000);
         cy.get('.right-content2 > .btn-group > .btn > a').click();
         cy.wait(2000);
@@ -155,15 +175,39 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('.botao-pag-inicial').click();
         cy.wait(2000);
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(2000);
         cy.get('.right-content2 > .btn-group > .btn > a').click();
         cy.wait(1000);
         cy.visit('/');
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(2000);
         cy.get('button.btn a').should('contain.text', 'Desfavoritar');
         cy.wait(2000);
+
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click();
+        cy.wait(2000);
+        cy.get(':nth-child(1) > .field-username > a').click();
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click();
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
+        cy.get('#logout-form > button').click();
+        cy.visit('/');
 
         
     });
@@ -234,7 +278,7 @@ describe('test Favoritar Cafeteria', () => {
         });
 
         cy.wait(3000);
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(2000);
         cy.get('.right-content2 > .btn-group > .btn > a').click();
         cy.wait(2000);
@@ -250,21 +294,44 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('.botao-pag-inicial').click();
         cy.wait(2000);
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.get('.right-content2 > .btn-group > .btn').click();
         cy.visit('/');
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(3000);
         cy.get('.right-content2 > .btn-group > .btn > a').click();
         cy.visit('/');
-        cy.get(':nth-child(16) > .card-body > .btn-group > .btn').click();
+        cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
         cy.wait(3000);
         cy.get('button.btn a').should('contain.text', 'Favoritar');
         cy.wait(2000);
 
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click();
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click();
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click();
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
+        cy.get('#logout-form > button').click();
+        cy.visit('/');
 
         
 
         
-    });
+    })
   });
