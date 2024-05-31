@@ -207,7 +207,7 @@ def criar_reserva(request, cafe_id):
         return render(request, 'reservar_cafe.html', {
             'cafe': cafe,
             'horarios_reservados_json': json.dumps(horarios_reservados)
-        })
+    })
 
 def detalhes_anonimo(request, cafe_id):
         cafe = get_object_or_404(Cafe, id=cafe_id)
