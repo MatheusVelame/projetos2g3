@@ -376,6 +376,7 @@ def lista_historico(request):
 @login_required
 def detalhes(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
+    range_5 = range(1, 6)
     usuario = request.user
     favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
     detalhes_cafe = cafe.detalhes()
@@ -403,6 +404,7 @@ def detalhes(request, cafe_id):
         'detalhes_cafe': detalhes_cafe,
         'favorito': favorito,
         'star_range': star_range,
+        'range_5': range_5,
         'outras_cafeterias': outras_cafeterias
     })
     
