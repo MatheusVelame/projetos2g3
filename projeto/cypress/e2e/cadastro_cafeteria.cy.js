@@ -59,9 +59,20 @@ describe('test suit cadastrar cafeteria', () => {
         cy.wait(3000)
         
         cy.visit('/admin');
-        // cy.get('#id_username').type('admin')
-        // cy.get('#id_password').type('123')
-        // cy.get('.submit-row > input').click()
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click()
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click()
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
     })
 
     it('cenario2', () => {
@@ -176,8 +187,29 @@ describe('test suit cadastrar cafeteria', () => {
               });
             
             cy.wait(3000)
+            
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click()
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click()
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click()
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
 
-            //LEMBRAR DE APAGAR NO BANCO DE DADOS
     })
 
     it('cenario3', () => {
@@ -297,8 +329,29 @@ describe('test suit cadastrar cafeteria', () => {
               });
             
             cy.wait(3000)
+        
+            cy.visit('/admin');
+            cy.wait(2000);
+            cy.get('#id_username').type('admin');
+            cy.get('#id_password').type('123');
+            cy.wait(2000);
+            cy.get('.submit-row > input').click();
+            cy.wait(2000);
+            cy.get('.model-user > th > a').click()
+            cy.wait(2000);
+            cy.get(':nth-child(2) > .field-username > a').click()
+            cy.wait(2000);
+            cy.get('.deletelink').click();
+            cy.wait(2000);
+            cy.get('div > [type="submit"]').click();
+            cy.wait(2000);
+            cy.get(':nth-child(2) > .field-username > a').click()
+            cy.wait(2000);
+            cy.get('.deletelink').click();
+            cy.wait(2000);
+            cy.get('div > [type="submit"]').click();
+            cy.wait(2000);
 
-            //LEMBRAR DE APAGAR NO BANCO DE DADOS
     })
 
     it('cenario4', () => {
@@ -357,6 +410,22 @@ describe('test suit cadastrar cafeteria', () => {
             });
         
         cy.wait(3000)
+    
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click()
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click()
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
     })
 
     it('cenario5', () => {
@@ -415,5 +484,20 @@ describe('test suit cadastrar cafeteria', () => {
             });
         
         cy.wait(3000)
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-user > th > a').click()
+        cy.wait(2000);
+        cy.get(':nth-child(2) > .field-username > a').click()
+        cy.wait(2000);
+        cy.get('.deletelink').click();
+        cy.wait(2000);
+        cy.get('div > [type="submit"]').click();
+        cy.wait(2000);
     })
 })
