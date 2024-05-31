@@ -36,14 +36,29 @@ describe('test suit visualizar dados perfil', () => {
             expect(text.trim()).to.include('Username: helenassantos');
           });
           cy.get('.email').invoke('text').then((text) => {
-            expect(text.trim()).to.include('Email: helenasantos@gmail.com');
+            expect(text.trim()).to.include('E-mail: helenasantos@gmail.com');
           });
           cy.get('.tipo-usuario').invoke('text').then((text) => {
-            expect(text.trim()).to.include('Tipo de usuário: Cliente');
+            expect(text.trim()).to.include('Tipo de Usuário: Cliente');
           });
           cy.wait(3000);
         });
       });
+      cy.visit('/admin');
+      cy.wait(2000);
+      cy.get('#id_username').type('admin');
+      cy.get('#id_password').type('123');
+      cy.wait(2000);
+      cy.get('.submit-row > input').click();
+      cy.wait(2000);
+      cy.get('.model-user > th > a').click()
+      cy.wait(2000);
+      cy.get(':nth-child(2) > .field-username > a').click()
+      cy.wait(2000);
+      cy.get('.deletelink').click();
+      cy.wait(2000);
+      cy.get('div > [type="submit"]').click();
+      cy.wait(2000);
     });
   
     it('cenario2', () => {
@@ -80,6 +95,21 @@ describe('test suit visualizar dados perfil', () => {
       });
   
       cy.wait(3000);
+      cy.visit('/admin');
+      cy.wait(2000);
+      cy.get('#id_username').type('admin');
+      cy.get('#id_password').type('123');
+      cy.wait(2000);
+      cy.get('.submit-row > input').click();
+      cy.wait(2000);
+      cy.get('.model-user > th > a').click()
+      cy.wait(2000);
+      cy.get(':nth-child(2) > .field-username > a').click()
+      cy.wait(2000);
+      cy.get('.deletelink').click();
+      cy.wait(2000);
+      cy.get('div > [type="submit"]').click();
+      cy.wait(2000);
     });
   });
   
