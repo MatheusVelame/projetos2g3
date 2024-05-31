@@ -1,0 +1,76 @@
+{% extends 'global/base_empresario_sem_footer.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/editar_cadastro_cafeteria.css' %}">
+<section class="section">
+    <div class="container">
+      {% if erro %}
+      <p style="color: black;">{{ erro }}</p>
+      {% endif %}
+      {% if messages %}
+      <div class="messages">
+  
+        {% for message in messages %}
+        <div class="{{ message.tags }}">
+          <p style="color: black;">{{ message }}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="form-outter">
+          <div class="form-box1" id="form1">
+            <div class="campo">
+              <label for="nome_cafeteria">Novo nome da Cafeteria:</label>
+              <input type="text" id="nome_cafeteria" name="nome_cafeteria">
+            </div>
+            <div class="campo">
+              <label for="responsavel">Novo nome do responsável:</label>
+              <input type="text" name="responsavel" id="responsavel">
+            </div>
+            <div class="campo">
+              <label for="endereco">Novo endereço:</label>
+              <input type="text" id="endereco" name="endereco">
+            </div>
+            <div class="campo">
+              <label for="descricao">Descrição do estabelecimento:</label>
+              <textarea id="descricao" name="descricao"></textarea>
+            </div>
+            <div class="campo">
+              <label for="email">Novo e-mail:</label>
+              <input type="email" id="email" name="email">
+            </div>
+          </div>
+          <div class="form-box2" id="form2">
+            <div class="campo">
+              <label for="horas_funcionamento">Horário/dias de funcionamento:</label>
+              <input type="text" id="horas_funcionamento" name="horas_funcionamento">
+            </div>
+            <div class="campo">
+              <label for="link_redesocial">Link de perfil do instagram:</label>
+              <input type="url" id="link_redesocial" name="link_redesocial">
+            </div>
+            <div class="campo">
+              <label for="site_cafeteria">Site da Cafeteria (opcional):</label>
+              <input type="url" name="site_cafeteria" id="site_cafeteria">
+            </div>
+            <div class="campo">
+              <label for="cnpj">Novo CNPJ (apenas números):</label>
+              <input type="text" name="cnpj" id="cnpj">
+            </div>
+            <div class="campo">
+              <label for="whatsapp">Novo whatsapp da empresa (sem espaço e apenas números):</label>
+              <input type="tel" id="whatsapp" name="whatsapp">
+            </div>
+            <div class="campo">
+              <label for="foto_ambiente">Atualize a foto do seu estabelecimento:</label><br>
+              <input class="inputfile" type="file" id="foto_ambiente" name="foto_ambiente" accept="image/*">
+              <label for="foto_ambiente">Escolher imagem</label>
+            </div>
+          </div>
+      </div>
+      <button type="submit" class="cadastrar">Salvar Alterações</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

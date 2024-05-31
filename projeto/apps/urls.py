@@ -34,5 +34,6 @@ urlpatterns = [
     path('perfil/', perfil_usuario, name='perfil_usuario'),
     path('editar_perfil', editar_perfil, name='editar_perfil'),
     path('editar_perfil_sucesso/', views.editar_perfil_sucesso, name='editar_perfil_sucesso'),
-    
+    path('editar_cadastro_cafeteria_sucesso/', views.editar_cadastro_cafeteria_sucesso, name='editar_cadastro_cafeteria_sucesso'),
+    path('cafeteria/<int:cafe_id>/editar/', editar_cadastro_cafe, name='editar_cadastro'),
 ]
