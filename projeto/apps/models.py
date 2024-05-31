@@ -28,7 +28,7 @@ class Cafe(models.Model):
     site_cafeteria = models.URLField(max_length=200, blank=True)
     empresario = models.ForeignKey(UserCliente, on_delete=models.CASCADE, related_name='cafeterias', null=True, blank=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.nome_cafeteria
 
     def detalhes(self):

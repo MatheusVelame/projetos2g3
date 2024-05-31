@@ -1,0 +1,85 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+:root {
+
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal:#1D1D1B;
+    --branco-navbar:#FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes:#A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+header{
+    padding: 10px 0;
+    display: flex;
+    background-color: #333;
+}
+
+.sessao{
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho {
+    width: 100vw;
+    color: #ffffff; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header .div-logo a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.5rem; 
+}
+
+header .div-menu ul {
+    list-style: none; 
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header .div-menu ul li.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease; 
+}
+
+header .div-menu ul li.nav-item a:hover {
+    color: #dddddd; 
+}
+
+header form {
+    margin: 0;
+}
+
+header form button {
+    background-color: #f44336; 
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+header form button:hover {
+    background-color: #c62828;
+} */

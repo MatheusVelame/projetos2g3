@@ -432,7 +432,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if user.groups.filter(name='Empresários').exists():
-                return redirect('home_empresario')
+                return redirect('cafeterias_empresarios')
             else: 
                 return redirect('home')
         else:
@@ -507,10 +507,9 @@ def cadastro_empresario_sucesso(request):
 @login_required
 def cafeterias_empresarios(request):
     usuario = request.user
-    cafeterias = Cafe.objects.filter(email=usuario.email)
-    return render(request, 'cafeterias_empresarios', {'cafeterias': cafeterias}) 
-
-# modelo acima criado p exibir cafeterias cadastradas pelo empresario, para ele poder visualizar suas cafeterias, só criei a base 
+    empresaario = usuario.usercliente
+    cafeterias = Cafe.objects.filter(empresario=empresaario)
+    return render(request, 'cafeterias_empresarios.html', {'cafeterias': cafeterias})
 
 @login_required
 def home_empresario(request):
@@ -610,4 +609,71 @@ def editar_perfil(request):
 
 def editar_perfil_sucesso(request):
     return render(request, 'editar_perfil_sucesso.html')
+
+def editar_cadastro_cafe(request, cafe_id):
+    # Obter o UserCliente associado ao usuário logado
+    user_cliente = request.user.usercliente
+    
+    # Obter a cafeteria específica associada ao UserCliente
+    cafe = get_object_or_404(Cafe, id=cafe_id, empresario=user_cliente)
+    
+    if request.method == 'POST':
+        responsavel = request.POST.get('responsavel') or cafe.responsavel
+        nome_cafeteria = request.POST.get('nome_cafeteria') or cafe.nome_cafeteria
+        endereco = request.POST.get('endereco') or cafe.endereco
+        descricao = request.POST.get('descricao') or cafe.descricao
+        email = request.POST.get('email') or cafe.email
+        whatsapp = request.POST.get('whatsapp') or cafe.whatsapp
+        horas_funcionamento = request.POST.get('horas_funcionamento') or cafe.horas_funcionamento
+        link_redesocial = request.POST.get('link_redesocial') or cafe.link_redesocial
+        foto_ambiente = request.FILES.get('foto_ambiente') or cafe.foto_ambiente
+        cnpj = request.POST.get('cnpj') or cafe.cnpj
+        site_cafeteria = request.POST.get('site_cafeteria') or cafe.site_cafeteria
+
+        if not whatsapp.isdigit() or len(whatsapp) != 13:
+            return render(request, 'editar_cadastro_cafe.html', {
+                'erro': 'O número de WhatsApp deve conter apenas números e ter 13 dígitos.',
+                'cafe': cafe
+            })
+
+        if not cnpj.isdigit() or len(cnpj) != 14:
+            return render(request, 'editar_cadastro_cafe.htmll', {
+                'erro': 'O CNPJ deve conter apenas números e ter 14 dígitos.',
+                'cafe': cafe
+            })
+        
+        if Cafe.objects.filter(cnpj=cnpj).exclude(pk=cafe.pk).exists():
+            return render(request, 'editar_cadastro_cafe.html', {
+                'erro': 'Este CNPJ já está em uso por outra cafeteria.',
+                'cafe': cafe
+            })
+        
+        if Cafe.objects.filter(whatsapp=whatsapp).exclude(pk=cafe.pk).exists():
+            return render(request, 'editar_cadastro_cafe.html', {
+                'erro': 'Este Whatsapp já está em uso por outra cafeteria.',
+                'cafe': cafe
+            })
+
+        cafe.responsavel = responsavel
+        cafe.nome_cafeteria = nome_cafeteria
+        cafe.endereco = endereco
+        cafe.descricao = descricao
+        cafe.email = email
+        cafe.whatsapp = whatsapp
+        cafe.horas_funcionamento = horas_funcionamento
+        cafe.link_redesocial = link_redesocial
+        cafe.foto_ambiente = foto_ambiente
+        cafe.cnpj = cnpj
+        cafe.site_cafeteria = site_cafeteria
+        
+        cafe.save()
+
+        return redirect('editar_cadastro_cafeteria_sucesso')
+    
+    return render(request, 'editar_cadastro_cafe.html', {
+        'cafe': cafe
+    })
+
+def editar_cadastro_cafeteria_sucesso(request):
+    return render(request, 'editar_cadastro_cafeteria_sucesso.html')
 
