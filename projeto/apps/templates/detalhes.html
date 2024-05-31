@@ -1,8 +1,10 @@
 {% extends 'global/base.html' %}
 {% block content %}
 {% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-    <style>
+
+<style>
     #carouselExampleIndicators .carousel-item img {
         object-fit: cover;
         height: 100%;
@@ -19,17 +21,17 @@
     .flex-container {
         display: flex;
         justify-content: space-between;
-        align-items: center; 
+        align-items: center;
     }
 
     .left-content {
         display: flex;
-        gap: 10px; 
+        gap: 10px;
 
     }
 
     .right-content {
-        text-align: right; 
+        text-align: right;
         padding-left: 20px;
     }
 
@@ -37,7 +39,7 @@
     .flex-container2 {
         display: flex;
         justify-content: space-between;
-        align-items: center; 
+        align-items: center;
 
     }
 
@@ -106,8 +108,8 @@
     }
 
     .rounded-button {
-        background-color: #A75938; 
-        border: none; 
+        background-color: #A75938;
+        border: none;
         color: white;
         padding: 15px 32px;
         text-align: center;
@@ -119,6 +121,7 @@
         border-radius: 25px;
         transition: background-color 0.3s;
     }
+
     .rounded-button:hover {
         background-color: #FFC43B;
     }
@@ -126,14 +129,14 @@
     .button-container {
         display: flex;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
         margin-top: 80px;
         margin-bottom: 200px;
     }
 
     .rounded-button2 {
-        background-color: #A75938; 
-        border: none; 
+        background-color: #A75938;
+        border: none;
         color: white;
         padding: 15px 32px;
         text-align: center;
@@ -155,10 +158,10 @@
     }
 
     .collums {
-       padding: 0 20px;
+        padding: 0 20px;
     }
 
-    .no-reviews{
+    .no-reviews {
         color: #999999;
     }
 
@@ -195,7 +198,7 @@
         height: 70vh;
     }
 
-    table{
+    table {
         border-collapse: separate;
         border: 1px solid #ddd;
         width: 300px;
@@ -204,11 +207,12 @@
         padding: 20px;
         margin-right: 50px;
         border-radius: 30px;
-        box-shadow: 0 4px 4px #C2C2C2; 
+        box-shadow: 0 4px 4px #C2C2C2;
     }
 
-    th, td {
-        padding: 10px; 
+    th,
+    td {
+        padding: 10px;
     }
 
 
@@ -227,11 +231,13 @@
     }
 
     .container2 {
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: start;
         gap: 1em;
         padding-left: 60px;
+        gap: 1em;
     }
 
     .relogioimg {
@@ -240,16 +246,22 @@
 
     .review-card {
         border: 1px solid #ddd;
-        background-color: #f4f4f4;
-        border-radius: 8px;
-        max-width: 400px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
         padding: 1em;
         margin-bottom: 20px;
         width: 100%;
         word-wrap: break-word;
         overflow-wrap: break-word;
         box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .review-content-wrapper {
+        flex: 1;
     }
 
     .review-header {
@@ -264,25 +276,86 @@
     }
 
     .review-header h4 {
-        display: flex;
         margin: 0;
         font-size: 18px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stars-and-description {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
     }
 
     .stars {
         color: #f5b301;
     }
 
+    .description-stars {
+        color: #000000;
+        font-size: 14px;
+    }
+
     .review-content {
-        margin-top: 10px;
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .review-images {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 48%;
+        height: auto;
+        border-radius: 5px;
     }
 
     .review-images img {
-        max-width: 100%;
+        max-width: 100px;
         height: auto;
         border-radius: 5px;
-        margin-top: 1em;
+        cursor: pointer;
+    }
+
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+        margin: auto;
         display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
     }
 
     .sugestoes-cafeterias {
@@ -290,6 +363,7 @@
         padding-left: 13px;
         padding-bottom: 100px;
     }
+
     .sugestao-card {
         width: 300px;
         border: 1px solid #ddd;
@@ -332,7 +406,6 @@
     .sugestao-info a:hover {
         text-decoration: underline;
     }
-
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -347,30 +420,34 @@
     <div class="right-content2">
         <div class="btn-group">
             {% if user.is_authenticated %}
-                {% if cafe %}
-                    {% if favorito %}
-                        <button class="btn">
-                            <a href="{% url 'favoritar' cafe.id %}" style="display: flex; align-items: center; text-decoration: none; color: black;">
-                                <img style="height: 20px; margin-right: 5px;" src="{% static '../static/images/desfavoritar.png' %}">
-                                Desfavoritar
-                            </a>
-                        </button>
-                    {% else %}
-                        <button class="btn">
-                            <a href="{% url 'favoritar' cafe.id %}" style="display: flex; align-items: center; text-decoration: none; color: black;">
-                                <img style="height: 20px; margin-right: 5px;" src="{% static '../static/images/favoritar.png' %}">
-                                Favoritar
-                            </a>
-                        </button>
-                    {% endif %}
-                {% endif %}
+            {% if cafe %}
+            {% if favorito %}
+            <button class="btn">
+                <a href="{% url 'favoritar' cafe.id %}"
+                    style="display: flex; align-items: center; text-decoration: none; color: black;">
+                    <img style="height: 20px; margin-right: 5px;"
+                        src="{% static '../static/images/desfavoritar.png' %}">
+                    Desfavoritar
+                </a>
+            </button>
             {% else %}
-                <button class="btn">
-                    <a href="{% url 'login' %}" style="display: flex; align-items: center; text-decoration: none; color: black;">
-                        <img style="height: 20px; margin-right: 5px;" src="{% static '../static/images/favoritar.png' %}">
-                        Favoritar
-                    </a>
-                </button>
+            <button class="btn">
+                <a href="{% url 'favoritar' cafe.id %}"
+                    style="display: flex; align-items: center; text-decoration: none; color: black;">
+                    <img style="height: 20px; margin-right: 5px;" src="{% static '../static/images/favoritar.png' %}">
+                    Favoritar
+                </a>
+            </button>
+            {% endif %}
+            {% endif %}
+            {% else %}
+            <button class="btn">
+                <a href="{% url 'login' %}"
+                    style="display: flex; align-items: center; text-decoration: none; color: black;">
+                    <img style="height: 20px; margin-right: 5px;" src="{% static '../static/images/favoritar.png' %}">
+                    Favoritar
+                </a>
+            </button>
             {% endif %}
         </div>
     </div>
@@ -427,8 +504,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th><p>Horário de Funcionamento:<br>
-                            <img class="relogioimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR4nK3Sy00DQQwG4O/MtgWc9rQFcEj2nAooAiSoAHJJlgZ41ENyoQGesuSg0UAyQsKS5fGMf3t+2/yzdBixxBNu0+9awFNs8YJHrNOGv8HJIeArJgyp58V5yvcfCbqsGAF96gyfaXd3E55rCmN+bWiAh4ybl+Blcusb4L5o4rc8YFUFneEDV9X9CvetyqEXeMf1ocrjL5x3eok3LArOs7rbm6rbpS6qbh/V44r5lXMuweHf5fvxvkWJBJE5vhbcYsPChh/3e4ElhZjjTTYxbHBs7vaf5AsKIUk6VJ+ddwAAAABJRU5ErkJggg==" width="15" height="15">{{ detalhes_cafe.horas_funcionamento }}</p>
+                        <th>
+                            <p>Horário de Funcionamento:<br>
+                                <img class="relogioimg"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR4nK3Sy00DQQwG4O/MtgWc9rQFcEj2nAooAiSoAHJJlgZ41ENyoQGesuSg0UAyQsKS5fGMf3t+2/yzdBixxBNu0+9awFNs8YJHrNOGv8HJIeArJgyp58V5yvcfCbqsGAF96gyfaXd3E55rCmN+bWiAh4ybl+Blcusb4L5o4rc8YFUFneEDV9X9CvetyqEXeMf1ocrjL5x3eok3LArOs7rbm6rbpS6qbh/V44r5lXMuweHf5fvxvkWJBJE5vhbcYsPChh/3e4ElhZjjTTYxbHBs7vaf5AsKIUk6VJ+ddwAAAABJRU5ErkJggg=="
+                                    width="15" height="15">{{ detalhes_cafe.horas_funcionamento }}
+                            </p>
                         </th>
                     </tr>
                 </thead>
@@ -436,12 +517,14 @@
                     <tr>
                         <td>
                             {% if user.is_authenticated %}
-                                {% if cafe %}
-                                    <a href="{% url 'criar_reserva' cafe.id %}" class="rounded-button" style="color: white; text-decoration: none;">Quero reservar!</a>
-                                
-                                {% endif %}
+                            {% if cafe %}
+                            <a href="{% url 'criar_reserva' cafe.id %}" class="rounded-button"
+                                style="color: white; text-decoration: none;">Quero reservar!</a>
+
+                            {% endif %}
                             {% else %}
-                                <a href="{% url 'login' %}" class="rounded-button" style="color: white; text-decoration: none;">Quero reservar!</a>
+                            <a href="{% url 'login' %}" class="rounded-button"
+                                style="color: white; text-decoration: none;">Quero reservar!</a>
                             {% endif %}
                         </td>
                     </tr>
@@ -451,28 +534,42 @@
     </div>
 </div>
 
-
-
-
-<p class="text_avaliacao">Avaliações</p>
+<h1>Avaliações</h1>
 <div class="container2">
     {% if cafe.avaliacao_set.all %}
     {% for avaliacao in cafe.avaliacao_set.all %}
     <div class="review-card">
-        <div class="review-header">
-            <h3>{{ avaliacao.cliente.nome_completo }}</h3>
-            <div class="stars">
-                {% for _ in "1"|slice:":5" %}
-                <i class="fa fa-star{% if forloop.counter > avaliacao.avaliacao %}-o{% endif %}"></i>
-                {% endfor %}
+        <div class="review-content-wrapper">
+            <div class="review-header">
+                <h4>{{ avaliacao.cliente.nome_completo }}</h4>
             </div>
-        </div>
-        <div class="review-content">
-            <p>{{ avaliacao.comentario }}</p>
+            <div class="stars-and-description">
+                <div class="stars">
+                    {% for i in range_5 %}
+                    <i class="fa fa-star{% if i > avaliacao.avaliacao %}-o{% endif %}"></i>
+                    {% endfor %}
+                </div>
+                <div class="description-stars">
+                    {% if avaliacao.avaliacao == 1 %}
+                    Ruim
+                    {% elif avaliacao.avaliacao == 2 %}
+                    Razoável
+                    {% elif avaliacao.avaliacao == 3 %}
+                    Bom
+                    {% elif avaliacao.avaliacao == 4 %}
+                    Muito bom
+                    {% elif avaliacao.avaliacao == 5 %}
+                    Excelente
+                    {% endif %}
+                </div>
+            </div>
+            <div class="review-content">
+                <p>{{ avaliacao.comentario }}</p>
+            </div>
         </div>
         <div class="review-images">
             {% if avaliacao.foto_avaliacao %}
-            <img src="{{ avaliacao.foto_avaliacao.url }}" alt="Avaliação Foto" class="avaliacao-img">
+            <img src="{{ avaliacao.foto_avaliacao.url }}" alt="Avaliação Foto">
             {% endif %}
         </div>
     </div>
@@ -484,11 +581,13 @@
 
 <div class="button-container">
     {% if user.is_authenticated %}
-        {% if cafe %}
-            <a href="{% url 'avaliar_cafe' cafe.id %}" class="rounded-button2" style="color: white; text-decoration: none;">Fazer uma avaliação</a>
-        {% endif %}
+    {% if cafe %}
+    <a href="{% url 'avaliar_cafe' cafe.id %}" class="rounded-button2"
+        style="color: white; text-decoration: none;">Fazer uma avaliação</a>
+    {% endif %}
     {% else %}
-        <a href="{% url 'login' %}" class="rounded-button2" style="color: white; text-decoration: none;">Fazer uma avaliação</a>
+    <a href="{% url 'login' %}" class="rounded-button2" style="color: white; text-decoration: none;">Fazer uma
+        avaliação</a>
     {% endif %}
 </div>
 
@@ -514,5 +613,33 @@
     {% endfor %}
 </div>
 
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var modalImg = document.getElementById("img01");
+    var images = document.querySelectorAll('.review-images img');
+    images.forEach(img => {
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    });
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
 
 {% endblock %}
