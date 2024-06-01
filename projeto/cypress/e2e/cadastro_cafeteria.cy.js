@@ -1,5 +1,5 @@
 describe('test suit cadastrar cafeteria', () => {
-    it('cenario1', () => {
+    it('cenario1', () => { // Vou me cadastrar na plataforma como “Samantha Lins”, email “samlins12@gmail.com”, senha “sam123”, nome de usuário “samantha_lins”, site da cafeteria “https://www.cantinhodoamor.com” e marcarei a opção propríetário. Vou cadastrar minha cafeteria “Cantinho do Amor”,  nome da responsável com “Samantha Lins”, vou preencher a descrição com “Este é um ambiente muito legal no Recife Antigo.” , o endereço com “Rua da Felicidade, número 808, Boa Viagem”, o email com “teste@teste.com”, o número de whatsapp com “5581998613003”, o horário de funcionamento de “12:00 - 23:00”, o link para redes sociais com “https://www.instagram.com/cantinhodoamor”, CNPJ com “77224361000146”, e não adicionarei um arquivo png da foto do ambiente e o sistema deve autorizar o cadastro da cafeteria Cantinho do Amor.
         cy.visit('/')
         cy.get('.dropdown > button').trigger('mouseover');
 
@@ -75,7 +75,7 @@ describe('test suit cadastrar cafeteria', () => {
         cy.wait(2000);
     })
 
-    it('cenario2', () => {
+    it('cenario2', () => { // Vou me cadastrar na plataforma como “Rosália Brito”, email “rosaliabrito34@gmail.com”, usuário “rosaliab” e senha ”rosalia123”. Vou cadastrar minha cafeteria “Comida de Vó”,  com meu nome como responsável “Rosália Brito”, vou preencher a descrição como “Ambiente acolhedor e descontraído.”, o endereço com “Rua das Ladeiras, número 500, Boa Vista”, o email com “teste2@teste.com”, site da cafeteria “https://www.comidadevo.com”, o número de whatsapp com “5581981710026”, o horário de funcionamento de “8:00 - 22:00”, o link para redes sociais com “https://www.instagram.com/comidadevo”, CNPJ com “77224361000146”,  e não adicionarei um arquivo png da foto do ambiente, e não funcionará, pois o sistema deve identificar que o CNPJ já está cadastrado.
         
         cy.visit('/')
         cy.get('.dropdown > button').trigger('mouseover');
@@ -212,7 +212,8 @@ describe('test suit cadastrar cafeteria', () => {
 
     })
 
-    it('cenario3', () => {
+    it('cenario3', () => { // Vou me cadastrar na plataforma como “Júnior Gonçalves”, email “juniorgoncalves@gmail.com”, usuário “juniorgoncalves” e senha “junior1234”. Vou cadastrar minha cafeteria “Love Coffee”,  com meu nome como responsável “Júnior Golçalves”, vou preencher a descrição como “Ambiente com comidas e cafés deliciosos. Também é coworking e petfriendly.”, o endereço com “Rua das Marias, número 230, Boa vista”, o email com “teste4@teste.com”, o número de whatsapp com “5581981710026” o horário de funcionamento de “8:00 - 22:00”, o link para redes sociais com “https://www.instagram.com/lovecoffee”, CNPJ com “12333432123489”, site da cafeteria “https://www.lovecoffee.com” e adicionarei não um arquivo png da foto do ambiente, e não funcionará, pois o sistema deve identificar que o whatsapp já está cadastrado.
+
         
         cy.visit('/')
         cy.get('.dropdown > button').trigger('mouseover');
@@ -354,7 +355,7 @@ describe('test suit cadastrar cafeteria', () => {
 
     })
 
-    it('cenario4', () => {
+    it('cenario4', () => { // Vou me cadastrar na plataforma como  “Paolla Oliveira”, email “paollaoliv@gmail.com”, senha “paolla123”, nome de usuário “paollaoliveira” e marcarei a opção propríetário. Vou cadastrar minha cafeteria “Versado”,  com meu nome como responsável “Paolla Oliveira”, deixarei a descrição “Ambiente confortável para um bom café e bate papo com amigos!”, o endereço com “Rua Padre Landim, número 302, Madalena”, o email com “teste3@teste.com”, o número de whatsapp com “81940028922”, o horário de funcionamento de “9:00 - 18:00”, o link para redes sociais com “https://www.instagram.com/versadocafe”, CNPJ com “5576634441000107”, site da cafeteria “https://www.versadocafe.com” e não adicionarei um arquivo png da foto do ambiente, e o sistema deve identificar que o campo de whatsapp deve conter 13 dígitos.
         
         cy.visit('/')
         cy.get('.dropdown > button').trigger('mouseover');
@@ -428,7 +429,7 @@ describe('test suit cadastrar cafeteria', () => {
         cy.wait(2000);
     })
 
-    it('cenario5', () => {
+    it('cenario5', () => { // Vou me cadastrar na plataforma como “Lucas Silva”, email “lucassilva@gmail.com”, senha “lucas123”, nome de usuário “lucas_silva” e marcarei a opção proprietário. Vou cadastrar minha cafeteria “Café do Lucas”, com meu nome como responsável “Lucas Silva”, deixarei a descrição “Ambiente confortável para um bom café e bate papo com amigos!”, o endereço com “Rua das Flores, número 100, Centro”, email com “teste5@teste.com”, o número de whatsapp com “5581940028933”, o horário de funcionamento de “10:00 - 19:00”, o link para redes sociais com “https://www.instagram.com/cafedolucas”, CNPJ com “12.345.678/9012-34”, site da cafeteria “https://www.cafedolucas.com” e não adicionarei um arquivo png da foto do ambiente, e o sistema deve identificar que o campo de CNPJ deve contar apenas 14 dígitos.
         
         cy.visit('/')
         cy.get('.dropdown > button').trigger('mouseover');
