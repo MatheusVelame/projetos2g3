@@ -515,7 +515,7 @@ def cafeterias_empresarios(request):
 
 @login_required
 def home_empresario(request):
-    return render(request, 'home_empresario.html')
+    return render(request, 'cafeterias_empresarios.html')
 
 def acesso_negado_cadastrar_cafeteria(request):
     return render(request, 'acesso_negado_cadastrar_cafeteria.html')
