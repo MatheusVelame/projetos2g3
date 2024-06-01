@@ -1,20 +1,38 @@
 describe('test suit cadastrar cafeteria', () => {
     it('cenario1', () => { // Vou me cadastrar na plataforma como “Samantha Lins”, email “samlins12@gmail.com”, senha “sam123”, nome de usuário “samantha_lins”, site da cafeteria “https://www.cantinhodoamor.com” e marcarei a opção propríetário. Vou cadastrar minha cafeteria “Cantinho do Amor”,  nome da responsável com “Samantha Lins”, vou preencher a descrição com “Este é um ambiente muito legal no Recife Antigo.” , o endereço com “Rua da Felicidade, número 808, Boa Viagem”, o email com “teste@teste.com”, o número de whatsapp com “5581998613003”, o horário de funcionamento de “12:00 - 23:00”, o link para redes sociais com “https://www.instagram.com/cantinhodoamor”, CNPJ com “77224361000146”, e não adicionarei um arquivo png da foto do ambiente e o sistema deve autorizar o cadastro da cafeteria Cantinho do Amor.
-        cy.visit('/')
-        cy.get('.dropdown > button').trigger('mouseover');
 
-    // Passo 3: Esperar que o dropdown esteja visível
+        cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-group > :nth-child(2) > .addlink').click();
+        cy.get('#id_name').type('Empresários');
+        cy.get('.default').click();
+
+        cy.visit('/')
+        
         cy.get('.dropdown > button').then(($button) => {
-        // Passar o mouse sobre o botão dropdown
             cy.wrap($button).trigger('mouseover');
     
-            // Forçar a visibilidade do menu dropdown
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
     
-            // Esperar que o dropdown esteja visível
             cy.get('.dropdown-menu').should('be.visible');
     
-            // Passo 3: Selecionar o link de login no dropdown
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
             const loginUrl = $link.attr('href');
             cy.visit(loginUrl);
