@@ -478,35 +478,18 @@ describe('test Favoritar Cafeteria', () => {
         
 
         cy.visit('/admin');
-        cy.wait(2000);
-        cy.get('#id_username').type('admin');
+        cy.get('#id_username').type('admin')
         cy.get('#id_password').type('123');
-        cy.wait(2000);
         cy.get('.submit-row > input').click();
-        cy.wait(2000);
-        cy.get('.model-reservacafe > th > a').click();
-        cy.wait(2000);
-        cy.get('.field-__str__ > a').click();
-        cy.wait(2000);
-        cy.get('.deletelink').click();
-        cy.wait(2000);
-        cy.get('div > [type="submit"]').click()
-        cy.wait(2000);
         cy.get('.model-user > th > a').click();
-        cy.wait(2000);
         cy.get(':nth-child(1) > .field-username > a').click();
-        cy.wait(2000);
         cy.get('.deletelink').click();
-        cy.wait(2000);
         cy.get('div > [type="submit"]').click();
-        cy.wait(2000);
         cy.get(':nth-child(2) > .field-username > a').click();
-        cy.wait(2000);
         cy.get('.deletelink').click();
-        cy.wait(2000);
         cy.get('div > [type="submit"]').click();
-        cy.wait(2000);
-        cy.get('#logout-form > button').click();
+        cy.visit('/');
+
         cy.visit('/');
 
     });
@@ -638,7 +621,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.visit('/');
     });
 
-    it('cenario_5', () => {
+    it('cenario_6', () => {
         cy.visit('/');
         cy.get('.dropdown > button').trigger('mouseover');
         cy.get('.dropdown > button').then(($button) => {
