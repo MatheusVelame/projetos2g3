@@ -164,14 +164,14 @@ describe('test suit avaliar cafe', () => {
     // Avaliação não está na Cafeteria da Roça
     cy.visit('/')
     cy.wait(2000);
-    cy.get(':nth-child(10) > [data-layer="Content"]').click();
+    cy.get(':nth-child(2) > .card-body > .btn-group > .btn').click();
     cy.contains('Não gostei.').should('not.exist');
     cy.wait(2000);
 
     // Vendo a avaliação nos detalhes da Cafeteria da Esquina
     cy.visit('/')
     cy.wait(2000);
-    cy.get(':nth-child(9) > [data-layer="Content"]').click();
+    cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
     cy.contains('Não gostei.').should('be.visible');
     cy.wait(2000);
 
