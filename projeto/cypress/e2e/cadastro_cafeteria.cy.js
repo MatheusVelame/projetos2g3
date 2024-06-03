@@ -112,8 +112,18 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/')
+
+        cy.visit('/');
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
+
         cy.get('.dropdown > button').trigger('mouseover');
 
         cy.get('.dropdown > button').then(($button) => {
@@ -266,8 +276,19 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
+
+        cy.visit('/');
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
         
-        cy.visit('/')
+
         cy.get('.dropdown > button').trigger('mouseover');
 
   
@@ -427,8 +448,18 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/')
+
+        cy.visit('/');
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
+
         cy.get('.dropdown > button').trigger('mouseover');
 
 
@@ -519,8 +550,19 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
+
+        
         
         cy.visit('/')
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
         cy.get('.dropdown > button').trigger('mouseover');
 
 
