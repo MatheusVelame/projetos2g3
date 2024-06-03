@@ -1,6 +1,17 @@
 describe('test suit visualizar dados perfil', () => {
     it('cenario1', () => {
-      cy.visit('/');
+      cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-group > :nth-child(2) > .addlink').click();
+        cy.get('#id_name').type('Empresários');
+        cy.get('.default').click();
+        
+        cy.visit('/');
       cy.get('.dropdown > button').trigger('mouseover');
       cy.get('.dropdown > button').then(($button) => {
         cy.wrap($button).trigger('mouseover');
@@ -62,7 +73,18 @@ describe('test suit visualizar dados perfil', () => {
     });
   
     it('cenario2', () => {
-      cy.visit('/');
+      cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-group > :nth-child(2) > .addlink').click();
+        cy.get('#id_name').type('Empresários');
+        cy.get('.default').click();
+        
+        cy.visit('/');
       cy.get('.dropdown > button').trigger('mouseover');
       cy.get('.dropdown > button').then(($button) => {
         cy.wrap($button).trigger('mouseover');

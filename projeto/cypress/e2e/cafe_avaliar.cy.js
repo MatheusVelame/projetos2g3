@@ -1,5 +1,16 @@
 describe('test suit avaliar cafe', () => {
   it('cenario3', () => { // Vou deixar uma avaliação, logado com o e-mail “mauriciodesouza@gmail.com” e senha “mauricio123”,  na Cafeteria da Esquina e ela não aparecerá na Cafeteria Panela da Roça, e não conseguirei.
+    cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-group > :nth-child(2) > .addlink').click();
+        cy.get('#id_name').type('Empresários');
+        cy.get('.default').click();
+    
     cy.visit('/')
     cy.get('.dropdown > button').then(($button) => {
       cy.wrap($button).trigger('mouseover');
@@ -366,6 +377,17 @@ describe('test suit avaliar cafe', () => {
   })
 
   it('cenario2', () => { // Vou tentar deixar uma avaliação para a cafeteria “Amor de Vó” sem estar cadastrado no sistema e não conseguirei;
+    cy.visit('/admin');
+        cy.wait(2000);
+        cy.get('#id_username').type('admin');
+        cy.get('#id_password').type('123');
+        cy.wait(2000);
+        cy.get('.submit-row > input').click();
+        cy.wait(2000);
+        cy.get('.model-group > :nth-child(2) > .addlink').click();
+        cy.get('#id_name').type('Empresários');
+        cy.get('.default').click();
+    
     cy.visit('/');
     cy.get('.dropdown > button').then(($button) => {
       cy.wrap($button).trigger('mouseover');
