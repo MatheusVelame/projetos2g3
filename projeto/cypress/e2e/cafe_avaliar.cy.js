@@ -11,20 +11,33 @@ describe('test suit avaliar cafe', () => {
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
     
-    cy.visit('/')
-    cy.get('.dropdown > button').then(($button) => {
-      cy.wrap($button).trigger('mouseover');
+        cy.visit('/')
+        
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu button[type="submit"]').click(); 
+        });
 
-      cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+        cy.get('.dropdown > button').trigger('mouseover');
 
-      cy.get('.dropdown-menu').should('be.visible');
-
-      cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-        const loginUrl = $link.attr('href');
-        cy.visit(loginUrl);
-      });
-    });
-
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+    
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+    
+            cy.get('.dropdown-menu').should('be.visible');
+    
+            cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
+            const loginUrl = $link.attr('href');
+            cy.visit(loginUrl);
+            });
+        });
+            
     // Primeiro cria empresário da primeira cafeteria
     cy.get('.btn').click()
     cy.get('#name').type('Felipe Souza')
@@ -156,8 +169,17 @@ describe('test suit avaliar cafe', () => {
 
     cy.get('.botao-pag-inicial').click();
     cy.wait(2000);
-    cy.get('.btn-group > .btn').click();
-    cy.wait(2000);
+
+    cy.get('.card-title').should('contain', 'Cafeteria da Esquina');
+
+    // Clicar no botão "Ver mais" da cafeteria "Cafeteria da Esquina"
+    cy.get('a[href*="/detalhes/"]').contains('Ver mais').click();
+    cy.wait(3000);
+
+    // Rolar até o final da página
+    cy.scrollTo('bottom');
+    cy.wait(3000);
+
     cy.get('.rounded-button2').click();
     cy.wait(2000)
 
@@ -172,17 +194,35 @@ describe('test suit avaliar cafe', () => {
       expect(text).to.include('Avaliação enviada com sucesso!');
     });
 
-    // Avaliação não está na Cafeteria da Roça
+    // Avaliação não está na Cafeteria Panela da Roça
     cy.visit('/')
     cy.wait(2000);
-    cy.get(':nth-child(2) > .card-body > .btn-group > .btn').click();
+    cy.get('.card-title').should('contain', 'Cafeteria Panela da Roca');
+
+    // Clicar no botão "Ver mais" da cafeteria "Cafeteria Panela da Roca"
+    cy.get('a[href*="/detalhes/"]').contains('Ver mais').click();
+    cy.wait(3000);
+
+    // Rolar até o final da página
+    cy.scrollTo('bottom');
+    cy.wait(3000);
+
     cy.contains('Não gostei.').should('not.exist');
     cy.wait(2000);
 
     // Vendo a avaliação nos detalhes da Cafeteria da Esquina
     cy.visit('/')
     cy.wait(2000);
-    cy.get(':nth-child(1) > .card-body > .btn-group > .btn').click();
+    cy.get('.card-title').should('contain', 'Cafeteria da Esquina');
+
+    // Clicar no botão "Ver mais" da cafeteria "Cafeteria da Esquina"
+    cy.get('a[href*="/detalhes/"]').contains('Ver mais').click();
+    cy.wait(3000);
+
+    // Rolar até o final da página
+    cy.scrollTo('bottom');
+    cy.wait(3000);
+
     cy.contains('Não gostei.').should('be.visible');
     cy.wait(2000);
 
