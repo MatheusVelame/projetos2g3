@@ -17,6 +17,7 @@ describe('test Detalhes', () => {
             cy.wrap($button).trigger('mouseover');
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.button-sair').click();
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
             const loginUrl = $link.attr('href');
             cy.wait(2000);
@@ -123,6 +124,7 @@ describe('test Detalhes', () => {
             cy.wrap($button).trigger('mouseover');
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.button-sair').click();
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
             const loginUrl = $link.attr('href');
             cy.wait(2000);
