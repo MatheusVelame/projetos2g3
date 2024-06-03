@@ -90,6 +90,13 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.deletelink').click();
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
         cy.wait(2000);
     })
 
@@ -237,6 +244,13 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.deletelink').click();
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
         cy.wait(2000);
 
     })
@@ -389,7 +403,15 @@ describe('test suit cadastrar cafeteria', () => {
             cy.get('.deletelink').click();
             cy.wait(2000);
             cy.get('div > [type="submit"]').click();
+            cy.visit('/admin/auth/group/');
             cy.wait(2000);
+            cy.get('input[name="_selected_action"]').check();
+            cy.get('select[name="action"]').select('delete_selected');
+            cy.get('button[name="index"]').click();
+            cy.wait(2000);
+            cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+            cy.wait(2000);
+
 
     })
 
@@ -475,6 +497,13 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.deletelink').click();
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
         cy.wait(2000);
     })
 
@@ -559,6 +588,13 @@ describe('test suit cadastrar cafeteria', () => {
         cy.get('.deletelink').click();
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
         cy.wait(2000);
     })
 })
