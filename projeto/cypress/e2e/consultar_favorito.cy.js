@@ -17,11 +17,12 @@ describe('test Consultar Favoritos', () => {
             cy.wrap($button).trigger('mouseover');
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.button-sair').click();
             cy.get('.dropdown-menu a[href="/favoritos/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
-            });
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
+                });
         });
         cy.wait(1000);
         cy.get('h1').invoke('text').should('have.string', "Entrar no Aponte Cafés");
@@ -46,6 +47,7 @@ describe('test Consultar Favoritos', () => {
             cy.wrap($button).trigger('mouseover');
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.button-sair').click();
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
             const loginUrl = $link.attr('href');
             cy.wait(2000);
@@ -118,6 +120,7 @@ describe('test Consultar Favoritos', () => {
             cy.wrap($button).trigger('mouseover');
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
+            cy.get('.button-sair').click();
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
             const loginUrl = $link.attr('href');
             cy.wait(2000);

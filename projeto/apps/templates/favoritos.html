@@ -108,7 +108,8 @@
     {% if user.is_authenticated %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <h1>Favoritos</h1>
-                    <div class="cards">                
+                    <div class="cards">
+            {% if favoritos %}                
                 {% for favorito in favoritos %}
                 <div class="card shadow-sm">
                     {% if favorito.cafe.foto_ambiente %}
@@ -140,6 +141,9 @@
                     </div>
                 </div>
                 {% endfor %}
+            {% else %}
+                <p>Você ainda não favoritou nenhuma cafeteria</p>
+            {% endif %}
                     </div>
                 </div>
 
