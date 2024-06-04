@@ -1,4 +1,4 @@
-describe('test Favoritar Cafeteria', () => {
+describe('Test Reservar uma  Cafeteria', () => {
     it('cenario_1', () => {
         cy.visit('/admin');
         cy.wait(2000);
