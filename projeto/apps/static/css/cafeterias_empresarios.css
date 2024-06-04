@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap');
+
+
+:root {
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal: #1D1D1B;
+    --branco-navbar: #FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes: #A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte-principal), sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+.hero {
+    position: relative;
+    background-image: url('/static/images/img-home-empresario.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: var(--branco-principal);
+    text-align: center;
+    min-height: 400px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/glass-preto.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.hero p {
+    font-size: 1.5em;
+    color: gray;
+}
+
+.cafeterias {
+    padding: 20px;
+}
+
+.cafeterias h2 {
+    margin-left: 6em;
+    font-size: 27px;
+    margin-top: 25px;
+    font-weight: 800;
+}
+
+.cafe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.cafe-item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.cafe-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.cafe-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+}
+
+.cafe-image img {
+    width: 150%;
+    height: auto;
+    border-radius: 10px;
+    max-height: 400px;
+}
+
+.cafe-details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cafe-item:nth-child(odd) .cafe-details {
+    text-align: right;
+    padding-right: 20px;  /* Espaçamento extra entre imagem e texto para itens ímpares */
+}
+
+.cafe-details h3 {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.cafe-details p {
+    font-size: 1em;
+    color: var(--preto-principal);
+    font-weight: 100;
+}
+
+
+strong {
+    font-weight: 900;
+}
+
+.editar-cafeteria{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #BE8670;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #A75938; /* Cor do texto */
+    text-decoration: none;/* Cor da borda */
+    border-radius: 25px; /* Borda arredondada */
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    width: auto;
+    min-width: 150px; /* Define a largura mínima */
+    max-width: 200px;
+    margin-top: 10px;
+
+}
+
+.cafe-item:nth-child(odd) .editar-cafeteria {
+    margin-left: auto;
+}
+
+/* Botões alinhados à esquerda */
+.cafe-item:nth-child(even) .editar-cafeteria {
+    margin-right: auto;
+}
+
+.editar-cafeteria:hover {
+    background-color: var(--cor-botoes); 
+    color: #FFFFFF;
+}
+
+a {
+    color: var(--preto-principal);
+}

@@ -1,0 +1,25 @@
+{% extends 'global/base_com_footer.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/perfil_usuario.css' %}">
+<div class="container">
+    <div class="perfil-header">
+        {% if user_cliente.profile_image %}
+            <img class="icone-perfil" src="{{ user_cliente.profile_image.url }}" alt="Foto do perfil">
+        {% else %}
+            <img class="icone-perfil" src="{% static 'images/icone_perfil_user.png' %}" alt="Ícone do perfil">
+        {% endif %}
+        <div class="perfil-info">
+            <div class="nome-completo">
+                {{ user_cliente.nome_completo }}
+            </div>
+            <p class="tipo-usuario"><strong>Tipo de Usuário:</strong> {% if user_cliente.is_business %} Empresário {% else %}Cliente {% endif %}</p>
+            <p class="username"><strong>Username:</strong> {{ user_cliente.user.username }}</p>
+            <p class="email"><strong>E-mail:</strong> {{ user_cliente.email }}</p>
+            <a class="editar-perfil" href="{% url 'editar_perfil' %}">Editar Perfil</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

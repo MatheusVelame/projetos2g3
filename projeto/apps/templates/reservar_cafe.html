@@ -1,0 +1,399 @@
+{% extends "detalhes.html" %}
+{% block content %}
+{% load static %}
+<style>
+    .info {
+    background-color: #fff;
+    padding: 20px;
+    position: fixed;
+    top: 57%;
+    left: 60%;
+    transform: translate(-20%, -50%);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+
+}
+.info label{
+    color: #000;
+}
+.info h2 {
+    color: #000;
+    margin-top: 0;
+}
+
+.info p{
+    color: #000;
+}
+
+.info a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+#carouselExampleIndicators .carousel-item img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+.flex-container {
+display: flex;
+justify-content: space-between;
+align-items: center; 
+}
+
+.left-content {
+display: flex;
+gap: 10px; 
+
+}
+
+.right-content {
+text-align: right; 
+padding-left: 20px;
+}
+
+
+.flex-container2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    
+}
+
+.left-content2 {
+    display: flex;
+    padding-left: 50px;
+}
+
+.right-content2 {
+    text-align: right;
+    padding-right: 50px;
+}
+
+    h1 {
+        font-size: 30px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 30px;
+        padding-left: 25px;
+        padding-top: 5px;
+        color: #999999;
+    }
+
+    h3 {
+
+        font-size: 25px;
+    }
+
+    .text_descricao {
+        font-size: 28px;
+        padding-bottom: 10px;
+    }
+
+    .text_avaliacao {
+        font-size: 28px;
+        padding-left: 42px;
+        padding-bottom: 30px;
+        padding-top: 80px;
+    }
+
+    .img-bordered {
+    border-radius: 40px;
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.bd-placeholder-img {
+    border-radius: 40px;
+}
+
+    .detalhes_descricao {
+        color: #999999;
+        padding-left: 40px;
+        font-size: 15px;
+        max-width: 500px;
+    }
+
+    .rounded-button {
+            background-color: #A75938; 
+            border: none; 
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        .rounded-button:hover {
+            background-color: #FFC43B;
+        }
+
+        .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 80px;
+    margin-bottom: 200px;
+    
+}
+
+.rounded-button2 {
+    justify-self: center;
+    background-color: #A75938; 
+    border: none; 
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 40%;
+    margin-right: 50%;
+    border-radius: 25px;
+}
+
+
+    a {
+        font-size: 18px;
+    }
+
+    .collums {
+        padding: 0 20px;
+    }
+
+    .no-reviews{
+        color: #999999;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .card {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding-top: 20px;
+        padding-left: 50px;
+    }
+
+    .card2 {
+        padding-left: 50px;
+    }
+
+    .card3 {
+        padding-left: 50px;
+        padding-top: 10px;
+    }
+
+    .card4 {
+        padding-left: 20px;
+    }
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+    }
+
+    table{
+            border-collapse: separate;
+            border: 1px solid #ddd;
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            padding: 20px;
+            margin-right: 50px;
+            border-radius: 30px;
+            box-shadow: 0 4px 4px #C2C2C2; 
+        }
+
+    th, td {
+        padding: 10px; 
+    }
+
+
+    #carouselExampleIndicators,
+    .collums {
+        font-family: Helvetica, sans-serif;
+    }
+
+    .btn {
+        background-color: #f4f4f4;
+        border: 0px;
+    }
+
+    .btn :hover {
+        border: 0px;
+    }
+
+    .container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1em;
+    padding-left: 60px;
+}
+
+.relogioimg {
+        padding-right: 10px;
+    }
+
+    .review-card {
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    margin-bottom: 20px;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .review-header img {
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .review-header h4 {
+        display: flex;
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .stars {
+        color: #f5b301;
+    }
+
+    .review-content {
+    margin-top: 10px;
+}
+
+.review-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 1em;
+    display: block; /* Garante que a imagem seja exibida como um bloco */
+}
+.input-group {
+    width: 100%;
+    display: flex;
+    padding-bottom: 10px;
+    align-items: center;
+    margin: 1 auto;
+}
+.search-input {
+    font-weight: lighter;
+    border-radius: 10px;
+    border-color: grey;
+    border: 2;
+    padding: 10px;
+    flex-grow: 1;
+}
+</style>
+<link rel="stylesheet" href="{% static '../static/css/style_reserva.css' %}">
+<section class="section">
+    <div class="card">
+        <div class="carousel-inner">
+            {% if cafe.foto_ambiente %}
+            <div class="carousel-item active">
+                <img src="{{ cafe.foto_ambiente.url }}" class="d-block w-100 img-bordered" alt="{{ cafe.nome }}" style="width: 450px;">
+            </div>
+            {% else %}
+            <div class="carousel-item active">
+                <svg class="bd-placeholder-img d-block w-100 img-bordered" width="450" height="400"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="500" height="400" fill="#55595c" rx="40" ry="40"></rect>
+                    <text x="35%" y="50%" fill="#eceeef" dy=".3em">{{ cafe.nome_cafeteria }}</text>
+                </svg>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card3">
+        <div class="collums">
+            <p class="text_descricao">Sobre o local</p>
+            <p class="detalhes_descricao">{{ cafe.descricao }}</p>
+        </div>
+    </div>
+    <div class="info">
+        <h1>Fazer reserva em {{ cafe.nome_cafeteria }}</h1>
+        {% if error_message %}
+            <div class="alert alert-danger">
+                {{ error_message }}
+            </div>
+        {% endif %}
+        <form class="reserva" method="post">
+            {% csrf_token %}
+            <div class="box-reserva">
+                <label for="nome">Cliente</label><br>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control search-input" placeholder="Nome Completo" name="nome_cliente" id="nome_cliente">
+                </div>
+            </div>
+            <div class="box-reserva">
+                <label for="data_reserva">Data</label><br>
+                <div class="input-group mb-3">
+                <input type="date" class="form-control search-input" placeholder="dd/mm/aaaa" name="data_reserva" id="data_reserva">
+                </div>
+            </div>
+            <div class="box-reserva">
+                <label for="horario_reserva">Horário</label><br>
+                <div class="input-group mb-3">
+                <input type="time" class="form-control search-input" placeholder="hh:mm" name="horario_reserva" id="horario_reserva">
+                </div>
+            </div>
+            <div class="box-reserva">
+                <label for="numero_de_pessoas">Mesa para quantas pessoas?</label><br>
+                <div class="input-group mb-3">
+                <input type="number" class="form-control search-input" placeholder="Número de pessoas" name="numero_de_pessoas" id="numero_de_pessoas">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="observacao" class="form-label">Informações adicionais</label><br>
+                <div class="input-group mb-3">
+                <textarea cols="50" rows="1" class="search-input" id="observacao" name="observacao" placeholder="Qualquer informação que deseje fornecer"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="rounded-button2">Reservar</button>
+        </form>
+    </div>
+</section>
+{% endblock content %}

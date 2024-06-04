@@ -1,0 +1,43 @@
+{% extends 'global/base_empresario_main.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/cafeterias_empresarios.css' %}">
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Apontamos a direção dos melhores cafés</h1>
+            <p>Aqui sua cafeteria cria verdadeiras conexões</p>
+        </div>
+    </section>
+    <section class="cafeterias">
+        <h2>Minhas cafeterias</h2>
+        <div class="cafe-list">
+            {% for cafe in cafeterias %}
+            <div class="cafe-item">
+                <div class="cafe-image">
+                    {% if cafe.foto_ambiente %}
+                    <img class="img-cafe" src="{{ cafe.foto_ambiente.url }}" alt="{{ cafe.nome_cafeteria }}">
+                    {% else %}
+                    <img src="{% static 'images/default-cafe.jpg' %}" alt="Default Image">
+                    {% endif %}
+                </div>
+                <div class="cafe-details">
+                    <h3>{{ cafe.nome_cafeteria }}</h3>
+                    <p><strong>CNPJ:</strong> {{ cafe.cnpj }}</p>
+                    <p><strong>Horário de funcionamento:</strong><br> {{ cafe.horas_funcionamento }}</p>
+                    <p><strong>Nome do responsável:</strong> {{ cafe.responsavel }}</p>
+                    <p><strong>Link de perfil na Instagram:</strong><a href="{{ cafe.link_redesocial }}"> {{ cafe.link_redesocial }}</a></p>
+                    <p><strong>Site da cafeteria:</strong><a href="{{ cafe.site_cafeteria }}"> {{ cafe.site_cafeteria }}</a></p>
+                    <p><strong>Endereço:</strong> {{ cafe.endereco }}</p>
+                    <p><strong>Descrição:</strong><br>{{ cafe.descricao }}</p>
+                    <p><strong>Email:</strong> {{ cafe.email }}</p>
+                    <p><strong>Whatsapp da empresa:</strong> {{ cafe.whatsapp }}</p>
+                    <a class="editar-cafeteria" href="{% url 'editar_cadastro' cafe.id %}">Editar cadastro</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}
