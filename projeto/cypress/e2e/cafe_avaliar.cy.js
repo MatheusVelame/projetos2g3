@@ -1,5 +1,5 @@
 describe('test suit avaliar cafe', () => {
-  
+
   it('cenario1', () => { // Vou tentar deixar uma avaliação para a Cafeteria Testando estando cadastrado e logado no sistema como João Mendes (e-mail “jsm@gmail.com”, senha “jms123456”). Avaliarei a Cafeteria Testando com uma nota de “4 estrelas”, deixarei o comentário “Muito bom, pena que é caro” e definirei o gasto por pessoa como “R$100-120” e funcionará.
     cy.visit('/admin');
     cy.wait(2000);
@@ -158,6 +158,19 @@ describe('test suit avaliar cafe', () => {
     cy.wait(2000);
     cy.get('div > [type="submit"]').click();
     cy.wait(2000);
+
+    // Apagar grupo Empresários
+    cy.visit('/admin/auth/group/');
+    cy.wait(2000);
+    cy.get('input[name="_selected_action"]').check();
+    cy.get('select[name="action"]').select('delete_selected');
+    cy.get('button[name="index"]').click();
+    cy.wait(2000);
+    cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+    cy.wait(2000);
+
+    // Logout do admin
+    cy.get('form#logout-form button[type="submit"]').click();
   })
 
   it('cenario2', () => { // Vou tentar deixar uma avaliação para a cafeteria “Amor de Vó” sem estar cadastrado no sistema e não conseguirei;
@@ -271,6 +284,19 @@ describe('test suit avaliar cafe', () => {
     cy.wait(2000);
     cy.get('div > [type="submit"]').click();
     cy.wait(2000);
+
+    // Apagar grupo Empresários
+    cy.visit('/admin/auth/group/');
+    cy.wait(2000);
+    cy.get('input[name="_selected_action"]').check();
+    cy.get('select[name="action"]').select('delete_selected');
+    cy.get('button[name="index"]').click();
+    cy.wait(2000);
+    cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+    cy.wait(2000);
+
+    // Logout do admin
+    cy.get('form#logout-form button[type="submit"]').click();
   })
 
   it('cenario3', () => { // Vou deixar uma avaliação, logado com o e-mail “mauriciodesouza@gmail.com” e senha “mauricio123”,  na Cafeteria da Esquina e ela não aparecerá na Cafeteria Panela da Roça, e não conseguirei.
@@ -527,6 +553,19 @@ describe('test suit avaliar cafe', () => {
     cy.wait(2000);
     cy.get('div > [type="submit"]').click();
     cy.wait(2000);
+
+    // Apagar grupo Empresários
+    cy.visit('/admin/auth/group/');
+    cy.wait(2000);
+    cy.get('input[name="_selected_action"]').check();
+    cy.get('select[name="action"]').select('delete_selected');
+    cy.get('button[name="index"]').click();
+    cy.wait(2000);
+    cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+    cy.wait(2000);
+
+    // Logout do admin
+    cy.get('form#logout-form button[type="submit"]').click();
 
   });
 
