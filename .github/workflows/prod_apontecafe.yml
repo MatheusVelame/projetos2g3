@@ -54,7 +54,9 @@ jobs:
 
       - name: Run migrations
         run: |
+          cd projeto/
           python manage.py migrate
+          cd ..
 
       - name: Create superuser
         env:
