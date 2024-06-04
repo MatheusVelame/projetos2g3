@@ -1,4 +1,4 @@
-describe('Test Reservar uma  Cafeteria', () => {
+describe('Test Reservar uma Mesa', () => {
     it('cenario_1', () => {
         cy.visit('/admin');
         cy.wait(2000);
@@ -249,8 +249,7 @@ describe('Test Reservar uma  Cafeteria', () => {
         cy.get('#numero_de_pessoas').type('2');
         cy.get('#observacao').type('Quero uma mesa dentro do estabelecimento.')
         cy.wait(3000);
-
-
+        cy.get('.rounded-button2').click()
         cy.get('h5').invoke('text').should('have.string', "Café Aconchego")
         cy.wait(2000);
         cy.visit('/');
