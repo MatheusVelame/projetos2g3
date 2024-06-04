@@ -8,8 +8,8 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
 ## Funcionalidades
 
 - Visualizar uma lista de cafeterias no centro da cidade
-- Buscar cafeterias por nome, tipo de café, classificação etc.
-- Ver detalhes de cada cafeteria, incluindo localização no mapa, horário de funcionamento e avaliações dos usuários
+- Ver detalhes de cada cafeteria, incluindo localização, horário de funcionamento e telefone para contato
+- Favoritar uma cafeteria e ver uma lista de favoritos
 - Adicionar novas cafeterias ao sistema, fornecendo informações básicas como nome, localização e tipo de café
 - Avaliar cafeterias e deixar comentários
 
@@ -19,6 +19,48 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
 - Interface - HTML/CSS/JavaScript - Para a interface do usuário
 - **Banco de dados** - SQLite/PostgreSQL - Para armazenar informações sobre as cafeterias e avaliações dos usuários
 - **Hospedagem** - Azure - O produto final será hospedado na plataforma Azure, garantindo confiabilidade e escalabilidade.
+
+## SR1
+
+***Links relevantes:***
+<ul>
+  <li>
+    <a  href="https://cesar-mvp2.atlassian.net/jira/software/projects/APC/boards/5"
+      >Projeto no Jira</a>
+  </li>
+    <li> 
+    <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0%3A1&mode=design&t=1748pNTyjfC6RMOg-1"
+      >Protótipo de Lo-Fi no Figma - Sketches e Storyboards</a>
+  </li>
+   <li>
+    <a  href=""
+      >Screencast - Figma</a>
+  </li>
+  <li>
+    <a  href=""
+      >Screencast - Azure</a>
+  </li>
+</ul>
+
+***Deployment das histórias produzidas:***
+<ul>
+  <li>
+    <a  href="https://apontecafe.azurewebsites.net/"
+      >Projeto na Azure</a>
+  </li>
+</ul>
+<br/>
+
+### Histórias
+
+- para o SR1, temos 5 histórias bem definidas e duas implementadas. As 5 histórias são:
+  1. Cadastro de Usuários
+  2. Cadastro de Cafeterias
+  3. Visualizar detalhes das informações das cafeterias cadastradas
+  4. Favoritar cafeterias
+  5. Avaliar cafeterias cadastradas
+
+- O cartão, a conversa e a confirmação/validação de cada uma dessas histórias estão descritos em maiores detalhes no [Jira do projeto](https://cesar-mvp2.atlassian.net/jira/software/projects/APC/boards/5).
 
 ## Licença
 

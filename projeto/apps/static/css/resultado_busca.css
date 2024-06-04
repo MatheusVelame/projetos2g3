@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+:root {
+
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal:#1D1D1B;
+    --branco-navbar:#FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes:#A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    margin: 0;
+    color: #333333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #666666;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-outline-secondary {
+    color: #333333;
+    border-color: #333333;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    color: #000;
+}
+
+.text-body-secondary {
+    color: #888888;
+    font-size: 14px;
+}
+.row {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.card {
+    margin: 0 15px 20px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 10px;
+    grid-auto-rows: minmax(auto-fill, 300px);
+    overflow: hidden;
+}
+.foto-cafe {
+    display: flex;
+    width: 100%;
+    height: 225px;
+    overflow: hidden;
+
+    }
+.box img {
+width: 100%;
+height: 100%;
+}
+
+.box1 img {
+object-fit: cover;
+}
+.search-form .input-group {
+    width: 70%;  /* Define a largura do grupo de input para 70% da largura do container pai */
+    display: flex; /* Garante que o input e o ícone/button estejam alinhados horizontalmente */
+    align-items: center;
+    margin: 0 auto; /* Centraliza o grupo de input horizontalmente se o container for mais largo */
+}
+
+.search-input {
+    padding: 10px;
+    flex-grow: 1; /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
+    padding-right: 30px; /* Espaço para não sobrepor o ícone */
+}
+
+.input-group-append {
+    margin-left: -40px; /* Posiciona o ícone/button dentro do campo de input */
+}
+
+.search-icon {
+    color: #ccc;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

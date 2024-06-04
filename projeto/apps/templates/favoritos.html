@@ -1,6 +1,6 @@
 {% extends "global/base.html" %}
-
 {% block content %}
+{% load static %}
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -100,14 +100,16 @@
   object-fit: cover;
 }
 .right{
-    margin-left: 225px;
+    position: absolute;
+    margin-left: 330px;
 }
 
 </style>
     {% if user.is_authenticated %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <h1>Favoritos</h1>
-                    <div class="cards">                
+                    <div class="cards">
+            {% if favoritos %}                
                 {% for favorito in favoritos %}
                 <div class="card shadow-sm">
                     {% if favorito.cafe.foto_ambiente %}
@@ -116,22 +118,32 @@
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
                         role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                         <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef"
+                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                        <text x="40%" y="50%" fill="#eceeef"
                             dy=".3em">{{favorito.cafe.nome_cafeteria }}</text>
                     </svg>
                     {% endif %}
                     <div class="card-body">
+                    <div class="right btn-group">
+                        <a href="{% url 'favoritar' favorito.cafe.id %}" class="btn-outline-secondary"><img style="height: 20px;" src="{% static '../static/images/desfavoritar.png' %}"></a>
+                    </div>
                         <h5 class="card-title">{{favorito.cafe.nome_cafeteria }}</h5>
-                        <p class="card-text">{{favorito.cafe.descricao }}</p>
+                        <p class="card-text">{{ favorito.cafe.get_short_description}}</p>
                         <div> 
-                            <small class="text-body-secondary">{{favorito.cafe.horas_funcionamento }}</small>
+                            
+                            <div class="btn-group">
+                                <a href="{% url 'detalhes' favorito.cafe.id %}" class="btn btn-sm btn-outline-secondary">ver mais</a>
+                            </div>
+                            <small class="text-body-secondary">
+                                {{favorito.cafe.horas_funcionamento }}</small>
                         </div>
-                        <div class="right btn-group">
-                            <a href="{% url 'favoritar' favorito.cafe.id %}" class="btn-outline-secondary">Remover</a>
-                        </div>
+                        
                     </div>
                 </div>
                 {% endfor %}
+            {% else %}
+                <p>Você ainda não favoritou nenhuma cafeteria</p>
+            {% endif %}
                     </div>
                 </div>
 

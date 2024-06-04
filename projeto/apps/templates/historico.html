@@ -1,0 +1,173 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        margin: 0;
+        color: #333333;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        color: #666666;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .btn-outline-secondary {
+        color: #333333;
+        border-color: #333333;
+    }
+
+
+    .text-body-secondary {
+        color: #888888;
+        font-size: 14px;
+    }
+    .row {
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 20px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .card {
+        margin: 0 10px 20px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 0px;
+        grid-auto-rows: minmax(auto-fill, 300px);
+        overflow: hidden;
+    }
+    .foto-cafe {
+        display: flex;
+        width: 100%;
+        height: 225px;
+        overflow: hidden;
+
+    }
+.box img {
+  width: 100%;
+  height: 100%;
+}
+
+.box1 img {
+  object-fit: cover;
+}
+.search-form .input-group {
+    width: 70%;  /* Define a largura do grupo de input para 70% da largura do container pai */
+    display: flex; /* Garante que o input e o ícone/button estejam alinhados horizontalmente */
+    align-items: center;
+    margin: 0 auto; /* Centraliza o grupo de input horizontalmente se o container for mais largo */
+}
+
+.search-input {
+    flex-grow: 1; /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
+}
+
+.input-group-append {
+    color: #902C00;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.search-icon {
+    color: #fff;
+    background-color: #902C00;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+}
+</style>
+    {% if user.is_authenticated %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <h1>Histórico de cafeterias visualisadas</h1>
+        <div class="cards">                
+            {% for visita in historico %}
+            <div class="card shadow-sm">
+                {% if visita.cafe.foto_ambiente %}
+                <img src="{{ visita.cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ visita.cafe.nome }}">
+                {% else %}
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                    role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c"></rect>
+                    <text x="40%" y="50%" fill="#eceeef"
+                        dy=".3em">{{ visita.cafe.nome_cafeteria }}</text>
+                </svg>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ visita.cafe.nome_cafeteria }}</h5>
+                    <p class="card-text">{{ visita.cafe.get_short_description }}</p>
+                    <div> 
+                        <a href="{% url 'detalhes' visita.cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
+                        <small class="text-body-secondary" style="padding-left: 30%;">
+                            Visitado em: {{ visita.visited_at|date:"d/m/Y" }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+        <h1 style="font-family: Helvetica, sans-serif; font-weight: bold;">Histórico de Visitas</h1>
+        <p>Por favor, faça login para ver seu histórico.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    {% endif %}
+
+
+    <form action="{% url 'home' %}" method="GET" class="search-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append" >
+                            <button class="btn search-icon" type="submit">
+                                <p style="margin-left: 20px; margin-right: 20px;">Ver Todas</p>                            
+                            </button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </form>
+    
+    {% endblock %}

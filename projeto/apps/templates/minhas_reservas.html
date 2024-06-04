@@ -1,0 +1,215 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 0 10px 20px;
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .card-body {
+        align-content: flex-start;
+        padding: 15px;
+    }
+
+    .card-title {
+        margin: 0;
+        color: #333333;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        color: #666666;
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .btn-outline-secondary {
+        color: #333333;
+        border-color: #333333;
+    }
+
+
+    .text-body-secondary {
+        color: #888888;
+        font-size: 14px;
+    }
+    .row {
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 20px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .cards {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        grid-gap: 0px;
+        grid-auto-rows: minmax(auto-fill, 300px);
+        overflow: hidden;
+    }
+    .foto-cafe {
+        display: flex;
+        width: 100%;
+        height: 225px;
+        overflow: hidden;
+
+    }
+.box img {
+  width: 100%;
+  height: 100%;
+}
+
+.box1 img {
+  object-fit: cover;
+}
+
+.rounded-button1 {
+        background-color: #A75938; 
+        border: none; 
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s;
+        }
+        .rounded-button1:hover {
+            background-color: #FFC43B;
+        }
+        
+        
+        .rounded-button2 {
+            font-weight: bold;
+            background-color: #A75938; 
+            border: none; 
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        
+        
+        .rounded-button3 {
+            font-weight: bold;
+            background-color: #A75938; 
+            border: none; 
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            font-size: 16px;
+            margin: 4px 2px;
+            margin-left: 100%;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        .rounded-button3:hover {
+            background-color: red;
+        }
+</style>
+<section class="section">
+    <h1 style="margin: 10px 0px 10px 25px;">Minhas Reservas</h1>
+    <div class="cards">
+            {% if reservas %}
+                {% for reserva in reservas %}
+                <div class="col">
+                <div class="card">
+                    {% if reserva.cafe.foto_ambiente %}
+                    <img src="{{ reserva.cafe.foto_ambiente.url }}" class="foto-cafe" alt="{{ reserva.cafe.nome }}" preserveAspectRatio="xMidYMid slice">
+                    {% else %}
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                        role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef"
+                            dy=".3em">{{ reserva.cafe.nome_cafeteria }}</text>
+                    </svg>
+                    {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">Café: {{ reserva.cafe.nome_cafeteria }}</h5>
+                            <p class="card-text">
+                                Nome: {{ reserva.nome_cliente}}<br>
+                                Data: {{ reserva.data_reserva }}<br>
+                                Horário: {{ reserva.horario_reserva }}<br>
+                                Número de Pessoas: {{ reserva.numero_de_pessoas }}<br>
+                                Observação: {{ reserva.observacao }}<br>
+                                Status: {{ reserva.status }}<br>
+                            </p>
+                            {% if reserva.status == "Reserva terminada" %}
+                            <div class="mt-2">
+                                <form action="{% url 'avaliar_cafe' reserva.cafe.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="rounded-button1"><a href="{% url 'excluir_reserva' reserva.id %}" style="text-decoration: none; color: white;">Avaliar</a></button>
+                                    
+                                </form>
+                            </div>
+                            {% else %}
+                            <div class="d-flex justify-content-between align-items-center" style="display: flex;">
+                                        <form action="{% url 'editar_reserva' reserva.id %}" method="post" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="rounded-button2">Editar</button>
+                                        </form>
+                                        <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="rounded-button3">Excluir</button>
+                                        </form>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Você não tem reservas.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+    </div>
+</section>
+{% endblock %}

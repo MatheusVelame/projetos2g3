@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Cafeterias</title>
+    {% load static %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+
+        :root {
+            --branco-principal: #F7F7FC;
+            --cor-principal: #902C00;
+            --preto-principal: #1D1D1B;
+            --branco-navbar: #FFFFFF;
+            --branco-fundo: #F9F9F9;
+            --cor-glass-login-cadastro: #F9F9F9;
+            --cor-botoes: #A75938;
+            --fonte-principal: 'Bricolage Grotesque';
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: bold;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--branco-navbar);
+            padding: 10px 20px;
+            position: relative;
+            box-shadow: rgba(0, 0, 0, 0.2) 0.5px 3px 2.6px;
+            flex-direction: row-reverse;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 40px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: var(--cor-principal);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .dropdown-menu a,
+        button {
+            font-weight: lighter;
+            color: #FFFFFF;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown button {
+            background-color: var(--cor-principal);
+            color: #FFFFFF;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin-right: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown button img {
+            margin-left: 10px;
+            height: 20px;
+        }
+
+        .button-sair {
+            background-color: transparent;
+            font-size: 17px;
+            padding: 0;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="dropdown">
+        <button>
+            <img src="{% static 'images/menu_icone.png' %}" alt="Menu">
+            <img src="{% static 'images/menu_user.png' %}" alt="User">
+        </button>
+        <div class="dropdown-menu">
+            <a href="{% url 'cafeterias_empresarios' %}">Minhas cafeterias</a>
+            <a href="{% url 'cadastro_cafeteria' %}">Cadastre sua cafeteria</a>
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'perfil_usuario' %}">
+                {% csrf_token %}
+                <a href="{% url 'perfil_usuario' %}">Meu perfil</a>
+            </form>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="button-sair" type="submit">Sair</button>
+            </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</header>

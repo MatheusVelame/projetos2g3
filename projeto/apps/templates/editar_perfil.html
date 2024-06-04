@@ -1,0 +1,33 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/editar_perfil.css' %}">
+<div class="container">
+    <h1>Editar Perfil</h1>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nome_completo">Novo nome:</label>
+            <input type="text" class="form-control" id="nome_completo" name="nome_completo" placeholder="Nome Completo" value="{{ user_cliente.nome_completo }}">
+        </div>
+        <div class="form-group">
+            <label for="username">Novo username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{ user_cliente.user.username }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Novo email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ user_cliente.email }}">
+        </div>
+        <div class="form-group">
+            <label for="profile_image">Foto de perfil:</label>
+            <input class="inputfile" type="file" id="file" name="file" accept="image/*">
+            <label for="file">Clique para adicionar</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    </form>
+</div>
+{% endblock %}

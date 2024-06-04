@@ -1,0 +1,97 @@
+{% extends 'global/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        color: #333333;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+:root {
+
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal:#1D1D1B;
+    --branco-navbar:#FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes:#A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.div {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 12em;
+    padding: 15px;
+}
+h1 {
+
+    color: black;
+}
+
+.check {
+
+    max-width: 220px;
+    max-height:220px;
+    width: auto;
+    height: auto;
+    padding-bottom: 2em;
+}
+
+.botao-pag-inicial {
+    padding: 10px;
+    display: block;
+    padding: 10px 5px;
+    margin: 20px;
+    background-color: black;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+    
+</style>
+
+<div class="div">
+    <img class="check" src="{% static '../static/images/check-mark.png' %}">
+    <h1>Avaliação enviada com sucesso!</h1>
+    <a class="botao-pag-inicial" href="{% url 'home' %}">Voltar para home</a>
+</div>
+{% endblock content %}

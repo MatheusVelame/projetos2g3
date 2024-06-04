@@ -15,7 +15,7 @@
       >Screencast - Figma</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=17pQsSV_CDI"
       >Screencast - Azure</a>
   </li>
 </ul>
@@ -92,22 +92,107 @@ Confirmação/Validação:
 - Vou tentar deixar uma avaliação para a cafeteria cadastrada “Amélie Poulain” sem estar logada no sistema (apesar de cadastrada como Joana Maria Sales - e-mail “jmari@hotmail.com”, senha “joaninhasales93”) e não funcionará;
 - Vou tentar deixar um comentário para uma cafeteria não cadastrada no sistema após devidamente cadastrado e logado no sistema como João Maurício Santos (e-mail “jsm@gmail.com”, senha “mauricio123”) e não conseguirei.
 
-<br/>
+
 ***Histórias Implementadas:***
 
 - Cadastro de Usuários
 - Favoritar cafeteria
 
-<br/>
+
 ***Instruções de acesso ao projeto:***
 
+Nossa aplicação, hospedada na Azure Websites, oferece uma interface intuitiva para explorar cafeterias. Na página inicial, você encontrará informações sobre as cafeterias cadastradas, com funcionalidades ainda em desenvolvimento, como filtros e campo de busca para aprimorar a experiência do usuário.
 
-<br/>
+Clicando em "Ver mais" em qualquer cafeteria listada, você acessa detalhes como descrição, endereço, horário de funcionamento e o número de Whatsapp. Além disso, há um botão "Enviar mensagem via Whatsapp" para iniciar uma conversa diretamente com o estabelecimento.
+
+Para facilitar o acesso às suas cafeterias favoritas, desenvolvemos a funcionalidade "Favoritar", nossa primeira história implementada. No entanto, essa opção só está disponível para usuários logados. Caso contrário, o sistema direciona para a página de Login.
+
+Em seguida, estamos desenvolvendo a página de cadastro de cafeterias, a qual permite aos usuários registrar estabelecimentos no banco de dados. Embora essa funcionalidade ainda apresente alguns bugs e não esteja completamente implementada, já é possível visualizar progressos.
+
+Também disponibilizamos o cadastro de usuários, nossa segunda e última história implementada para esta entrega (SR1), onde você pode criar sua conta para acessar recursos exclusivos. As informações são armazenadas de forma segura, permitindo o login através de e-mail e senha. 
+
+A página de Favoritos, acessível somente por usuários logados, reúne todas as suas cafeterias preferidas em um único lugar, facilitando o acesso e visualização de detalhes. Vale ressaltar que, ao clicar em “ver mais” no painel de cada cafeteria, podemos obter ainda mais informações sobre elas.
+
+Por fim, temos as opções de login e logout. Se deslogado, você verá a opção de login, onde, se já cadastrado, poderá entrar no sistema com seu e-mail e senha. Caso não tenha cadastro, a página oferece a opção "Não possui uma conta? Crie sua conta: Cliente / Cafeteria", direcionando para a página de cadastro adequada. Uma vez logado, a opção de logout estará disponível, permitindo sair do sistema facilmente.
+
+Para fins de testes, seguem alguns dados cadastrados no banco de dados da Azure.
+
+****Usuários cadastrados****
+
+Elias Lima Menezes - 1 User:
+
+Cadastro do Usuário:
+
+- Nome: Elias Lima Menezes
+- E-mail: elm201@gmail.com
+- Username: eliaslm
+- Senha: elima123
+
+Gabriel Santana Vila Lobos - 2 User:
+
+Cadastro do Usuário:
+
+- Nome: Gabriel Santana Vila Lobos
+- E-mail: gvilalobos@gmail.com
+- Username: gblobos
+- Senha: vilal123
+
+****Cafeterias cadastradas****
+
+Cafeteria Soberana - 1 Cafeteria:
+
+Cadastro da cafeteria:
+
+- Responsável: Carlos Antônio Lacerda
+- Nome da cafeteria: Cafeteria Soberana
+- Endereço: R. Dr. João Santos Filho, 255 - Parnamirim, Recife - PE, 52060-904
+- Descrição: A Cafeteria Soberana é reconhecida como um marco no cenário local, oferecendo um refúgio tranquilo para quem deseja escapar do ritmo acelerado do dia a dia. 
+
+Ao entrar na Cafeteria Soberana, os clientes são recebidos por um ambiente que combina o charme clássico com toques modernos, criando um espaço sofisticado e confortável. A decoração é cuidadosamente selecionada para refletir um padrão de qualidade superior, com móveis de madeira fina e detalhes artísticos que enriquecem a experiência.
+
+O cardápio da Cafeteria Soberana é uma celebração da cultura do café, oferecendo uma extensa seleção de blends especiais de todo o mundo. Cada xícara é meticulosamente preparada, garantindo que o sabor e o aroma sejam preservados em sua forma mais pura. Além dos cafés, a cafeteria oferece uma variedade de chás selecionados, infusões de ervas e bebidas alternativas para aqueles que preferem uma opção diferente.
+
+Para complementar a experiência, a Cafeteria Soberana também serve uma seleção de pratos leves, incluindo sanduíches gourmet, saladas frescas e pastelaria fina. Tudo é preparado no local, utilizando os ingredientes mais frescos e de alta qualidade, para garantir que cada mordida seja tão memorável quanto cada gole.
+
+Em resumo, a Cafeteria Soberana não é apenas um lugar para beber café, mas um destino onde os amantes do café podem se deleitar com a arte da cafeicultura em um ambiente que é ao mesmo tempo acolhedor e majestoso. É o lugar perfeito para reuniões de negócios, encontros casuais ou momentos de reflexão solitária.
+
+- E-mail: cafetsoberana@gmail.com
+- Whatsapp: 5581993716563
+- Horário de funcionamento: 6:00 - 17:00
+- Link do instagram: https://www.instagram.com/cafeteriasoberana
+- Site da cafeteria: https://www.instagram.com/cafeteriasoberana
+- CNPJ: 67563810000159
+- Senha: csoberana123
+
+
+Cafeteria Café Sereno - 2 Cafeteria:
+
+Cadastro da cafeteria:
+
+- Responsável: Luiza Gomes de Almeida Muniz
+- Nome da cafeteria: Café Sereno
+- Endereço: Armazém Original - Mercado da Torre - R. José Bonifácio, 747 - Torre, Recife - PE, 50710-001
+- Descrição: A cafeteria Café Sereno convida todos os apreciadores de um bom café a desfrutarem de um ambiente único, onde cada detalhe é cuidadosamente planejado para proporcionar uma experiência transcendental. Localizada em um bairro charmoso, a cafeteria se destaca pela sua decoração elegante e convidativa, que combina elementos modernos com toques clássicos, criando um espaço onde o tempo parece desacelerar.
+
+O cardápio da Café Sereno foi criado para satisfazer os paladares mais exigentes, oferecendo uma seleção diversificada de cafés especiais, provenientes de várias partes do mundo. Cada bebida é preparada com precisão por baristas experientes, garantindo a extração perfeita dos aromas e sabores. Além dos cafés, a cafeteria também serve chás artesanais, bebidas à base de chocolate e uma variedade de sucos naturais.
+
+Para acompanhar, os visitantes podem escolher entre diversas opções de bolos, tortas e doces finos, todos feitos no local com ingredientes de alta qualidade. As opções de salgados também não deixam a desejar, com sanduíches elaborados e quiches saborosos que são perfeitos para um almoço leve ou um lanche da tarde.
+
+O Café Sereno é mais do que uma simples cafeteria; é um espaço onde a arte do café é celebrada, onde amigos se encontram e novas amizades nascem. É um convite para pausar a correria do dia a dia, sentar e saborear cada momento em um ambiente que eleva a experiência do café a um patamar celestial.
+
+
+- E-mail: cafesereno@gmail.com
+- Whatsapp: 5581907729053
+- Horário de funcionamento: 6:00 - 17:00
+- Link do instagram: https://www.instagram.com/cafeserenito
+- Site da cafeteria: https://www.cafesereno.com/cafesereno
+- CNPJ: 56572816000159
+- Senha: cafeserenito123
+
+
 ***Diagrama de atividades do sistema:***
 
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/029c17f1-62b3-4ef9-908c-15ac8b936bb6)
-
-
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/88783806-b261-42f5-84a4-c355d96a311f)
 
 
 <br/>
@@ -116,31 +201,34 @@ Confirmação/Validação:
   
   - Issues em abertas:
     
-   
+   ![Screenshot 2024-04-25 225340](https://github.com/MatheusVelame/projetos2g3/assets/144596701/417050ca-428a-4e82-80c1-0b9b4a3f60ed)
 
-    
+![Screenshot 2024-04-25 225349](https://github.com/MatheusVelame/projetos2g3/assets/144596701/5028c669-4cfc-4091-bd23-791b04c6f613)
+ 
 
   - Issues fechadas:
-  
-  
+
+  ![Screenshot 2024-04-25 225715](https://github.com/MatheusVelame/projetos2g3/assets/144596701/668ad653-1c1c-41db-81db-525a35e63e3b)
+
+  ![Screenshot 2024-04-25 225802](https://github.com/MatheusVelame/projetos2g3/assets/144596701/ef24942c-2a06-48ea-bf74-d28aa1b26eda)
+
+![Screenshot 2024-04-25 225830](https://github.com/MatheusVelame/projetos2g3/assets/144596701/b20a9582-1e2c-449e-93d0-5173c18e32ff)
+
+![Screenshot 2024-04-25 225842](https://github.com/MatheusVelame/projetos2g3/assets/144596701/93b7a7d7-3fc2-4ea2-b344-187d46b52313)
+
 
 <br/>
 
  ***Print do backlog do projeto:***
   
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/0ace75ec-9e0c-43dc-ad51-b8b33710a883)
-
-
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/d01ea0a4-ff42-4ac4-a470-0ec8c00a3ce6)
 
 
 <br/>  
  
 ***Print do quadro da Sprint:***
 
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/e79deb72-345d-4347-81c4-f62751a58904)
-
-
-
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/c2c80443-d43e-4854-ad24-5df502ac6176)
 
 
 <br/>

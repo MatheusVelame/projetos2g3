@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+:root {
+    --branco-principal: #F7F7FC;
+    --cor-principal: #902C00;
+    --preto-principal: #1D1D1B;
+    --branco-navbar: #FFFFFF;
+    --branco-fundo: #F9F9F9;
+    --cor-glass-login-cadastro: #F9F9F9;
+    --cor-botoes: #A75938;
+    --fonte-principal: 'Bricolage Grotesque';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5rem;
+    padding: 20px;
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icone-perfil {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: var(--cor-botoes);
+    margin-right: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 100px;
+}
+
+.nome-completo {
+    font-size: 35px;
+    font-weight: bolder;
+    text-align: left;
+    color: var(--preto-principal);
+    margin-bottom: 20px;
+}
+
+.perfil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.username, .email, .tipo-usuario {
+    font-size: 17px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: var(--preto-principal);
+    font-weight: 100;
+}
+
+.editar-perfil {
+    font-size: 18px;
+    color: var(--branco-principal);
+    background-color: var(--cor-botoes);
+    padding: 7px 35px;
+    text-decoration: none;
+    border-radius: 20px;
+    margin-top: 30px;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Inter';
+}
+
+.editar-perfil:hover {
+    background-color: var(--cor-principal);
+}
