@@ -13,6 +13,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgres://user:password@localhost:5432/test_db
 
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +52,23 @@ jobs:
           npm ci
           cd ..
 
-      - name: Run local server
+      - name: Run migrations
+        run: |
+          python manage.py migrate
+
+      - name: Create superuser
+        env:
+          DJANGO_SUPERUSER_USERNAME: admin
+          DJANGO_SUPERUSER_PASSWORD: 123
+          DJANGO_SUPERUSER_EMAIL: admin@example.com
+        run: |
+          echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('${{ env.DJANGO_SUPERUSER_USERNAME }}', '${{ env.DJANGO_SUPERUSER_EMAIL }}', '${{ env.DJANGO_SUPERUSER_PASSWORD }}')" | python manage.py shell
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Run local server and Cypress tests
         run: |
           cd projeto/
           python manage.py migrate
@@ -45,15 +79,15 @@ jobs:
       - name: Cleaning testing files
         run: |
           cd projeto/
-          rm .env
-          rm db.sqlite3
-          rm cypress.config.js
-          rm package-lock.json
-          rm package.json
-          rm -rf cypress
-          rm -rf node_modules
-          cd ..
-        
+          [ -f .env ] && rm .env
+          [ -f db.sqlite3 ] && rm db.sqlite3
+          [ -f cypress.config.js ] && rm cypress.config.js
+          [ -f package-lock.json ] && rm package-lock.json
+          [ -f package.json ] && rm package.json
+          [ -d cypress ] && rm -rf cypress
+          [ -d node_modules ] && rm -rf node_modules
+           cd ..
+             
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
