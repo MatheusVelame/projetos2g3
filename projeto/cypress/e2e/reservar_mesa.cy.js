@@ -10,17 +10,31 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/');
-        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.visit('/')
+
         cy.get('.dropdown > button').then(($button) => {
             cy.wrap($button).trigger('mouseover');
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
             cy.get('.dropdown-menu').should('be.visible');
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
+            cy.get('.dropdown-menu').should('be.visible');
+
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.visit(loginUrl);
             });
         });
         cy.wait(1000);
@@ -43,9 +57,9 @@ describe('test Favoritar Cafeteria', () => {
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
             cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
             });
         });
         cy.get('#nome_cafeteria').type('Tres Cafes');
@@ -66,13 +80,13 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.dropdown > button').then(($button) => {
             cy.wait(2000);
             cy.wrap($button).trigger('mouseover');
-            
-    
+
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
-    
+
             cy.get('.dropdown-menu').should('be.visible');
-    
-            cy.get('.dropdown-menu button[type="submit"]').click(); 
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
         });
 
         cy.wait(3000);
@@ -97,11 +111,23 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.deletelink').click();
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
+        
+        // Apagar grupo Empresários
+        cy.visit('/admin/auth/group/');
         cy.wait(2000);
-        cy.get('#logout-form > button').click();
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+        cy.wait(2000);
+
+        // Logout do admin
+        cy.get('form#logout-form button[type="submit"]').click();
+
         cy.visit('/');
 
-        
+
     });
 
 
@@ -116,17 +142,31 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/');
-        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.visit('/')
+
         cy.get('.dropdown > button').then(($button) => {
             cy.wrap($button).trigger('mouseover');
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
             cy.get('.dropdown-menu').should('be.visible');
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
+            cy.get('.dropdown-menu').should('be.visible');
+
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.visit(loginUrl);
             });
         });
         cy.wait(1000);
@@ -149,9 +189,9 @@ describe('test Favoritar Cafeteria', () => {
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
             cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
             });
         });
         cy.get('#nome_cafeteria').type('Café Aconchego');
@@ -172,13 +212,13 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.dropdown > button').then(($button) => {
             cy.wait(2000);
             cy.wrap($button).trigger('mouseover');
-            
-    
+
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
-    
+
             cy.get('.dropdown-menu').should('be.visible');
-    
-            cy.get('.dropdown-menu button[type="submit"]').click(); 
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
         });
 
         cy.wait(3000);
@@ -203,19 +243,19 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button').click();
         cy.get('#nome_cliente').type('Maria Alice Alcântara');
         cy.get('#data_reserva').then($input => {
-            $input[0].value = '2024-06-11'; 
+            $input[0].value = '2024-06-11';
         });
         cy.get('#horario_reserva').type('10:30');
         cy.get('#numero_de_pessoas').type('2');
         cy.get('#observacao').type('Quero uma mesa dentro do estabelecimento.')
         cy.wait(3000);
-        
-        
+
+
         cy.get('h5').invoke('text').should('have.string', "Café Aconchego")
         cy.wait(2000);
         cy.visit('/');
 
-        
+
 
         cy.visit('/admin');
         cy.wait(2000);
@@ -246,7 +286,20 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
         cy.wait(2000);
-        cy.get('#logout-form > button').click();
+        
+        // Apagar grupo Empresários
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+        cy.wait(2000);
+
+        // Logout do admin
+        cy.get('form#logout-form button[type="submit"]').click();
+
         cy.visit('/');
     });
 
@@ -262,17 +315,31 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/');
-        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.visit('/')
+
         cy.get('.dropdown > button').then(($button) => {
             cy.wrap($button).trigger('mouseover');
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
             cy.get('.dropdown-menu').should('be.visible');
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
+            cy.get('.dropdown-menu').should('be.visible');
+
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.visit(loginUrl);
             });
         });
         cy.wait(1000);
@@ -295,9 +362,9 @@ describe('test Favoritar Cafeteria', () => {
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
             cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
             });
         });
         cy.get('#nome_cafeteria').type('Café Aconchego');
@@ -318,13 +385,13 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.dropdown > button').then(($button) => {
             cy.wait(2000);
             cy.wrap($button).trigger('mouseover');
-            
-    
+
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
-    
+
             cy.get('.dropdown-menu').should('be.visible');
-    
-            cy.get('.dropdown-menu button[type="submit"]').click(); 
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
         });
 
         cy.wait(3000);
@@ -349,7 +416,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button').click();
         cy.get('#nome_cliente').type('Maria Alice Alcântara');
         cy.get('#data_reserva').then($input => {
-            $input[0].value = '2024-06-11'; 
+            $input[0].value = '2024-06-11';
         });
         cy.get('#horario_reserva').type('10:30');
         cy.get('#numero_de_pessoas').type('2');
@@ -364,7 +431,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button').click();
         cy.get('#nome_cliente').type('Maria Alice Alcântara');
         cy.get('#data_reserva').then($input => {
-            $input[0].value = '2024-06-11'; 
+            $input[0].value = '2024-06-11';
         });
         cy.get('#horario_reserva').type('10:30');
         cy.get('#numero_de_pessoas').type('2');
@@ -375,7 +442,7 @@ describe('test Favoritar Cafeteria', () => {
             cy.contains('Café já reservado para o horário solicitado!').should('exist');
         });
         cy.wait(2000);
-        
+
 
         cy.visit('/admin');
         cy.wait(2000);
@@ -406,7 +473,20 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
         cy.wait(2000);
-        cy.get('#logout-form > button').click();
+        
+        // Apagar grupo Empresários
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+        cy.wait(2000);
+
+        // Logout do admin
+        cy.get('form#logout-form button[type="submit"]').click();
+
         cy.visit('/');
 
     });
@@ -422,17 +502,31 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/');
-        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.visit('/')
+
         cy.get('.dropdown > button').then(($button) => {
             cy.wrap($button).trigger('mouseover');
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
             cy.get('.dropdown-menu').should('be.visible');
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
+            cy.get('.dropdown-menu').should('be.visible');
+
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.visit(loginUrl);
             });
         });
         cy.wait(1000);
@@ -455,9 +549,9 @@ describe('test Favoritar Cafeteria', () => {
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
             cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
             });
         });
         cy.get('#nome_cafeteria').type('Café Aconchego');
@@ -478,13 +572,13 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.dropdown > button').then(($button) => {
             cy.wait(2000);
             cy.wrap($button).trigger('mouseover');
-            
-    
+
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
-    
+
             cy.get('.dropdown-menu').should('be.visible');
-    
-            cy.get('.dropdown-menu button[type="submit"]').click(); 
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
         });
 
         cy.wait(3000);
@@ -509,7 +603,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button').click();
         cy.get('#nome_cliente').type('Maria Alice Alcântara');
         cy.get('#data_reserva').then($input => {
-            $input[0].value = '2024-06-11'; 
+            $input[0].value = '2024-06-11';
         });
         cy.get('#horario_reserva').type('10:30');
         cy.get('#numero_de_pessoas').type('2');
@@ -520,7 +614,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button3').click();
         cy.wait(2000);
         cy.get('.col').invoke('text').should('have.string', "Você não tem reservas.")
-        
+
 
         cy.visit('/admin');
         cy.get('#id_username').type('admin')
@@ -533,9 +627,19 @@ describe('test Favoritar Cafeteria', () => {
         cy.get(':nth-child(2) > .field-username > a').click();
         cy.get('.deletelink').click();
         cy.get('div > [type="submit"]').click();
-        cy.visit('/');
+        
+        // Apagar grupo Empresários
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+        cy.wait(2000);
 
-        cy.visit('/');
+        // Logout do admin
+        cy.get('form#logout-form button[type="submit"]').click();
 
     });
 
@@ -550,17 +654,31 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/');
-        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.visit('/')
+
         cy.get('.dropdown > button').then(($button) => {
             cy.wrap($button).trigger('mouseover');
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
             cy.get('.dropdown-menu').should('be.visible');
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
+            cy.get('.dropdown-menu').should('be.visible');
+
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.visit(loginUrl);
             });
         });
         cy.wait(1000);
@@ -583,9 +701,9 @@ describe('test Favoritar Cafeteria', () => {
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
             cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
             });
         });
         cy.get('#nome_cafeteria').type('Café Aconchego');
@@ -606,13 +724,13 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.dropdown > button').then(($button) => {
             cy.wait(2000);
             cy.wrap($button).trigger('mouseover');
-            
-    
+
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
-    
+
             cy.get('.dropdown-menu').should('be.visible');
-    
-            cy.get('.dropdown-menu button[type="submit"]').click(); 
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
         });
 
         cy.wait(3000);
@@ -637,7 +755,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button').click();
         cy.get('#nome_cliente').type('Maria Alice Alcântara');
         cy.get('#data_reserva').then($input => {
-            $input[0].value = '2024-01-11'; 
+            $input[0].value = '2024-01-11';
         });
         cy.get('#horario_reserva').type('10:30');
         cy.get('#numero_de_pessoas').type('2');
@@ -650,7 +768,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.visit('/');
 
-        
+
 
         cy.visit('/admin');
         cy.wait(2000);
@@ -673,8 +791,19 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
         cy.wait(2000);
-        cy.get('#logout-form > button').click();
-        cy.visit('/');
+        
+        // Apagar grupo Empresários
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+        cy.wait(2000);
+
+        // Logout do admin
+        cy.get('form#logout-form button[type="submit"]').click();
     });
 
     it('cenario_6', () => {
@@ -688,17 +817,31 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.model-group > :nth-child(2) > .addlink').click();
         cy.get('#id_name').type('Empresários');
         cy.get('.default').click();
-        
-        cy.visit('/');
-        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.visit('/')
+
         cy.get('.dropdown > button').then(($button) => {
             cy.wrap($button).trigger('mouseover');
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
             cy.get('.dropdown-menu').should('be.visible');
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
+        });
+
+        cy.get('.dropdown > button').trigger('mouseover');
+
+        cy.get('.dropdown > button').then(($button) => {
+            cy.wrap($button).trigger('mouseover');
+
+            cy.get('.dropdown-menu').invoke('css', 'display', 'block');
+
+            cy.get('.dropdown-menu').should('be.visible');
+
             cy.get('.dropdown-menu a[href="/login/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.visit(loginUrl);
             });
         });
         cy.wait(1000);
@@ -721,9 +864,9 @@ describe('test Favoritar Cafeteria', () => {
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
             cy.get('.dropdown-menu').should('be.visible');
             cy.get('.dropdown-menu a[href="/cadastro_cafeteria/"]').then(($link) => {
-            const loginUrl = $link.attr('href');
-            cy.wait(2000);
-            cy.visit(loginUrl);
+                const loginUrl = $link.attr('href');
+                cy.wait(2000);
+                cy.visit(loginUrl);
             });
         });
         cy.get('#nome_cafeteria').type('Café Aconchego');
@@ -744,13 +887,13 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.dropdown > button').then(($button) => {
             cy.wait(2000);
             cy.wrap($button).trigger('mouseover');
-            
-    
+
+
             cy.get('.dropdown-menu').invoke('css', 'display', 'block');
-    
+
             cy.get('.dropdown-menu').should('be.visible');
-    
-            cy.get('.dropdown-menu button[type="submit"]').click(); 
+
+            cy.get('.dropdown-menu button[type="submit"]').click();
         });
 
         cy.wait(3000);
@@ -775,7 +918,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.get('.rounded-button').click();
         cy.get('#nome_cliente').type('Maria Alice Alcântara');
         cy.get('#data_reserva').then($input => {
-            $input[0].value = '2024-06-11'; 
+            $input[0].value = '2024-06-11';
         });
         cy.get('#horario_reserva').type('10:30');
         cy.get('#numero_de_pessoas').type('0');
@@ -788,7 +931,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.visit('/');
 
-        
+
 
         cy.visit('/admin');
         cy.wait(2000);
@@ -811,8 +954,19 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
         cy.wait(2000);
-        cy.get('#logout-form > button').click();
-        cy.visit('/');
+        
+        // Apagar grupo Empresários
+        cy.visit('/admin/auth/group/');
+        cy.wait(2000);
+        cy.get('input[name="_selected_action"]').check();
+        cy.get('select[name="action"]').select('delete_selected');
+        cy.get('button[name="index"]').click();
+        cy.wait(2000);
+        cy.get('input[type="submit"]').contains('Sim, eu tenho certeza').click();
+        cy.wait(2000);
+
+        // Logout do admin
+        cy.get('form#logout-form button[type="submit"]').click();
     });
 
-  });
+});
