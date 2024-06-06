@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static '../static/css/style_login.css' %}">
 <section class="section">
     <div class="container">
-        <h1>Entrar no Aponte Cafés</h1>
+        <h1>Fazer login</h1>
         {% if error %}
             <div class="alert alert-danger">
                 {{ error }}
@@ -16,17 +16,17 @@
             <input type="hidden" name="next" value="{{ next }}">
             <h2>{{ title }}</h2>
             <div class="box-user">
-                <label>Email:</label><br>
+                <label>Email</label><br>
                 <input type="text" name="email" required><br>
             </div>
             <div class="box-user">
-                <label>Senha:</label><br>
+                <label>Senha</label><br>
                 <input type="password" name="password" required><br>
             </div>
             <button type="submit" class="btn-submit">Entrar</button>
             <div class="signup-message">
-                <p>Não tem cadastro? Crie sua conta:</p>
-                <a href="{% url 'UserCadastro' %}?tipo_usuario=cliente" class="btn btn-light">Cadastre-se</a>
+                <p>Não possui conta?</p>
+                <a href="{% url 'UserCadastro' %}?tipo_usuario=cliente" class="btn-light">Comece aqui</a>
             </div>
         </form>
     </div>

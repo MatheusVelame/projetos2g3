@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@12..96&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
 :root {
 
     --branco-principal: #F7F7FC;
@@ -23,11 +23,11 @@ body{
 }
 
 .container{
-    background: #ccc;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: var(--branco-fundo);
+    box-shadow: rgba(0, 0, 0, 0.2) 0.5px 3px 2.6px;
     padding: 5rem;
-    border-radius: 10px;
+    border-radius: 25px;
+    width: 35vw;
 }
 
 .container form{
@@ -40,47 +40,68 @@ body{
 }
 
 .container h1{
-    color: #000000;
-    padding: 1rem;
+    color: var(--preto-principal);
+    display: flex;
+    font-weight: 800;
+    font-size: 34px;
+    padding-bottom: 20px;
 }
 
 .container form label{
-    color: #000000;
+    color: var(--preto-principal);
+    font-weight: 500;
 }
 .container form input{
     width: 100%;
     padding: 0.5rem;
     border-radius: 10px;
     outline: none;
-    border: 2px white;
+    background-color: transparent;
+    border: 1px solid var(--preto-principal);
 }
 
 .container form .btn-submit {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: var(--cor-botoes);
+    color: var(--branco-navbar);
+    padding: 18px;
+    width: 150px;
+    height: 5px;
     cursor: pointer;
-    padding: 1rem; /* Aumentar o preenchimento para tornar o botão maior */
-    background-color: #ccc;
-    border-radius: 10px;
-    outline: none;
-    color: #000000;
-    font-size: 1.2rem; /* Aumentar o tamanho da fonte, se desejado */
-    margin-top: 20px; /* Adicionar margem no topo para separar do restante do formulário */
-    border: none; /* Opção para remover a borda, se desejado */
-    transition: background-color 0.3s; /* Suavizar a transição de cores */
+    font-weight: bold;
+    margin-left: 109px;
+    margin-top: 10px;
+
 }
 
 .container form .btn-submit:hover {
-    background-color: #ccc;
-    /* Adicione uma cor diferente para o estado de hover, se desejar */
+    background-color: var(--cor-principal); 
+    color: #FFFFFF;
 }
 
-/* Ajustes para o espaçamento entre o botão e a mensagem de cadastro */
 .container form .signup-message {
     text-align: center; /* Centralizar a mensagem de cadastro */
     margin-top: 30px; /* Aumentar o espaço acima da mensagem de cadastro */
-    font-size: 1rem; /* Ajustar o tamanho da fonte da mensagem, se necessário */
+    font-size: 1rem;
+    font-weight: 400; /* Ajustar o tamanho da fonte da mensagem, se necessário */
     color: #000000; /* Ajustar a cor da fonte */
 }
 
+p{
+    font-weight: 400;
+}
+
+.btn-light{
+    color: var(--cor-botoes);
+    text-decoration: none;
+}
+.btn-light:hover{
+    color: var(--cor-principal);
+}
 .radio-options {
     display: flex; /* Usa flexbox para alinhar os elementos filhos */
     justify-content: center; /* Centraliza os elementos filhos horizontalmente */
@@ -103,3 +124,6 @@ body{
     justify-content: center;
     padding: 60px;
 }
+
+
+

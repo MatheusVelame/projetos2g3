@@ -74,6 +74,10 @@ input::file-selector-button {
     cursor: pointer;
     font-weight: bold;
 }
+.cadastrar:hover{
+    background-color: var(--cor-principal); 
+    color: #FFFFFF;
+}
 
 input[type="text"], input[type="number"], input[type="email"], input[type="tel"], input[type="url"], input[type="time"] {
     width: 400px;
