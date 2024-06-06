@@ -95,11 +95,11 @@ p{
     font-weight: 400;
 }
 
-.btn-light{
+.btn{
     color: var(--cor-botoes);
     text-decoration: none;
 }
-.btn-light:hover{
+.btn:hover{
     color: var(--cor-principal);
 }
 .radio-options {
