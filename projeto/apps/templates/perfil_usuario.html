@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="{% static 'css/perfil_usuario.css' %}">
 <div class="container">
     <div class="perfil-header">
-        {% if user_cliente.profile_image %}
-            <img class="icone-perfil" src="{{ user_cliente.profile_image.url }}" alt="Foto do perfil">
+        {% if user_cliente.profile_images %}
+            <img class="icone-perfil" src="{{ user_cliente.profile_images.url }}" alt="Foto do perfil">
         {% else %}
             <img class="icone-perfil" src="{% static 'images/icone_perfil_user.png' %}" alt="Ícone do perfil">
         {% endif %}

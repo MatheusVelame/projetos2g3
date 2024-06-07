@@ -182,6 +182,19 @@ describe('Teste Histórico', () => {
     cy.wait(2000);
     cy.get('.submit-row > input').click();
     cy.wait(2000);
+    cy.get('.model-user > th > a').click()
+    cy.wait(2000);
+    cy.get(':nth-child(2) > .field-username > a').click()
+    cy.wait(2000);
+    cy.get('.deletelink').click();
+    cy.wait(2000);
+    cy.get('div > [type="submit"]').click();
+    cy.wait(2000);
+    cy.get(':nth-child(2) > .field-username > a').click()
+    cy.wait(2000);
+    cy.get('.deletelink').click();
+    cy.wait(2000);
+    cy.get('div > [type="submit"]').click();
 
     // Apagar grupo Empresários
     cy.visit('/admin/auth/group/');
