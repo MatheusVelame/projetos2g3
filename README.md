@@ -74,7 +74,7 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
       >Projeto no Jira</a>
   </li>
     <li> 
-    <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0%3A1&mode=design&t=1748pNTyjfC6RMOg-1"
+    <a  href="https://www.figma.com/design/7lTqT6QR7tPP4GbiBYDMkY/aponte-site?node-id=390-2"
       >Protótipo de média fidelidade no Figma - Sketches e Storyboards</a>
   </li>
    <li>
