@@ -23,6 +23,47 @@
         justify-content: space-between;
     }
 
+    .hero {
+    position: relative;
+    background-image: url('/static/images/img-home-cliente.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: var(--branco-principal);
+    text-align: center;
+    min-height: 400px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/static/images/glass-preto.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.hero-content {
+    color: var(--branco-principal);
+    position: relative;
+    z-index: 2;
+}
+
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.5em;
+}
+
     .card-img-top {
         width: 100%;
         height: auto;
@@ -187,6 +228,12 @@
 
 </style>
 
+<section class="hero" style=" display: flex; align-items: center;">
+    <div class="hero-content" style="margin-left: 10%;">
+        <h1>Apontamos a direção dos melhores cafés</h1>
+        <p>Descubra as melhores cafeterias do Recife antigo</p>
+    </div>
+</section>
 <!-- Busca -->
 
 <form action="{% url 'buscar_cafeterias' %}" method="GET" class="search-form">
