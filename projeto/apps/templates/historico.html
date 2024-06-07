@@ -45,8 +45,19 @@
     }
 
     .btn-outline-secondary {
-        color: #333333;
-        border-color: #333333;
+        color: var(--branco-navbar); /* Cor do texto */
+        background-color: var(--cor-botoes); /* Cor de fundo inicial */
+        border: 1px solid var(--cor-botoes); /* Borda da mesma cor do fundo */
+        padding: 10px 20px; /* Padding adequado para o botão */
+        border-radius: 20px; /* Bordas arredondadas */
+        font-weight: bold; /* Texto em negrito */
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transição suave para hover */
+    }
+    
+    .btn-outline-secondary:hover {
+        color: var(--branco-navbar); /* Cor do texto ao passar o mouse permanece branca */
+        background-color: #B27054; /* Cor de transição ao passar o mouse */
+
     }
 
 
@@ -218,7 +229,7 @@
             <div class="input-group mb-3">
                 <div class="input-group-append">
                     <button class="btn search-icon" type="submit">
-                        <p style="margin-left: 20px; margin-right: 20px;">Ver Todas</p>
+                        <p style="margin-left: 20px; margin-right: 20px; ">Ver Todas</p>
                     </button>
                 </div>
             </div>

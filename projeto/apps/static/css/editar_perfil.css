@@ -87,7 +87,7 @@ form {
 }
 
 .btn-primary:hover {
-    background-color: #a94d00;
+    background-color: #B27054;
 }
 
 .alert-danger {
@@ -128,5 +128,5 @@ form {
 }
 
 .inputfile + label:hover {
-    background-color: #a94d00;
+    background-color: #B27054;
 }
