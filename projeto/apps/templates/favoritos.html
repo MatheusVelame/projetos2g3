@@ -67,6 +67,29 @@
         padding-left: 15px;
     }
 
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 80px;
+        margin-bottom: 100px;
+    }
+
+    .rounded-button2 {
+        background-color: #A75938;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s;
+    }
+
     .container {
         max-width: 600px;
         margin: 0 auto;
@@ -152,4 +175,8 @@
         <p>Por favor, faça login para ver seus favoritos.</p>
         <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
     {% endif %}
+
+    <div class="button-container">
+    <a href="{% url 'home' %}" class="rounded-button2" style="color: white; text-decoration: none;">Ver mais cafeterias</a>
+</div>
 {% endblock %}
