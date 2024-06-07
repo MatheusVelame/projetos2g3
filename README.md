@@ -70,7 +70,7 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
 ***Links relevantes:***
 <ul>
   <li>
-    <a  href="https://cesar-mvp2.atlassian.net/jira/software/projects/APC/boards/5"
+    <a  href="https://apontecafe.atlassian.net/jira/software/projects/APC/boards/1"
       >Projeto no Jira</a>
   </li>
     <li> 
