@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import Avg
+from datetime import datetime
 
 class UserCliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -135,8 +136,8 @@ class ReservaCafe(models.Model):
 
     @property
     def status(self):
-        hoje = timezone.now().date()
-        hora = timezone.now().time()
+        hoje = datetime.now().date()
+        hora = datetime.now().time()
         if self.data_reserva < hoje:
             return "Reserva terminada"
         elif self.data_reserva == hoje and self.horario_reserva < hora:
