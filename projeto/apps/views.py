@@ -605,6 +605,7 @@ def editar_perfil(request):
             })
 
         user_cliente.user.username = username
+        user_cliente.user.save()
         user_cliente.nome_completo = nome_completo
         user_cliente.email = email
 
