@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 class UserCliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -49,6 +50,36 @@ class Cafe(models.Model):
             return self.descricao[:70].__add__("...")
         else:
             return self.descricao
+    
+    def media_avaliacoes(self):
+        media = self.avaliacao_set.aggregate(Avg('avaliacao'))['avaliacao__avg']
+        if media is not None:
+            return round(media, 1)
+        return None
+
+    def media_valor_gasto(self):
+        faixas = {
+            '1-20': 10,
+            '20-40': 30,
+            '40-60': 50,
+            '60-80': 70,
+            '80-100': 90,
+            '100-120': 110,
+            '120-140': 130,
+            '140-160': 150,
+            '160-180': 170,
+            '180-200': 190,
+            '200+': 210
+        }
+        valores_gasto = self.avaliacao_set.values_list('valor_gasto', flat=True)
+        valores_numericos = [faixas[v] for v in valores_gasto if v in faixas]
+        if valores_numericos:
+            media_numerica = sum(valores_numericos) / len(valores_numericos)
+            for faixa, valor in faixas.items():
+                if media_numerica <= valor:
+                    return faixa
+            return '200+'
+        return None
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
