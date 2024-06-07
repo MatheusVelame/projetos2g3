@@ -9,7 +9,7 @@ class UserCliente(models.Model):
     password = models.CharField(max_length=255, null=True)
     confirm_password = models.CharField(max_length=255, null=True)
     is_business = models.BooleanField(default=False)
-    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+    profile_image = models.ImageField(upload_to='profile_image/', blank=True, null=True)
 
     def __str__(self):
         return self.email
