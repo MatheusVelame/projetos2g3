@@ -94,7 +94,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(3000);
         cy.get('.right-content2 > .btn-group > .btn > a').click();
         cy.wait(3000);
-        cy.get('h1').invoke('text').should('have.string', "Entrar no Aponte Cafés")
+        cy.get('h1').invoke('text').should('have.string', "Fazer login")
         cy.wait(2000);
 
         cy.visit('/admin');
@@ -259,7 +259,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('div > [type="submit"]').click();
         cy.wait(2000);
-        cy.get(':nth-child(2) > .field-username > a').click();
+        cy.get(':nth-child(2) > .field-username > a').click()
         cy.wait(2000);
         cy.get('.deletelink').click();
         cy.wait(2000);
@@ -408,7 +408,7 @@ describe('test Favoritar Cafeteria', () => {
         cy.wait(2000);
         cy.get('.model-user > th > a').click();
         cy.wait(2000);
-        cy.get(':nth-child(2) > .field-username > a').click();
+        cy.get(':nth-child(2) > .field-username > a').click()
         cy.wait(2000);
         cy.get('.deletelink').click();
         cy.wait(2000);

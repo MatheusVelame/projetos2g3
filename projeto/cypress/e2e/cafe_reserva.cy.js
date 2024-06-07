@@ -94,7 +94,7 @@ describe('Test Reservar uma Mesa', () => {
         cy.wait(3000);
         cy.get('.rounded-button').click();
         cy.wait(3000);
-        cy.get('h1').invoke('text').should('have.string', "Entrar no Aponte Cafés")
+        cy.get('h1').invoke('text').should('have.string', "Fazer login")
         cy.wait(2000);
 
         cy.visit('/admin');
