@@ -45,15 +45,24 @@
     }
 
     .btn-outline-secondary {
-        color: #333333;
-        border-color: #333333;
+        color: #333333; /* Cor inicial do texto */
+        background-color: white; /* Cor inicial de fundo */
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Suaviza a transição de cores e borda */
+        display: inline-block; /* Ajuste para garantir que o botão mantenha forma própria */
+        padding: 8px 16px; /* Espaçamento interno para dar forma ao botão */
+        font-size: 14px; /* Tamanho da fonte */
+        border-radius: 4px; /* Bordas arredondadas */
+        text-align: center; /* Texto centralizado */
+        text-decoration: none; /* Remove sublinhado */
     }
-
+    
     .btn-outline-secondary:hover {
-        background-color: #ccc;
-        border: 1px solid #ccc;
-        color: #000;
+        background-color: #B27054; /* Cor de fundo ao passar o mouse */
+        color: white; /* Texto em branco para melhor contraste */
+
     }
+    
+    
 
     .text-body-secondary {
         color: #888888;

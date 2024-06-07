@@ -52,9 +52,24 @@
     }
 
     .btn-outline-secondary {
-        color: #333333;
-        border-color: #333333;
+        color: var(--branco-navbar); /* Cor do texto */
+        background-color: var(--cor-botoes); /* Cor de fundo inicial */
+        border: 1px solid var(--cor-botoes); /* Borda da mesma cor do fundo */
+        padding: 10px 20px; /* Padding adequado para o botão */
+        border-radius: 20px; /* Bordas arredondadas */
+        font-weight: bold; /* Texto em negrito */
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transição suave para hover */
     }
+    
+    .btn-outline-secondary:hover {
+        color: var(--branco-navbar); /* Cor do texto ao passar o mouse permanece branca */
+        background-color: #B27054; /* Cor de transição ao passar o mouse */
+        border-color: var(--cor-principal); /* Cor da borda ao passar o mouse */
+    }
+    
+    
+    
+    
 
 
     .text-body-secondary {
@@ -169,6 +184,7 @@
         
     }
 
+
 </style>
 
 <!-- Busca -->
@@ -242,7 +258,7 @@
                     {% if user.is_authenticated %}
                     <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
                     {% else %}
-                    <a href="{% url 'detalhes_anonimo' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
+                    <a id="vermais"href="{% url 'detalhes_anonimo' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
                     {% endif %}
                 </div>
                 <small class="text-body-secondary">{{ cafe.horas_funcionamento }}</small>
