@@ -190,7 +190,7 @@
             {% endfor %}
         </div>
     {% endif %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group text-centered">
             <label for="avaliacao">Qual o seu nível de satisfação?</label>
