@@ -305,6 +305,15 @@ padding-left: 20px;
     margin-top: 10px;
 }
 
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
 .review-images img {
     max-width: 100%;
     height: auto;
@@ -379,7 +388,7 @@ padding-left: 20px;
     <div class="info">
         <h1>Fazer reserva em {{ cafe.nome_cafeteria }}</h1>
         {% if error_message %}
-            <div class="alert alert-danger">
+            <div class="alert-danger">
                 {{ error_message }}
             </div>
         {% endif %}

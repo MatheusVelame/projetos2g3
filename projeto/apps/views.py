@@ -174,7 +174,6 @@ def criar_reserva(request, cafe_id):
 
         reservas_conflitantes = ReservaCafe.objects.filter(
             cafe=cafe,
-            ome_cliente=nome_cliente,
             data_reserva=data_reserva,
             horario_reserva=horario_reserva
         )
@@ -188,6 +187,7 @@ def criar_reserva(request, cafe_id):
         reserva = ReservaCafe(
             cafe=cafe,
             cliente=cliente,
+            nome_cliente=nome_cliente,
             data_reserva=data_reserva,
             horario_reserva=horario_reserva,
             numero_de_pessoas=numero_de_pessoas,

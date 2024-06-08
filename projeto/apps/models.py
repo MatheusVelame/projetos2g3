@@ -130,7 +130,7 @@ class ReservaCafe(models.Model):
     nome_cliente = models.CharField(max_length=100, blank=True, null=True)
     data_reserva = models.DateField()
     horario_reserva = models.TimeField()
-    numero_de_pessoas = models.PositiveIntegerField(default=1)
+    numero_de_pessoas = models.PositiveIntegerField(default=0)
     observacao = models.TextField(blank=False, default='Descrição não informada')
 
 
