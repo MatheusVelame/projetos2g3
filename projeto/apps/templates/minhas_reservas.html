@@ -92,28 +92,8 @@
 
 .box1 img {
   object-fit: cover;
-}
-
-.rounded-button1 {
-        background-color: #A75938; 
-        border: none; 
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 25px;
-        transition: background-color 0.3s;
-        }
-        .rounded-button1:hover {
-            background-color: #FFC43B;
-        }
-        
-        
-        .rounded-button2 {
+}       
+        .rounded-button {
             font-weight: bold;
             background-color: #A75938; 
             border: none; 
@@ -128,26 +108,8 @@
             border-radius: 25px;
             transition: background-color 0.3s;
         }
-        
-        
-        .rounded-button3 {
-            font-weight: bold;
-            background-color: #A75938; 
-            border: none; 
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: flex;
-            font-size: 16px;
-            margin: 4px 2px;
-            margin-left: 100%;
-            cursor: pointer;
-            border-radius: 25px;
-            transition: background-color 0.3s;
-        }
-        .rounded-button3:hover {
-            background-color: red;
+        .rounded-button:hover {
+            background-color: #B27054;
         }
 </style>
 <section class="section">
@@ -178,22 +140,25 @@
                                 Status: {{ reserva.status }}<br>
                             </p>
                             {% if reserva.status == "Reserva terminada" %}
-                            <div class="mt-2">
+                            <div class="d-flex justify-content-between align-items-center" style="display: flex; justify-content: space-between; align-items: center;">
                                 <form action="{% url 'avaliar_cafe' reserva.cafe.id %}" method="post" class="d-inline">
                                     {% csrf_token %}
-                                    <button type="submit" class="rounded-button1"><a href="{% url 'excluir_reserva' reserva.id %}" style="text-decoration: none; color: white;">Avaliar</a></button>
-                                    
+                                    <button type="submit" class="rounded-button">Avaliar</button> 
+                                </form>
+                                <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="rounded-button">Excluir</button>
                                 </form>
                             </div>
                             {% else %}
-                            <div class="d-flex justify-content-between align-items-center" style="display: flex;">
+                            <div class="d-flex justify-content-between align-items-center" style="display: flex; justify-content: space-between; align-items: center;">
                                         <form action="{% url 'editar_reserva' reserva.id %}" method="post" class="d-inline">
                                             {% csrf_token %}
-                                            <button type="submit" class="rounded-button2">Editar</button>
+                                            <button type="submit" class="rounded-button">Editar</button>
                                         </form>
                                         <form action="{% url 'excluir_reserva' reserva.id %}" method="post" class="d-inline">
                                             {% csrf_token %}
-                                            <button type="submit" class="rounded-button3">Excluir</button>
+                                            <button type="submit" class="rounded-button">Excluir</button>
                                         </form>
                             </div>
                             {% endif %}

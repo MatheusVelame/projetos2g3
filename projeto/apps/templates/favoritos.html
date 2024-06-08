@@ -45,15 +45,24 @@
     }
 
     .btn-outline-secondary {
-        color: #333333;
-        border-color: #333333;
+        color: #333333; /* Cor inicial do texto */
+        background-color: white; /* Cor inicial de fundo */
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Suaviza a transição de cores e borda */
+        display: inline-block; /* Ajuste para garantir que o botão mantenha forma própria */
+        padding: 8px 16px; /* Espaçamento interno para dar forma ao botão */
+        font-size: 14px; /* Tamanho da fonte */
+        border-radius: 4px; /* Bordas arredondadas */
+        text-align: center; /* Texto centralizado */
+        text-decoration: none; /* Remove sublinhado */
     }
-
+    
     .btn-outline-secondary:hover {
-        background-color: #ccc;
-        border: 1px solid #ccc;
-        color: #000;
+        background-color: #B27054; /* Cor de fundo ao passar o mouse */
+        color: white; /* Texto em branco para melhor contraste */
+
     }
+    
+    
 
     .text-body-secondary {
         color: #888888;
@@ -65,6 +74,29 @@
         margin-top: 20px;
         padding-right: 15px;
         padding-left: 15px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 80px;
+        margin-bottom: 100px;
+    }
+
+    .rounded-button2 {
+        background-color: #A75938;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 25px;
+        transition: background-color 0.3s;
     }
 
     .container {
@@ -152,4 +184,8 @@
         <p>Por favor, faça login para ver seus favoritos.</p>
         <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
     {% endif %}
+
+    <div class="button-container">
+    <a href="{% url 'home' %}" class="rounded-button2" style="color: white; text-decoration: none;">Ver mais cafeterias</a>
+</div>
 {% endblock %}

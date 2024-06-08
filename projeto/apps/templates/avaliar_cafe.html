@@ -121,9 +121,9 @@
 
     .input-group input[type="radio"]:checked + label,
     .input-group label:hover {
-        background-color: #f5b301;
+        background-color: #B27054;
         color: #ffffff;
-        border-color: #f5b301;
+        border-color: #B27054;
     }
 
     .submit-btn-container {
@@ -147,7 +147,7 @@
     }
 
     .submit-btn:hover {
-        background-color: #e1a600;
+        background-color: #B27054;
     }
 
     .messages {
@@ -190,7 +190,7 @@
             {% endfor %}
         </div>
     {% endif %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group text-centered">
             <label for="avaliacao">Qual o seu nível de satisfação?</label>

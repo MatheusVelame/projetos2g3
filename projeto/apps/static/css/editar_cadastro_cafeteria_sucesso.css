@@ -41,13 +41,24 @@ h1 {
 }
 
 .botao-pag-inicial {
-    padding: 10px;
-    display: block;
-    padding: 10px 5px;
-    margin: 20px;
-    background-color: black;
-    color: #fff;
-    border-radius: 5px;
     text-decoration: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: var(--cor-botoes);
+    color: var(--branco-navbar);
+    padding: 11px;
+    width: 250px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
     text-align: center;
+    white-space: nowrap;   
+    display: inline-block; 
+}
+.botao-pag-inicial:hover{
+    background-color: var(--cor-principal);
 }

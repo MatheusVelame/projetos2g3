@@ -25,7 +25,7 @@ describe('test Consultar Favoritos', () => {
             });
         });
         cy.wait(1000);
-        cy.get('h1').invoke('text').should('have.string', "Entrar no Aponte Cafés");
+        cy.get('h1').invoke('text').should('have.string', "Fazer login");
         cy.wait(2000);
 
         cy.visit('/admin');
