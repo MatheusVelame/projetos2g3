@@ -21,6 +21,9 @@ import random
 
 def home(request):
     cafes = Cafe.objects.all()
+    for cafe in cafes:
+        cafe.media_avaliacoes = cafe.media_avaliacoes()
+        cafe.media_valor_gasto = cafe.media_valor_gasto()
     return render(request, 'home.html', {'cafes': cafes})
 
 def buscar_cafeterias(request):
@@ -184,6 +187,7 @@ def criar_reserva(request, cafe_id):
         reserva = ReservaCafe(
             cafe=cafe,
             cliente=cliente,
+            nome_cliente=nome_cliente,
             data_reserva=data_reserva,
             horario_reserva=horario_reserva,
             numero_de_pessoas=numero_de_pessoas,
@@ -376,12 +380,17 @@ def lista_historico(request):
 @login_required
 def detalhes(request, cafe_id):
     cafe = get_object_or_404(Cafe, id=cafe_id)
+    media_avaliacoes = cafe.media_avaliacoes()
+    media_valor_gasto = cafe.media_valor_gasto()
     range_5 = range(1, 6)
     usuario = request.user
     favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).exists()
     detalhes_cafe = cafe.detalhes()
 
     outras_cafeterias = list(Cafe.objects.exclude(id=cafe_id))
+    for c in outras_cafeterias:
+        c.media_avaliacoes = c.media_avaliacoes()
+        media_valor_gasto = cafe.media_valor_gasto()
     random.shuffle(outras_cafeterias)
     outras_cafeterias = outras_cafeterias[:4]
 
@@ -405,7 +414,9 @@ def detalhes(request, cafe_id):
         'favorito': favorito,
         'star_range': star_range,
         'range_5': range_5,
-        'outras_cafeterias': outras_cafeterias
+        'outras_cafeterias': outras_cafeterias,
+        'media_avaliacoes': media_avaliacoes,
+        'media_valor_gasto': media_valor_gasto,
     })
     
 def limpar_historico_duplicado():
@@ -595,6 +606,7 @@ def editar_perfil(request):
             })
 
         user_cliente.user.username = username
+        user_cliente.user.save()
         user_cliente.nome_completo = nome_completo
         user_cliente.email = email
 

@@ -264,7 +264,7 @@ describe('test suit avaliar cafe', () => {
 
     // Aparece para fazer login
     cy.get('h1').invoke('text').then((text) => {
-      expect(text).to.include('Entrar no Aponte Cafés');
+      expect(text).to.include('Fazer login');
     });
 
     cy.wait(3000)

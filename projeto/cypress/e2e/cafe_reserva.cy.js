@@ -94,7 +94,7 @@ describe('Test Reservar uma Mesa', () => {
         cy.wait(3000);
         cy.get('.rounded-button').click();
         cy.wait(3000);
-        cy.get('h1').invoke('text').should('have.string', "Entrar no Aponte Cafés")
+        cy.get('h1').invoke('text').should('have.string', "Fazer login")
         cy.wait(2000);
 
         cy.visit('/admin');
@@ -437,7 +437,7 @@ describe('Test Reservar uma Mesa', () => {
         cy.get('#observacao').type('Quero uma mesa dentro do estabelecimento.')
         cy.wait(3000);
         cy.get('.rounded-button2').click();
-        cy.get('.alert.alert-danger').within(() => {
+        cy.get('.alert-danger').within(() => {
             cy.contains('Café já reservado para o horário solicitado!').should('exist');
         });
         cy.wait(2000);
@@ -610,7 +610,7 @@ describe('Test Reservar uma Mesa', () => {
         cy.wait(3000);
         cy.get('.rounded-button2').click();
         cy.wait(2000);
-        cy.get('.rounded-button3').click();
+        cy.get('.rounded-button').contains('Excluir').click();
         cy.wait(2000);
         cy.get('.col').invoke('text').should('have.string', "Você não tem reservas.")
 
@@ -761,7 +761,7 @@ describe('Test Reservar uma Mesa', () => {
         cy.get('#observacao').type('Quero uma mesa dentro do estabelecimento.')
         cy.wait(3000);
         cy.get('.rounded-button2').click();
-        cy.get('.alert.alert-danger').within(() => {
+        cy.get('.alert-danger').within(() => {
             cy.contains('A data selecionada deve ser futura.').should('exist');
         });
         cy.wait(2000);
@@ -924,7 +924,7 @@ describe('Test Reservar uma Mesa', () => {
         cy.get('#observacao').type('Quero uma mesa dentro do estabelecimento.')
         cy.wait(3000);
         cy.get('.rounded-button2').click();
-        cy.get('.alert.alert-danger').within(() => {
+        cy.get('.alert-danger').within(() => {
             cy.contains('O número de pessoas deve ser maior que zero.').should('exist');
         });
         cy.wait(2000);
