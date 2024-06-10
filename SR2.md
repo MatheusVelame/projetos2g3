@@ -1,4 +1,4 @@
-# Entrega 04
+# SR2
 
 ## Links relevantes:
 <ul>
@@ -11,11 +11,11 @@
       >Protótipo de Média Fidelidade no Figma</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=gWatEtoSqLw"
       >Screencast do Protótipo de Média Fidelidade - SR2</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=T1E4frktCVA"
       >Screencast CI/CD com Build e Deployment Automatizado - SR2</a>
   </li>
   <li>
@@ -32,11 +32,112 @@
       >Projeto na Azure</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=tdsjQhi2Oro"
       >Screencast da Azure - SR2</a>
   </li>
 </ul>
 <br/>
+
+## 5 Histórias do usuário bem definidas
+
+**1. BUSCA - Buscar na Home**
+
+Cartão: Como usuário, eu gostaria de realizar uma busca (pesquisa) nas cafeterias cadastradas.
+
+Conversa: O usuário, mesmo sem cadastro, irá informar o termo de pesquisa e conseguirá visualizar as cafeterias cadastradas que contenham o termo em seu nome ou descrição.
+
+Validação:
+
+- O usuário informará o termo “natural” e visualizará a cafeteria “Café Natural”, bem como outras cafeterias cadastradas que tenham “natural” no seu nome ou descrição;
+  
+- O usuário informará o termo “vegana” e visualizará a cafeteria “Café Natural”, bem como outras cafeterias cadastradas que tenham “vegana” no seu nome ou descrição;
+  
+- O usuário informará o termo “rock” e não visualizará nenhuma cafeteria, pois não há nenhuma cafeteria cujo nome ou descrição tenha o termo pesquisado;
+  
+- O usuário não digitará nenhum termo de pesquisa e visualizará todas as cafeterias cadastradas. 
+
+
+**2. CONSULTA FAVORITOS**
+
+Cartão: Como cliente, eu gostaria de consultar as minhas cafeterias favoritadas.
+
+Conversa: O usuário deverá estar logado para consultar as cafeterias favoritadas pelo o usuário.
+
+Confirmação / Validação:
+
+- Vou tentar consultar os meus favoritos sem estar logado no sistema e uma mensagem aparece solicitando que o login ou cadastro seja feito para poder consultar os meus favoritos;
+  
+- Vou logar como Pedro Antônio Gonçalves (e-mail “pag@hotmail.com”, senha “pag12345”) e tentar consultar as minhas cafeterias favoritadas sem ter nenhuma cafeteria como favorita e aparecerá na página uma mensagem “Não há nenhuma cafeteria favoritada”;
+  
+- Vou logar como Pedro Antônio Gonçalves (e-mail “pag@hotmail.com”, senha “pag12345”) e tentar consultar as minhas  várias cafeterias favoritadas, e aparecerá todas as cafeterias que favoritei.
+
+**3. SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada**
+
+
+Cartão: Como cliente, eu gostaria de reservar uma mesa em uma cafeteria cadastrada na aplicação.
+
+Conversa: O usuário deverá estar logado para reservar uma mesa em uma cafeteria. Ao acessar o perfil de uma cafeteria, ele terá a opção de reservar mesa.
+
+Confirmação / Validação:
+
+- Vou tentar entrar em um perfil da cafeteria tres cafes para reservar uma mesa para 2 pessoas sem estar logado no sistema e uma mensagem aparece solicitando que o login ou cadastro seja feito para poder reservar uma mesa;
+  
+- Vou logar como Maria Alice Alcântara (e-mail “malice@hotmail.com”, senha “maa12345”) e tentar reservar uma mesa para 2 pessoas e  para a data 11/junho/2024 na cafeteria "Café aconchego" no horário de 10:30, e a minha reserva será efetivada com sucesso;
+  
+- Vou logar como Maria Alice Alcântara (e-mail “malice@hotmail.com”, senha “maa12345”) e tentar reservar uma mesa para 2 pessoas e para a data 11/Junho/2024 na cafeteria "Café Aconchego" novamente no mesmo horário, e receberei uma mensagem informando que ela já foi reservada;
+  
+- Vou logar como Maria Alice Alcântara (e-mail “malice@hotmail.com”, senha “maa12345”) e tentar reservar uma mesa para 2 pessoas e para uma data que já passou na cafeteria "Café Aconchego" às 10:30, e receberei uma mensagem informando para selecionar uma data que seja futura;
+  
+- Vou logar como Maria Alice Alcântara (e-mail “malice@hotmail.com”, senha “maa12345”) e tentar cancelar uma reserva na cafeteria "Café Aconchego" que está reservada no dia 11/junho/2024 às 10:30, e receberei uma mensagem informando que a reserva foi cancelada com sucesso;
+  
+- Vou logar como Maria Alice Alcântara (e-mail “malice@hotmail.com”, senha “maa12345”) e tentar reservar uma mesa para 0 pessoas e  para a data 11/Junho/2024 na cafeteria "Café Aconchego" às 10:30, e receberei uma mensagem informando que a reserva tem que ter mais de 0 pessoas.
+
+**4. PERFIL DO USUÁRIO**
+
+Cartão: Como cliente, eu gostaria de consultar minhas informações de cadastro.
+
+Conversa: O usuário deverá estar logado para acessar seus dados de cadastro. Ao acessar seu perfil, ele consegue visualizá-los.
+
+Validação:
+
+- A usuária Helena Santos, cadastrada com nome Helena Santos, username: helenassantos, email: helenasantos@gmail.com e senha 123456, tentará, logada no sistema, visualizar os dados de seu perfil e aparecerá seu nome: Helena Santos, username: helenassantos e email:helenasantos@gmail.com;
+
+- O usuário Madson Mendes, é cadastrado com email: mmendes@gmail.com, username madson12 e senha: mm123 mas não está logado. Ele tentará acessar o seu perfil, mas não aparecerá a opção.
+
+**5. HISTÓRICO DE VISITAS SITE**
+
+Cartão: Como cliente, eu gostaria de consultar minhas informações de cadastro.
+
+Conversa: Após o usuário clicar para visualizar alguma cafeteria qualquer, essa cafeteria será automaticamente adicionada na aba de histórico, para caso o usuário queira relembrar alguma cafeteria que visualizou porém não salvou na aba de favoritos, por exemplo.
+
+Validação:
+
+- Vou tentar acessar meu histórico sem estar logado e vou ser redirecionado para fazer o login/cadastro antes;
+  
+- Vou visitar a cafeteria “cantinho” duas vezes no mesmo dia e ela aparecerá só uma vez no meu histórico.
+<br/>
+
+Para visualizar todas as histórias bem definidas, consulte o documento abaixo.
+
+<ul>
+  <li>
+    <a  href="https://docs.google.com/document/d/1duo9j6WFsmtch20auUFHfpMkE5BbMLYR3IAXw-S7324/edit"
+      >Todas as histórias bem definidas no nosso Drive</a>
+  </li>
+</ul>
+<br/>
+
+## 8 Histórias Implementadas
+
+- 1 - DETALHES - Visualizar perfil com as informações das cafeterias cadastradas (SR1)
+- 2 - AVALIAÇÃO - Avaliar cafeterias cadastradas
+- 3 - CADASTRO CAFÉS - Cadastrar Cafeterias
+- 4 - PERFIL DO USUÁRIO - Visualizar perfil de usuário
+- 5 - FAVORITOS - Adicionar e remover
+- 6 - BUSCA - Buscar na Home
+- 7 - CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
+- 8 - SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
+- 9 - HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
 
 ## Instruções de acesso ao projeto:
 
@@ -70,6 +171,8 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
 
 ## Diagrama de atividades do sistema:
 
+![Flowchart Template (2)](https://github.com/MatheusVelame/projetos2g3/assets/142773064/aa65343f-35d4-4b1b-93c9-5464085739ab)
+
 
 
 
@@ -97,16 +200,14 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
 
  ## Print do backlog do projeto:
   
-
-
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/ec8ab36b-7077-48d7-aa32-b3187c95461e)
 
 <br/>  
  
 ## Print do quadro da Sprint:
 
-
-
-
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/45a4d508-8c79-404c-a6b4-fc34ee9047ab)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/aa22bbf0-aa03-4448-a261-6d58298a8002)
 
 <br/>
 
@@ -134,7 +235,7 @@ Para a realização desse processo, os integrantes do Par 03 reuniram-se em uma 
 *Par 04 – Matheus Velame, Thaís e Arthur*
 
 Finalmente, coube ao último subgrupo a tarefa de elaborar as funcionalidades referentes à seção de Favoritos (consultar, incluir ou excluir cafeterias da seção), bem como a implementação da exibição dos detalhes das cafeterias cadastradas e do sistema de reservas. 
-Assim como na etapa anterior, dois integrantes do subgrupo se reuniram de forma virtual para a codificação conjunta, colaborando de perto na elaboração do código, inclusive no que se refere aos testes. Por sua vez, o terceiro membro contribuiu ora de maneira independente, ora em complementação nos trabalhos previamente elaborados. Essa abordagem híbrida permitiu uma distribuição das responsabilidades e uma colaboração eficaz entre os membros da equipe, embora sejam incontestáveis os benefícios da adoção integral da programação em par, tal como proposta pelos orientadores do projeto.
+Assim como na etapa anterior, Velame e Thaís se reuniram de forma virtual para a codificação conjunta, colaborando de perto na elaboração do código, inclusive no que se refere aos testes. Por sua vez, Arthur membro contribuiu ora de maneira independente, ora em complementação nos trabalhos previamente elaborados. Essa abordagem híbrida permitiu uma distribuição das responsabilidades e uma colaboração eficaz entre os membros da equipe, embora sejam incontestáveis os benefícios da adoção integral da programação em par, tal como proposta pelos orientadores do projeto.
 
 *Conclusões*
 
