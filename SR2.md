@@ -186,14 +186,14 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
 
  ## Print do backlog do projeto:
   
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/16008cee-a557-43b7-b85e-9d0dc96a9c0d)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/6885e6d6-579d-4608-b33c-27bfdbaf67a0)
 
 <br/>  
  
 ## Print do quadro da Sprint:
 
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/0aec77d0-92c6-4211-a32e-b9bd18897298)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/0324680e-e306-43bd-99f7-9354c1e99aea)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/45a4d508-8c79-404c-a6b4-fc34ee9047ab)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/aa22bbf0-aa03-4448-a261-6d58298a8002)
 
 <br/>
 
