@@ -39,6 +39,7 @@
 <br/>
 
 ## 5 Histórias do usuário bem definidas
+
 **1. BUSCA - Buscar na Home**
 
 Cartão: Como usuário, eu gostaria de realizar uma busca (pesquisa) nas cafeterias cadastradas.
@@ -126,16 +127,18 @@ Para visualizar todas as histórias bem definidas, consulte o documento abaixo.
 </ul>
 <br/>
 
-## 8 Histórias Implementadas
+## 10 Histórias Implementadas
 
-- 1 - DETALHES - Visualizar perfil com as informações das cafeterias cadastradas
+- 1 - DETALHES - Visualizar perfil com as informações das cafeterias cadastradas (SR1)
 - 2 - AVALIAÇÃO - Avaliar cafeterias cadastradas
 - 3 - CADASTRO CAFÉS - Cadastrar Cafeterias
-- 4 - BUSCA - Buscar na Home
-- 5 - CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
-- 6 - SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
-- 7 - PERFIL DO USUÁRIO - Visualizar perfil de usuário
-- 8 - HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
+- 4 - CADASTRO CLIENTES - Cadastrar clientes
+- 5 - FAVORITOS - Adicionar e remover (SR1)
+- 6 - BUSCA - Buscar na Home
+- 7 - CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
+- 8 - SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
+- 9 - PERFIL DO USUÁRIO - Visualizar perfil de usuário
+- 10 - HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
 
 ## Instruções de acesso ao projeto:
 
@@ -233,7 +236,7 @@ Para a realização desse processo, os integrantes do Par 03 reuniram-se em uma 
 *Par 04 – Matheus Velame, Thaís e Arthur*
 
 Finalmente, coube ao último subgrupo a tarefa de elaborar as funcionalidades referentes à seção de Favoritos (consultar, incluir ou excluir cafeterias da seção), bem como a implementação da exibição dos detalhes das cafeterias cadastradas e do sistema de reservas. 
-Assim como na etapa anterior, dois integrantes do subgrupo se reuniram de forma virtual para a codificação conjunta, colaborando de perto na elaboração do código, inclusive no que se refere aos testes. Por sua vez, o terceiro membro contribuiu ora de maneira independente, ora em complementação nos trabalhos previamente elaborados. Essa abordagem híbrida permitiu uma distribuição das responsabilidades e uma colaboração eficaz entre os membros da equipe, embora sejam incontestáveis os benefícios da adoção integral da programação em par, tal como proposta pelos orientadores do projeto.
+Assim como na etapa anterior, Velame e Thaís se reuniram de forma virtual para a codificação conjunta, colaborando de perto na elaboração do código, inclusive no que se refere aos testes. Por sua vez, Arthur membro contribuiu ora de maneira independente, ora em complementação nos trabalhos previamente elaborados. Essa abordagem híbrida permitiu uma distribuição das responsabilidades e uma colaboração eficaz entre os membros da equipe, embora sejam incontestáveis os benefícios da adoção integral da programação em par, tal como proposta pelos orientadores do projeto.
 
 *Conclusões*
 
