@@ -11,11 +11,11 @@
       >Protótipo de Média Fidelidade no Figma</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=gWatEtoSqLw"
       >Screencast do Protótipo de Média Fidelidade - SR2</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=T1E4frktCVA"
       >Screencast CI/CD com Build e Deployment Automatizado - SR2</a>
   </li>
   <li>
@@ -39,7 +39,7 @@
 <br/>
 
 ## 5 Histórias do usuário bem definidas
-*1. BUSCA - Buscar na Home*
+**1. BUSCA - Buscar na Home**
 
 Cartão: Como usuário, eu gostaria de realizar uma busca (pesquisa) nas cafeterias cadastradas.
 
@@ -56,7 +56,7 @@ Validação:
 - O usuário não digitará nenhum termo de pesquisa e visualizará todas as cafeterias cadastradas. 
 
 
-*2. CONSULTA FAVORITOS*
+**2. CONSULTA FAVORITOS**
 
 Cartão: Como cliente, eu gostaria de consultar as minhas cafeterias favoritadas.
 
@@ -70,7 +70,7 @@ Confirmação / Validação:
   
 - Vou logar como Pedro Antônio Gonçalves (e-mail “pag@hotmail.com”, senha “pag12345”) e tentar consultar as minhas  várias cafeterias favoritadas, e aparecerá todas as cafeterias que favoritei.
 
-*3. SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada*
+**3. SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada**
 
 
 Cartão: Como cliente, eu gostaria de reservar uma mesa em uma cafeteria cadastrada na aplicação.
@@ -91,7 +91,7 @@ Confirmação / Validação:
   
 - Vou logar como Maria Alice Alcântara (e-mail “malice@hotmail.com”, senha “maa12345”) e tentar reservar uma mesa para 0 pessoas e  para a data 11/Junho/2024 na cafeteria "Café Aconchego" às 10:30, e receberei uma mensagem informando que a reserva tem que ter mais de 0 pessoas.
 
-*4. PERFIL DO USUÁRIO*
+**4. PERFIL DO USUÁRIO**
 
 Cartão: Como cliente, eu gostaria de consultar minhas informações de cadastro.
 
@@ -103,7 +103,7 @@ Validação:
 
 - O usuário Madson Mendes, é cadastrado com email: mmendes@gmail.com, username madson12 e senha: mm123 mas não está logado. Ele tentará acessar o seu perfil, mas não aparecerá a opção.
 
-*5. HISTÓRICO DE VISITAS SITE*
+**5. HISTÓRICO DE VISITAS SITE**
 
 Cartão: Como cliente, eu gostaria de consultar minhas informações de cadastro.
 
@@ -118,14 +118,14 @@ Validação:
 
 ## 8 Histórias Implementadas
 
-- 1. DETALHES - Visualizar perfil com as informações das cafeterias cadastradas
-- 2. AVALIAÇÃO - Avaliar cafeterias cadastradas
-- 3. CADASTRO CAFÉS - Cadastrar Cafeterias
-- 4. BUSCA - Buscar na Home
-- 5. CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
-- 6. SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
-- 7. PERFIL DO USUÁRIO - Visualizar perfil de usuário
-- 8. HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
+- 1 DETALHES - Visualizar perfil com as informações das cafeterias cadastradas
+- 2 AVALIAÇÃO - Avaliar cafeterias cadastradas
+- 3 CADASTRO CAFÉS - Cadastrar Cafeterias
+- 4 BUSCA - Buscar na Home
+- 5 CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
+- 6 SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
+- 7 PERFIL DO USUÁRIO - Visualizar perfil de usuário
+- 8 HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
 
 ## Instruções de acesso ao projeto:
 
