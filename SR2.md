@@ -115,6 +115,13 @@ Validação:
   
 - Vou visitar a cafeteria “cantinho” duas vezes no mesmo dia e ela aparecerá só uma vez no meu histórico.
 
+<ul>
+  <li>
+    <a  href="https://docs.google.com/document/d/1duo9j6WFsmtch20auUFHfpMkE5BbMLYR3IAXw-S7324/edit"
+      >Todas as histórias bem definidas no nosso Drive</a>
+  </li>
+</ul>
+<br/>
 
 ## 8 Histórias Implementadas
 
@@ -186,7 +193,7 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
 
  ## Print do backlog do projeto:
   
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/6885e6d6-579d-4608-b33c-27bfdbaf67a0)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/ec8ab36b-7077-48d7-aa32-b3187c95461e)
 
 <br/>  
  
