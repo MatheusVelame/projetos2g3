@@ -1,4 +1,4 @@
-# Aponte - Descobrindo cafeterias
+# Aponte Cafés - Descobrindo cafeterias
 
 ## Descrição
 
@@ -25,34 +25,7 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
 
 ## SR1
 
-***Links relevantes:***
-<ul>
-  <li>
-    <a  href="https://cesar-mvp2.atlassian.net/jira/software/projects/APC/boards/5"
-      >Projeto no Jira</a>
-  </li>
-    <li> 
-    <a  href="https://www.figma.com/file/7lTqT6QR7tPP4GbiBYDMkY/wireframe?type=design&node-id=0%3A1&mode=design&t=1748pNTyjfC6RMOg-1"
-      >Protótipo de Lo-Fi no Figma - Sketches e Storyboards</a>
-  </li>
-   <li>
-    <a  href=""
-      >Screencast - Figma</a>
-  </li>
-  <li>
-    <a  href=""
-      >Screencast - Azure</a>
-  </li>
-</ul>
-
-***Deployment das histórias produzidas:***
-<ul>
-  <li>
-    <a  href="https://apontecafe.azurewebsites.net/"
-      >Projeto na Azure</a>
-  </li>
-</ul>
-<br/>
+- As entregas e links relevantes do SR1 estão detalhadas no arquivo [SR1.md](https://github.com/MatheusVelame/projetos2g3/blob/main/SR1.md).
 
 ### Histórias
 
@@ -63,42 +36,14 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
   4. Favoritar cafeterias
   5. Avaliar cafeterias cadastradas
 
-- O cartão, a conversa e a confirmação/validação de cada uma dessas histórias estão descritos em maiores detalhes no [Jira do projeto](https://cesar-mvp2.atlassian.net/jira/software/projects/APC/boards/5).
 
 ## SR2
 
-***Links relevantes:***
-<ul>
-  <li>
-    <a  href="https://apontecafe.atlassian.net/jira/software/projects/APC/boards/1"
-      >Projeto no Jira</a>
-  </li>
-    <li> 
-    <a  href="https://www.figma.com/design/7lTqT6QR7tPP4GbiBYDMkY/aponte-site?node-id=390-2"
-      >Protótipo de média fidelidade no Figma - Sketches e Storyboards</a>
-  </li>
-   <li>
-    <a  href=""
-      >Screencast - Figma</a>
-  </li>
-  <li>
-    <a  href=""
-      >Screencast - Azure</a>
-  </li>
-</ul>
-
-***Deployment das histórias produzidas:***
-<ul>
-  <li>
-    <a  href="https://apontecafe.azurewebsites.net/"
-      >Projeto na Azure</a>
-  </li>
-</ul>
-<br/>
+- As entregas e links relevantes do SR2 estão detalhadas no arquivo [SR2.md](https://github.com/MatheusVelame/projetos2g3/blob/main/SR2.md).
 
 ### Histórias
 
-- para o SR2, são 10 5 histórias bem definidas e duas implementadas. As 10 histórias são:
+- para o SR2, são 8 histórias bem definidas e duas implementadas. No total:
   1. Visualizar Detalhes de Cafeterias
   2. Fazer e ver Avaliações de Cafeterias
   3. Cadastro de Cafeterias
@@ -110,7 +55,6 @@ Este é um trabalho para a disciplina de Projetos 2 - CESAR School 2024.1.
   9. Perfil do usuário - editar/excluir informações
   10. Visualizar histórico de cafeterias visitadas no site
 
-- O cartão, a conversa e a confirmação/validação de cada uma dessas histórias estão descritos em maiores detalhes no [Jira do projeto](https://apontecafe.atlassian.net/jira/software/projects/APC/boards/1).
 
 ## Licença
 
