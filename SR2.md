@@ -32,7 +32,7 @@
       >Projeto na Azure</a>
   </li>
   <li>
-    <a  href=""
+    <a  href="https://www.youtube.com/watch?v=tdsjQhi2Oro"
       >Screencast da Azure - SR2</a>
   </li>
 </ul>
@@ -118,14 +118,14 @@ Validação:
 
 ## 8 Histórias Implementadas
 
-- 1 DETALHES - Visualizar perfil com as informações das cafeterias cadastradas
-- 2 AVALIAÇÃO - Avaliar cafeterias cadastradas
-- 3 CADASTRO CAFÉS - Cadastrar Cafeterias
-- 4 BUSCA - Buscar na Home
-- 5 CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
-- 6 SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
-- 7 PERFIL DO USUÁRIO - Visualizar perfil de usuário
-- 8 HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
+- 1 - DETALHES - Visualizar perfil com as informações das cafeterias cadastradas
+- 2 - AVALIAÇÃO - Avaliar cafeterias cadastradas
+- 3 - CADASTRO CAFÉS - Cadastrar Cafeterias
+- 4 - BUSCA - Buscar na Home
+- 5 - CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
+- 6 - SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
+- 7 - PERFIL DO USUÁRIO - Visualizar perfil de usuário
+- 8 - HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
 
 ## Instruções de acesso ao projeto:
 
