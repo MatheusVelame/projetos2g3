@@ -114,7 +114,9 @@ Validação:
 - Vou tentar acessar meu histórico sem estar logado e vou ser redirecionado para fazer o login/cadastro antes;
   
 - Vou visitar a cafeteria “cantinho” duas vezes no mesmo dia e ela aparecerá só uma vez no meu histórico.
-- 
+
+Para visualizar todas as histórias bem definidas, consulte o documento abaixo.
+
 <br/>
 <ul>
   <li>
