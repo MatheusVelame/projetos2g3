@@ -28,6 +28,7 @@
 
     .card-body {
         padding: 15px;
+        position: relative;
     }
 
     .card-title {
@@ -45,21 +46,33 @@
     }
 
     .btn-outline-secondary {
-        color: var(--branco-navbar); /* Cor do texto */
-        background-color: var(--cor-botoes); /* Cor de fundo inicial */
-        border: 1px solid var(--cor-botoes); /* Borda da mesma cor do fundo */
-        padding: 10px 20px; /* Padding adequado para o botão */
-        border-radius: 20px; /* Bordas arredondadas */
-        font-weight: bold; /* Texto em negrito */
-        transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transição suave para hover */
+        color: var(--branco-navbar);
+        background-color: var(--cor-botoes);
+        border: 1px solid var(--cor-botoes);
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s;
     }
     
     .btn-outline-secondary:hover {
-        color: var(--branco-navbar); /* Cor do texto ao passar o mouse permanece branca */
-        background-color: #B27054; /* Cor de transição ao passar o mouse */
+        color: var(--branco-navbar);
+        background-color: #B27054;
 
     }
 
+    .fav-icon {
+        cursor: pointer;
+        color: grey;
+        font-size: 16px;
+        position: absolute;
+        top: 20px;
+        right: 50px;
+    }
+
+    .fav-icon.favorited {
+        color: #902C00;
+    }
 
     .text-body-secondary {
         color: #888888;
@@ -111,17 +124,13 @@
 
     .search-form .input-group {
         width: 70%;
-        /* Define a largura do grupo de input para 70% da largura do container pai */
         display: flex;
-        /* Garante que o input e o ícone/button estejam alinhados horizontalmente */
         align-items: center;
         margin: 0 auto;
-        /* Centraliza o grupo de input horizontalmente se o container for mais largo */
     }
 
     .search-input {
         flex-grow: 1;
-        /* Faz o input crescer e ocupar todo o espaço disponível, excluindo o espaço do ícone/button */
     }
 
     .input-group-append {
@@ -184,7 +193,7 @@
                 <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ visita.cafe.nome_cafeteria }}</text>
             </svg>
             {% endif %}
-            <div class="card-body">
+            <div class="card-body position-relative" style="position: relative;">
                 <h5 class="card-title">
                     {{ visita.cafe.nome_cafeteria }}
                     <div class="info-container">
@@ -203,6 +212,8 @@
                             <span>Sem média de gasto</span>
                             {% endif %}
                         </div>
+                        <i class="fa fa-heart fav-icon {% if visita.cafe.id in favoritos %}favorited{% endif %}"
+                            data-url="{% url 'favoritar' visita.cafe.id %}"></i>
                     </div>
                 </h5>
                 <p class="card-text">{{ visita.cafe.get_short_description }}</p>
@@ -236,5 +247,37 @@
         </div>
     </div>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.fav-icon').on('click', function () {
+            var icon = $(this);
+            var cafeId = icon.data('url').split('/').pop();
+            var url = "{% url 'favoritar' 0 %}".replace('0', cafeId);
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                headers: {
+                    'x-requested-with': 'XMLHttpRequest'
+                },
+                success: function (response) {
+                    if (response.status === 'favoritado') {
+                        icon.addClass('favorited');
+                    } else if (response.status === 'desfavoritado') {
+                        icon.removeClass('favorited');
+                    }
+                    window.location.href = "{% url 'favoritos' %}";
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403) {
+                        window.location.href = '{% url "login" %}';
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}

@@ -303,9 +303,7 @@
         align-items: center;
         margin-left: 5px;
         font-size: 14px;
-        /* Tamanho menor para a média de valor gasto */
         color: #902C00;
-        /* Cor vermelha/marrom */
     }
 
     .description-stars {
@@ -665,10 +663,8 @@
 </div>
 
 <script>
-    // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
     var modalImg = document.getElementById("img01");
     var images = document.querySelectorAll('.review-images img');
     images.forEach(img => {
@@ -678,10 +674,8 @@
         }
     });
 
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
     }

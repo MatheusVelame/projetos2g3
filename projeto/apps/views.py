@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
-from .models import Cafe, Avaliacao, UserCliente
+from .models import Cafe, Avaliacao, UserCliente, Favorito
 from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
@@ -18,13 +18,20 @@ from django.db.models import Max
 import json
 from django.core.files.storage import FileSystemStorage
 import random
+from django.http import JsonResponse
 
 def home(request):
     cafes = Cafe.objects.all()
+    favoritos = Favorito.objects.filter(usuario=request.user).values_list('cafe_id', flat=True) if request.user.is_authenticated else []
+    context = {
+        'cafes': cafes,
+        'favoritos': list(favoritos),
+    }
     for cafe in cafes:
         cafe.media_avaliacoes = cafe.media_avaliacoes()
         cafe.media_valor_gasto = cafe.media_valor_gasto()
-    return render(request, 'home.html', {'cafes': cafes})
+    return render(request, 'home.html', context)
+
 
 def buscar_cafeterias(request):
     if 'termo' in request.GET:
@@ -337,16 +344,20 @@ def favoritar(request, cafe_id):
         
         if not favorito_existente:
             Favorito.objects.create(usuario=usuario, cafe=cafe)
+            status = 'favoritado'
             messages.success(request, 'Cafeteria favoritada com sucesso!')
         else:
             favorito = Favorito.objects.filter(usuario=usuario, cafe=cafe).first()
             favorito.delete()  # Remove o favorito se existir
+            status = 'desfavoritado'
             messages.success(request, 'Cafeteria removida dos favoritos.')
+        
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'status': status})
         
         return redirect('favoritos')
     
     return redirect('home')
-
 
 @login_required
 def lista_favoritos(request):
@@ -373,7 +384,8 @@ def registrar_historico(request, cafe_id):
 def lista_historico(request):
     if request.user.is_authenticated:
         historico = Historico.objects.filter(usuario=request.user).order_by('-visited_at')
-        return render(request, 'historico.html', {'historico': historico})
+        favoritos = Favorito.objects.filter(usuario=request.user).values_list('cafe_id', flat=True)
+        return render(request, 'historico.html', {'historico': historico, 'favoritos': favoritos})
     else:
         return redirect('login')
     

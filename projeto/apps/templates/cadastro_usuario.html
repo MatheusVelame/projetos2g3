@@ -9,7 +9,6 @@
         <h2>Criar conta</h2>
         {% if messages %}
         <div class="messages">
-            <!-- Filtro para mostrar apenas mensagens relacionadas ao cadastro de usuário -->
             {% for message in messages %}
                 {% if 'cadastro_usuario' in message.tags %}
                     <div class="{{ message.tags }}">
