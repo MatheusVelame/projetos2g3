@@ -1,5 +1,5 @@
 {% extends 'global/base.html' %}
-
+{% load static %}
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -24,45 +24,45 @@
     }
 
     .hero {
-    position: relative;
-    background-image: url('/static/images/img-home-cliente.png');
-    background-size: cover;
-    background-position: center;
-    padding: 100px 20px;
-    color: var(--branco-principal);
-    text-align: center;
-    min-height: 400px;
-}
+        position: relative;
+        background-image: url('/static/images/img-home-cliente.png');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 20px;
+        color: var(--branco-principal);
+        text-align: center;
+        min-height: 400px;
+    }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/static/images/glass-preto.png');
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-    border-radius: inherit;
-}
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/static/images/glass-preto.png');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        border-radius: inherit;
+    }
 
-.hero-content {
-    color: var(--branco-principal);
-    position: relative;
-    z-index: 2;
-}
+    .hero-content {
+        color: var(--branco-principal);
+        position: relative;
+        z-index: 2;
+    }
 
 
-.hero h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-}
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
 
-.hero p {
-    font-size: 1.5em;
-}
+    .hero p {
+        font-size: 1.5em;
+    }
 
     .card-img-top {
         width: 100%;
@@ -93,25 +93,30 @@
     }
 
     .btn-outline-secondary {
-        color: var(--branco-navbar); /* Cor do texto */
-        background-color: var(--cor-botoes); /* Cor de fundo inicial */
-        border: 1px solid var(--cor-botoes); /* Borda da mesma cor do fundo */
-        padding: 10px 20px; /* Padding adequado para o botão */
-        border-radius: 20px; /* Bordas arredondadas */
-        font-weight: bold; /* Texto em negrito */
-        transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transição suave para hover */
+        color: var(--branco-navbar);
+        /* Cor do texto */
+        background-color: var(--cor-botoes);
+        /* Cor de fundo inicial */
+        border: 1px solid var(--cor-botoes);
+        /* Borda da mesma cor do fundo */
+        padding: 10px 20px;
+        /* Padding adequado para o botão */
+        border-radius: 20px;
+        /* Bordas arredondadas */
+        font-weight: bold;
+        /* Texto em negrito */
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        /* Transição suave para hover */
     }
-    
-    .btn-outline-secondary:hover {
-        color: var(--branco-navbar); /* Cor do texto ao passar o mouse permanece branca */
-        background-color: #B27054; /* Cor de transição ao passar o mouse */
-        border-color: var(--cor-principal); /* Cor da borda ao passar o mouse */
-    }
-    
-    
-    
-    
 
+    .btn-outline-secondary:hover {
+        color: var(--branco-navbar);
+        /* Cor do texto ao passar o mouse permanece branca */
+        background-color: #B27054;
+        /* Cor de transição ao passar o mouse */
+        border-color: var(--cor-principal);
+        /* Cor da borda ao passar o mouse */
+    }
 
     .text-body-secondary {
         color: #888888;
@@ -222,10 +227,101 @@
         justify-content: flex-end;
         align-items: flex-end;
         margin-top: auto;
-        
+    }
+
+    .fav-icon {
+        cursor: pointer;
+        color: grey;
+        font-size: 16px;
+        position: absolute;
+        top: 20px;
+        right: 50px;
+    }
+
+    .fav-icon.favorited {
+        color: #902C00;
+    }
+
+    .rounded-button {
+    background-color: #A75938;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    }
+
+    .rounded-button:hover {
+        background-color: #B27054;
+    }
+    
+    .hero-two {
+    position: relative;
+    background-image: url('/static/images/img-home-empresario.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: var(--branco-principal);
+    text-align: center;
+    min-height: 40px;
+    }
+
+    .hero-two::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/static/images/glass-preto.png');
+        background-size: cover;
+        background-position: center;
+        z-index:1;
+        border-radius: inherit;
+    }
+
+    .hero-content-two {
+        color: var(--branco-principal);
+        position: relative;
+        z-index: 2;
     }
 
 
+    .hero-two h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+    .hero-two p {
+        font-size: 1.5em;
+    }
+
+    .rounded-image {
+            width: 800px; 
+            height: 500px;
+            border-radius: 15px;
+            display: block;
+            margin: 20px auto;
+        }
+
+    .maps-pd{
+
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+    }
+
+    .maps-pd h1{
+
+    font-size: 34px;
+
+    }
 </style>
 
 <section class="hero" style=" display: flex; align-items: center;">
@@ -277,10 +373,11 @@
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
                 role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ cafe.nome_cafeteria }}</text>
+                <rect width="100%" height="100%" fill="#55595c"></rect>
+                <text x="40%" y="50%" fill="#eceeef" dy=".3em">{{ cafe.nome_cafeteria }}</text>
             </svg>
             {% endif %}
-            <div class="card-body" style="align-content: flex-end;">
+            <div class="card-body position-relative" style="position: relative;">
                 <h5 class="card-title">
                     {{ cafe.nome_cafeteria }}
                     <div class="info-container">
@@ -299,13 +396,16 @@
                             <span>Sem média de gasto</span>
                             {% endif %}
                         </div>
+                        <i class="fa fa-heart fav-icon {% if cafe.id in favoritos %}favorited{% endif %}"
+                            data-url="{% url 'favoritar' cafe.id %}"></i>
                     </div>
                 </h5>
                 <div class="btn-group">
                     {% if user.is_authenticated %}
                     <a href="{% url 'detalhes' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
                     {% else %}
-                    <a id="vermais"href="{% url 'detalhes_anonimo' cafe.id %}" class="btn btn-sm btn-outline-secondary">Ver mais</a>
+                    <a id="vermais" href="{% url 'detalhes_anonimo' cafe.id %}"
+                        class="btn btn-sm btn-outline-secondary">Ver mais</a>
                     {% endif %}
                 </div>
                 <small class="text-body-secondary">{{ cafe.horas_funcionamento }}</small>
@@ -315,7 +415,11 @@
     </div>
 </div>
 
-<!-- Efeito para busca -->
+
+<section class="maps-pd">
+    <h1 style="margin: 0px 50px 50px;">Onde encontrar</h1>
+    <img src="{% static 'images/geolocalizacao.png' %}" alt="Imagem com Bordas Arredondadas" class="rounded-image">
+</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -323,12 +427,52 @@
         const searchIcon = document.getElementById('search-icon');
 
         searchInput.addEventListener('input', function () {
-            // Muda a cor da lupa com base na presença de texto
             searchIcon.style.color = searchInput.value.trim() ? '#333' : '#ccc';
         });
     });
 </script>
 
-<!-- Fim -->
+<section class="hero-two">
+    <div class="hero-content-two">
+        <h1>Apontamos a direção dos melhores cafés</h1>
+        <p style="padding-bottom: 100px;">Aqui sua cafeteria cria verdadeiras conexões</p>
+        {% if user.is_authenticated %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="rounded-button">Fazer cadastro</a>
+                    {% endif %}
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.fav-icon').on('click', function () {
+            var icon = $(this);
+            var cafeId = icon.data('url').split('/').pop();
+            var url = "{% url 'favoritar' 0 %}".replace('0', cafeId);
+
+            $.ajax({
+                url: url,
+                method: 'GET',
+                headers: {
+                    'x-requested-with': 'XMLHttpRequest'
+                },
+                success: function (response) {
+                    if (response.status === 'favoritado') {
+                        icon.addClass('favorited');
+                    } else if (response.status === 'desfavoritado') {
+                        icon.removeClass('favorited');
+                    }
+                    window.location.href = "{% url 'favoritos' %}";
+                },
+                error: function (xhr) {
+                    if (xhr.status === 403) {
+                        window.location.href = '{% url "login" %}';
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}
