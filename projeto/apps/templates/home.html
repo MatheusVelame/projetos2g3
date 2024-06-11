@@ -241,6 +241,66 @@
     .fav-icon.favorited {
         color: #902C00;
     }
+
+    .rounded-button {
+    background-color: #A75938;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    }
+
+    .rounded-button:hover {
+        background-color: #B27054;
+    }
+    
+    .hero-two {
+    position: relative;
+    background-image: url('/static/images/img-home-empresario.png');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: var(--branco-principal);
+    text-align: center;
+    min-height: 40px;
+    }
+
+    .hero-two::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/static/images/glass-preto.png');
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        border-radius: inherit;
+    }
+
+    .hero-content-two {
+        color: var(--branco-principal);
+        position: relative;
+        z-index: 2;
+    }
+
+
+    .hero-two h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+    }
+
+    .hero-two p {
+        font-size: 1.5em;
+    }
 </style>
 
 <section class="hero" style=" display: flex; align-items: center;">
@@ -344,6 +404,17 @@
         });
     });
 </script>
+
+<section class="hero-two">
+    <div class="hero-content-two">
+        <h1>Apontamos a direção dos melhores cafés</h1>
+        <p style="padding-bottom: 100px;">Aqui sua cafeteria cria verdadeiras conexões</p>
+        {% if user.is_authenticated %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="rounded-button">Fazer cadastro</a>
+                    {% endif %}
+    </div>
+</section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
