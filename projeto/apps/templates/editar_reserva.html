@@ -249,9 +249,10 @@ padding-left: 20px;
             <div class="box-reserva">
                 <label for="data_reserva">Data</label>
                 <div class="input-group mb-3">
-                <input type="date" class="form-control search-input"name="data_reserva" id="data_reserva">
+                    <input type="date" class="form-control search-input" name="data_reserva" id="data_reserva" value="{{ reserva.data_reserva|date:"Y-m-d" }}">
                 </div>
             </div>
+            
             <div class="box-reserva">
                 <label for="horario_reserva">Horário</label>
                 <div class="input-group mb-3">
