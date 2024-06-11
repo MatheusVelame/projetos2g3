@@ -1,5 +1,5 @@
 {% extends 'global/base.html' %}
-
+{% load static %}
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -301,6 +301,27 @@
     .hero-two p {
         font-size: 1.5em;
     }
+
+    .rounded-image {
+            width: 800px; 
+            height: 500px;
+            border-radius: 15px;
+            display: block;
+            margin: 20px auto;
+        }
+
+    .maps-pd{
+
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+    }
+
+    .maps-pd h1{
+
+    font-size: 34px;
+
+    }
 </style>
 
 <section class="hero" style=" display: flex; align-items: center;">
@@ -393,6 +414,12 @@
         {% endfor %}
     </div>
 </div>
+
+
+<section class="maps-pd">
+    <h1 style="margin: 0px 50px 50px;">Onde encontrar</h1>
+    <img src="{% static 'images/geolocalizacao.png' %}" alt="Imagem com Bordas Arredondadas" class="rounded-image">
+</section>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
