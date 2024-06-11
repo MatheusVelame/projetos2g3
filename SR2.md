@@ -169,9 +169,9 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
 </ul>
 <br/>
 
-## Diagrama de atividades do sistema:
+## Diagrama de atividades do sistema
 
-![Flowchart Template (2)](https://github.com/MatheusVelame/projetos2g3/assets/142773064/aa65343f-35d4-4b1b-93c9-5464085739ab)
+![Flowchart Template (3)](https://github.com/Manuelaamorim/SmartSchool/assets/142773064/a5edf402-cf2f-4876-baae-24b2cf8010c9)
 
 
 
