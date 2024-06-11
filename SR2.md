@@ -129,15 +129,14 @@ Para visualizar todas as histórias bem definidas, consulte o documento abaixo.
 
 ## 8 Histórias Implementadas
 
-- 1 - DETALHES - Visualizar perfil com as informações das cafeterias cadastradas (SR1)
+- 1 - DETALHES - Visualizar perfil com as informações das cafeterias cadastradas
 - 2 - AVALIAÇÃO - Avaliar cafeterias cadastradas
 - 3 - CADASTRO CAFÉS - Cadastrar Cafeterias
 - 4 - PERFIL DO USUÁRIO - Visualizar perfil de usuário
-- 5 - FAVORITOS - Adicionar e remover
-- 6 - BUSCA - Buscar na Home
-- 7 - CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
-- 8 - SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
-- 9 - HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
+- 5 - BUSCA - Buscar na Home
+- 6 - CONSULTA FAVORITOS - Consultar as cafeterias favoritadas
+- 7 - SISTEMA DE RESERVAS - Reservar mesas em uma cafeteria cadastrada
+- 8 - HISTÓRICO DE VISITAS NO SITE - Visualizar histórico de visitas no site
 
 ## Instruções de acesso ao projeto:
 
