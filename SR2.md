@@ -181,7 +181,8 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
   
   - Issues em abertas:
 
-  ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/3020c4dc-399d-4367-b939-5b42da7675ef)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/8ce48cf6-86b3-49fa-b506-890f0909ff36)
+
 
        
   - Issues fechadas:
