@@ -181,19 +181,20 @@ Para utilizar outros dados cadastrados no Banco de Dados Azure, consulte as info
   
   - Issues em abertas:
 
-  ![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/3020c4dc-399d-4367-b939-5b42da7675ef)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/8ce48cf6-86b3-49fa-b506-890f0909ff36)
+
 
        
   - Issues fechadas:
 
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/c1e19d2a-7fd0-4df7-a7fa-c7f4630df100)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/ed667986-47c9-4a4a-a10c-71201cddc81f)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/3372462a-ea73-4300-b02c-d7b7708d16b3)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/2b363fe1-3df5-4143-9241-d1e5e38721ca)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/8f7ad59f-89c9-4066-a9af-6f6ec8d8ebd6)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/70e37646-4232-481b-a2e1-6b500744a406)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/380a7f81-3664-4c65-8a72-e672e31469ff)
-![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/fd79f8c2-c126-4044-b4e9-4d9e564dc450)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/8f25487e-26fa-4c98-8550-3d82b1a92851)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/8af59c7c-2643-4862-985d-1f40b1202c68)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/e529f4de-26db-41eb-bcd1-bedb63c58eed)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/64fcc088-f292-4c59-ad8d-c7afb0987d14)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/b3a2b6ec-1333-407d-8845-7038c4b63ecd)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/51f83c2a-0122-496d-865b-9a7065d531eb)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/cb1dd7d8-429e-4b83-874d-ff2983ab166f)
+![image](https://github.com/MatheusVelame/projetos2g3/assets/142419881/df32c6ef-4b26-4886-82c4-2c8bfe97df14)
 
 <br/>
 
